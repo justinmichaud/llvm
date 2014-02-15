@@ -5,3 +5,4 @@ add_llvm_target(SimpleCodeGen
   )
 
 add_subdirectory(TargetInfo)
+add_subdirectory(MCTargetDesc)

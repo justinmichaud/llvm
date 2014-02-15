@@ -6,5 +6,5 @@ using namespace llvm;
 Target llvm::TheSimpleTarget;
 
 extern "C" void LLVMInitializeSimpleTargetInfo() { 
-  //RegisterTarget<Triple::simple> X(TheSimpleTarget, "simple", "Simple");
+  RegisterTarget<Triple::simple> X(TheSimpleTarget, "simple", "Simple");
 }
