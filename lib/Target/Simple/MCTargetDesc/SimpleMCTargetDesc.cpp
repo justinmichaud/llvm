@@ -1,4 +1,5 @@
 #include "SimpleMCTargetDesc.h"
+#include "SimpleMCAsmInfo.h"
 #include "llvm/MC/MCCodeGenInfo.h"
 #include "llvm/MC/MCInstrInfo.h"
 #include "llvm/MC/MCRegisterInfo.h"
@@ -12,7 +13,15 @@ using namespace llvm;
 #define GET_SUBTARGETINFO_MC_DESC
 #include "SimpleGenSubtargetInfo.inc"
 
+static MCAsmInfo *createSimpleMCAsmInfo(const MCRegisterInfo &MRI,
+                                       StringRef TT) 
+{
+  MCAsmInfo *MAI = new SimpleMCAsmInfo(TT);
+  return MAI;
+}
+
 // Force static initialization.
 extern "C" void LLVMInitializeSimpleTargetMC() {
-  ;
+  // Register the MC asm info.
+  RegisterMCAsmInfoFn X(TheSimpleTarget, createSimpleMCAsmInfo);
 }
