@@ -31,11 +31,18 @@ namespace {
     SimpleTargetMachine &getSimpleTargetMachine() const {
       return getTM<SimpleTargetMachine>();
     }
+
+    virtual bool addInstSelector();
   };
 } // namespace
 
 TargetPassConfig *SimpleTargetMachine::createPassConfig(PassManagerBase &PM) {
   return new SimplePassConfig(this, PM);
+}
+
+bool SimplePassConfig::addInstSelector() {
+  addPass(createSimpleISelDag(getSimpleTargetMachine(), getOptLevel()));
+  return false;
 }
 
 // Force static initialization.

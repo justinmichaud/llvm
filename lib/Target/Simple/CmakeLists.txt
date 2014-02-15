@@ -3,6 +3,7 @@ set(LLVM_TARGET_DEFINITIONS Simple.td)
 tablegen(LLVM SimpleGenSubtargetInfo.inc -gen-subtarget)
 tablegen(LLVM SimpleGenRegisterInfo.inc -gen-register-info)
 tablegen(LLVM SimpleGenInstrInfo.inc -gen-instr-info)
+tablegen(LLVM SimpleGenDAGISel.inc -gen-dag-isel)
 
 add_public_tablegen_target(SimpleCommonTableGene)
 
@@ -20,6 +21,7 @@ add_llvm_target(SimpleCodeGen
   SimpleRegisterInfo.h
   SimpleInstrInfo.cpp
   SimpleInstrInfo.h
+  SimpleISelDAGToDAG.cpp
   )
 
 add_subdirectory(TargetInfo)
