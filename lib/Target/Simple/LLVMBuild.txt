@@ -1,0 +1,19 @@
+[common]
+subdirectories = TargetInfo
+
+[component_0]
+type = TargetGroup
+name = Simple
+parent = Target
+;has_asmparser = 1
+;has_asmprinter = 1
+;has_disassembler = 1
+;has_jit = 1
+
+[component_1]
+type = Library
+name = SimpleCodeGen
+parent = Simple
+required_libraries = AsmPrinter CodeGen Core MC SelectionDAG
+                     SimpleInfo Support Target
+add_to_library_groups = Simple
