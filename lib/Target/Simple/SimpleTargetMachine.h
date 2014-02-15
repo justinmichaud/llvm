@@ -6,11 +6,13 @@
 
 #include "SimpleSubtarget.h"
 #include "SimpleISelLowering.h"
+#include "SimpleInstrInfo.h"
 
 namespace llvm {
 
 class SimpleTargetMachine : public LLVMTargetMachine {
   const DataLayout DL;       // Calculates type size & alignment
+  SimpleInstrInfo InstrInfo;
   SimpleSubtarget Subtarget;
   SimpleTargetLowering TLInfo;
 
@@ -31,6 +33,12 @@ public:
   virtual const SimpleTargetLowering *getTargetLowering() const 
   {
     return &TLInfo;
+  }
+
+  virtual const SimpleInstrInfo *getInstrInfo() const { return &InstrInfo; }
+
+  virtual const TargetRegisterInfo *getRegisterInfo() const {
+    return &InstrInfo.getRegisterInfo();
   }
 
   virtual const DataLayout *getDataLayout() const { return &DL; }

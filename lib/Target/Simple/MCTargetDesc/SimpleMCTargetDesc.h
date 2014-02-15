@@ -15,6 +15,10 @@ extern Target TheSimpleTarget;
 #define GET_REGINFO_ENUM
 #include "SimpleGenRegisterInfo.inc"
 
+// Defines symbolic names for the Simple instructions.
+//
+#define GET_INSTRINFO_ENUM
+#include "SimpleGenInstrInfo.inc"
 
 #define GET_SUBTARGETINFO_ENUM
 #include "SimpleGenSubtargetInfo.inc"

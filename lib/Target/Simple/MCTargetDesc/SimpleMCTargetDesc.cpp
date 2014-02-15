@@ -10,6 +10,9 @@
 
 using namespace llvm;
 
+#define GET_INSTRINFO_MC_DESC
+#include "SimpleGenInstrInfo.inc"
+
 #define GET_SUBTARGETINFO_MC_DESC
 #include "SimpleGenSubtargetInfo.inc"
 

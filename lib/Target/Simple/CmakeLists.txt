@@ -2,6 +2,7 @@ set(LLVM_TARGET_DEFINITIONS Simple.td)
 
 tablegen(LLVM SimpleGenSubtargetInfo.inc -gen-subtarget)
 tablegen(LLVM SimpleGenRegisterInfo.inc -gen-register-info)
+tablegen(LLVM SimpleGenInstrInfo.inc -gen-instr-info)
 
 add_public_tablegen_target(SimpleCommonTableGene)
 
@@ -17,6 +18,8 @@ add_llvm_target(SimpleCodeGen
   SimpleTargetObjectFile.h
   SimpleRegisterInfo.cpp
   SimpleRegisterInfo.h
+  SimpleInstrInfo.cpp
+  SimpleInstrInfo.h
   )
 
 add_subdirectory(TargetInfo)

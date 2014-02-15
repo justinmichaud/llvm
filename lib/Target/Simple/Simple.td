@@ -1,6 +1,7 @@
 include "llvm/Target/Target.td"
 
 include "SimpleRegisterInfo.td"
+include "SimpleInstrInfo.td"
 
 def SimpleInstrInfo : InstrInfo;
 
