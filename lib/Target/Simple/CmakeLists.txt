@@ -1,6 +1,7 @@
 add_llvm_target(SimpleCodeGen
   SimpleTargetMachine.cpp
   SimpleTargetMachine.h
+  Simple.h
   )
 
 add_subdirectory(TargetInfo)
