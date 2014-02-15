@@ -13,6 +13,9 @@ using namespace llvm;
 #define GET_SUBTARGETINFO_MC_DESC
 #include "SimpleGenSubtargetInfo.inc"
 
+#define GET_REGINFO_MC_DESC
+#include "SimpleGenRegisterInfo.inc"
+
 static MCAsmInfo *createSimpleMCAsmInfo(const MCRegisterInfo &MRI,
                                        StringRef TT) 
 {

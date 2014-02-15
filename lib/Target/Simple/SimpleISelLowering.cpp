@@ -5,6 +5,7 @@
 #include "SimpleSubtarget.h"
 #include "SimpleTargetMachine.h"
 #include "SimpleTargetObjectFile.h"
+#include "SimpleRegisterInfo.h"
 //#include "SimpleMachineFunctionInfo.h"
 #include "llvm/CodeGen/CallingConvLower.h"
 #include "llvm/CodeGen/MachineFrameInfo.h"
@@ -34,7 +35,7 @@ SimpleTargetLowering::SimpleTargetLowering(SimpleTargetMachine &STM)
     Subtarget(*STM.getSubtargetImpl()) {
 
   // Set up the register classes.
-  //...
+  addRegisterClass(MVT::i32, &Simple::GPR32RegClass);
 
   // Compute derived properties from the register classes
   computeRegisterProperties();

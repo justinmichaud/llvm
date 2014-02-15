@@ -1,5 +1,7 @@
 include "llvm/Target/Target.td"
 
+include "SimpleRegisterInfo.td"
+
 def SimpleInstrInfo : InstrInfo;
 
 class Proc<string Name, list<SubtargetFeature> Features>
