@@ -9,6 +9,9 @@
 
 using namespace llvm;
 
+#define GET_SUBTARGETINFO_MC_DESC
+#include "SimpleGenSubtargetInfo.inc"
+
 // Force static initialization.
 extern "C" void LLVMInitializeSimpleTargetMC() {
   ;

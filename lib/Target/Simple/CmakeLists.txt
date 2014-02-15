@@ -1,7 +1,15 @@
+set(LLVM_TARGET_DEFINITIONS Simple.td)
+
+tablegen(LLVM SimpleGenSubtargetInfo.inc -gen-subtarget)
+
+add_public_tablegen_target(SimpleCommonTableGene)
+
 add_llvm_target(SimpleCodeGen
   SimpleTargetMachine.cpp
   SimpleTargetMachine.h
   Simple.h
+  SimpleSubtarget.cpp
+  SimpleSubtarget.h
   )
 
 add_subdirectory(TargetInfo)
