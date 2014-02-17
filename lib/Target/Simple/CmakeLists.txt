@@ -4,6 +4,7 @@ tablegen(LLVM SimpleGenSubtargetInfo.inc -gen-subtarget)
 tablegen(LLVM SimpleGenRegisterInfo.inc -gen-register-info)
 tablegen(LLVM SimpleGenInstrInfo.inc -gen-instr-info)
 tablegen(LLVM SimpleGenDAGISel.inc -gen-dag-isel)
+tablegen(LLVM SimpleGenAsmWriter.inc -gen-asm-writer)
 
 add_public_tablegen_target(SimpleCommonTableGene)
 
@@ -22,7 +23,12 @@ add_llvm_target(SimpleCodeGen
   SimpleInstrInfo.cpp
   SimpleInstrInfo.h
   SimpleISelDAGToDAG.cpp
+  SimpleAsmPrinter.cpp
+  SimpleTargetStreamer.h
+  SimpleMCInstLower.cpp
+  SimpleMCInstLower.h
   )
 
 add_subdirectory(TargetInfo)
 add_subdirectory(MCTargetDesc)
+add_subdirectory(InstPrinter)

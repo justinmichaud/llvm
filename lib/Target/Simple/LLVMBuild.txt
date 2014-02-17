@@ -1,5 +1,5 @@
 [common]
-subdirectories = TargetInfo MCTargetDesc
+subdirectories = TargetInfo MCTargetDesc InstPrinter
 
 [component_0]
 type = TargetGroup
@@ -15,5 +15,5 @@ type = Library
 name = SimpleCodeGen
 parent = Simple
 required_libraries = AsmPrinter CodeGen Core MC SelectionDAG
-                     SimpleInfo SimpleDesc Support Target
+                     SimpleInfo SimpleDesc SimpleAsmPrinter Support Target
 add_to_library_groups = Simple
