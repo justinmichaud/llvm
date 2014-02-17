@@ -43,6 +43,15 @@ SimpleTargetLowering::SimpleTargetLowering(SimpleTargetMachine &STM)
   setSchedulingPreference(Sched::Source);
 }
 
+const char *SimpleTargetLowering::getTargetNodeName(unsigned Opcode) const
+{
+  switch (Opcode)
+  {
+  case SimpleISD::RET : return "Simple::RET";
+  default             : return NULL;
+  }
+}
+
 SDValue SimpleTargetLowering::LowerFormalArguments(
   SDValue Chain, CallingConv::ID CallConv,
   bool isVarArg,
@@ -81,4 +90,48 @@ SDValue SimpleTargetLowering::LowerFormalArguments(
   // Return chain
   return DAG.getNode(ISD::TokenFactor, dl, MVT::Other, &ArgChains[0],
     ArgChains.size());
+}
+
+SDValue SimpleTargetLowering::LowerReturn(
+  SDValue Chain, CallingConv::ID CallConv,
+  bool isVarArg,
+  const SmallVectorImpl<ISD::OutputArg> &Outs,
+  const SmallVectorImpl<SDValue> &OutVals,
+  SDLoc dl, SelectionDAG &DAG) const
+{
+  SDValue Flag;
+  SmallVector<SDValue, 4> RetOps(1, Chain);
+
+  if (Outs.size() >= Simple::GPR32RegClass.getNumRegs())
+  {
+    assert(!"not implemented");
+    return SDValue();
+  }
+
+  // Return is always ret 0
+  RetOps.push_back(DAG.getConstant(0, MVT::i32));
+
+  // Build CopyToReg's
+  for (unsigned i = 0; i != Outs.size(); ++i) 
+  {
+    if (Outs[i].VT.SimpleTy != MVT::i32)
+      assert(!"not implemented");
+
+    unsigned loc_reg = Simple::GPR32RegClass.getRegister(i);
+
+    Chain = DAG.getCopyToReg(Chain, dl, loc_reg,
+      OutVals[i], Flag);
+
+    Flag = Chain.getValue(1);
+    RetOps.push_back(DAG.getRegister(loc_reg, Outs[i].VT));
+  }
+
+  RetOps[0] = Chain;  // Update chain.
+
+  // Add the flag if we have it.
+  if (Flag.getNode())
+    RetOps.push_back(Flag);
+
+  return DAG.getNode(SimpleISD::RET, dl, MVT::Other,
+    &RetOps[0], RetOps.size());
 }

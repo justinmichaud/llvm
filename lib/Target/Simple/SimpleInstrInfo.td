@@ -11,8 +11,14 @@ def add_ri : SimpleInstr<(outs GPR32:$dst), (ins GPR32:$b, i32imm:$c),
                          "Hello Mr. Processor, please add two values $b and $c and put result into $dst",
                          [(set GPR32:$dst, (add GPR32:$b, imm:$c))]>;
 
-//def SimpleRet : SDNode<"SimpleISD::RET", SDTBrind,
-//                       [SDNPHasChain, SDNPOptInGlue, SDNPMayLoad, SDNPVariadic]>;
+//
+// Function return
+//
+
+def SimpleRetNode : SDNode<"SimpleISD::RET", SDTBrind,
+                       [SDNPHasChain, SDNPOptInGlue, SDNPMayLoad, SDNPVariadic]>;
+
+def SimpleRet : SimpleInstr<(outs), (ins i32imm:$a), "RETURN $a", [(SimpleRetNode imm:$a)]>;
 
 //
 // Call frame magic

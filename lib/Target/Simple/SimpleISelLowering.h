@@ -11,6 +11,17 @@ namespace llvm {
   class SimpleSubtarget;
   class SimpleTargetMachine;
 
+  namespace SimpleISD
+  {
+    enum NodeType {
+      // Start the numbering where the builtin ops and target ops leave off.
+      FIRST_NUMBER = ISD::BUILTIN_OP_END,
+
+      // Return instruction
+      RET
+    };
+  }
+
   //===--------------------------------------------------------------------===//
   // TargetLowering Implementation
   //===--------------------------------------------------------------------===//
@@ -19,12 +30,21 @@ namespace llvm {
   public:
     explicit SimpleTargetLowering(SimpleTargetMachine &TM);
 
+    virtual const char *getTargetNodeName(unsigned Opcode) const;
+
     virtual SDValue
       LowerFormalArguments(SDValue /*Chain*/, CallingConv::ID /*CallConv*/,
       bool /*isVarArg*/,
       const SmallVectorImpl<ISD::InputArg> &/*Ins*/,
       SDLoc /*dl*/, SelectionDAG &/*DAG*/,
       SmallVectorImpl<SDValue> &/*InVals*/) const;
+
+    virtual SDValue
+      LowerReturn(SDValue /*Chain*/, CallingConv::ID /*CallConv*/,
+      bool /*isVarArg*/,
+      const SmallVectorImpl<ISD::OutputArg> &/*Outs*/,
+      const SmallVectorImpl<SDValue> &/*OutVals*/,
+      SDLoc /*dl*/, SelectionDAG &/*DAG*/) const;
 
   private:
     const SimpleTargetMachine &TM;
