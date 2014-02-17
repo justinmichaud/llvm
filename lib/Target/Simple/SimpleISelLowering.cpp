@@ -42,3 +42,43 @@ SimpleTargetLowering::SimpleTargetLowering(SimpleTargetMachine &STM)
 
   setSchedulingPreference(Sched::Source);
 }
+
+SDValue SimpleTargetLowering::LowerFormalArguments(
+  SDValue Chain, CallingConv::ID CallConv,
+  bool isVarArg,
+  const SmallVectorImpl<ISD::InputArg> &Ins,
+  SDLoc dl, SelectionDAG &DAG,
+  SmallVectorImpl<SDValue> &InVals) const
+{
+  // Implement really simple calling convention
+  // Every argument is passed through register
+  // If not enough registers - just fail
+
+  MachineFunction &MF = DAG.getMachineFunction();
+  MachineRegisterInfo &RegInfo = MF.getRegInfo();
+
+  if (Ins.size() >= Simple::GPR32RegClass.getNumRegs())
+  {
+    assert(!"not implemented");
+    return SDValue();
+  }
+
+  SmallVector<SDValue, 4> ArgChains;
+
+  // Emit CopyFromReg's
+  for (unsigned i = 0, e = Ins.size(); i != e; ++i) 
+  {
+    if (Ins[i].VT.SimpleTy != MVT::i32)
+      assert(!"not implemented");
+
+    unsigned VReg = RegInfo.createVirtualRegister(&Simple::GPR32RegClass);
+    RegInfo.addLiveIn(Simple::GPR32RegClass.getRegister(i), VReg);
+    SDValue ArgIn = DAG.getCopyFromReg(Chain, dl, VReg, Ins[i].ArgVT);
+    InVals.push_back(ArgIn);
+    ArgChains.push_back(ArgIn.getValue(ArgIn->getNumValues() - 1));
+  }
+
+  // Return chain
+  return DAG.getNode(ISD::TokenFactor, dl, MVT::Other, &ArgChains[0],
+    ArgChains.size());
+}

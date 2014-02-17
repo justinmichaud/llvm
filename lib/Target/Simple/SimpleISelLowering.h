@@ -19,6 +19,13 @@ namespace llvm {
   public:
     explicit SimpleTargetLowering(SimpleTargetMachine &TM);
 
+    virtual SDValue
+      LowerFormalArguments(SDValue /*Chain*/, CallingConv::ID /*CallConv*/,
+      bool /*isVarArg*/,
+      const SmallVectorImpl<ISD::InputArg> &/*Ins*/,
+      SDLoc /*dl*/, SelectionDAG &/*DAG*/,
+      SmallVectorImpl<SDValue> &/*InVals*/) const;
+
   private:
     const SimpleTargetMachine &TM;
     const SimpleSubtarget &Subtarget;
