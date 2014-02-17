@@ -7,6 +7,7 @@
 #include "SimpleSubtarget.h"
 #include "SimpleISelLowering.h"
 #include "SimpleInstrInfo.h"
+#include "SimpleFrameLowering.h"
 
 namespace llvm {
 
@@ -15,6 +16,7 @@ class SimpleTargetMachine : public LLVMTargetMachine {
   SimpleInstrInfo InstrInfo;
   SimpleSubtarget Subtarget;
   SimpleTargetLowering TLInfo;
+  SimpleFrameLowering FrameLowering;
 
 public:
   SimpleTargetMachine(const Target &T, StringRef TT,
@@ -37,8 +39,14 @@ public:
 
   virtual const SimpleInstrInfo *getInstrInfo() const { return &InstrInfo; }
 
-  virtual const TargetRegisterInfo *getRegisterInfo() const {
+  virtual const TargetRegisterInfo *getRegisterInfo() const 
+  {
     return &InstrInfo.getRegisterInfo();
+  }
+
+  virtual const SimpleFrameLowering *getFrameLowering() const 
+  {
+    return &FrameLowering;
   }
 
   virtual const DataLayout *getDataLayout() const { return &DL; }

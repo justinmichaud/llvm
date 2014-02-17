@@ -27,6 +27,8 @@ add_llvm_target(SimpleCodeGen
   SimpleTargetStreamer.h
   SimpleMCInstLower.cpp
   SimpleMCInstLower.h
+  SimpleFrameLowering.cpp
+  SimpleFrameLowering.h
   )
 
 add_subdirectory(TargetInfo)

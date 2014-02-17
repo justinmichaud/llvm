@@ -2,5 +2,5 @@
 type = Library
 name = SimpleDesc
 parent = Simple
-required_libraries = MC Support SimpleInfo
+required_libraries = MC Support SimpleInfo SimpleAsmPrinter
 add_to_library_groups = Simple

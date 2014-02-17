@@ -1,5 +1,6 @@
 #include "SimpleMCTargetDesc.h"
 #include "SimpleMCAsmInfo.h"
+#include "InstPrinter/SimpleInstPrinter.h"
 #include "llvm/MC/MCCodeGenInfo.h"
 #include "llvm/MC/MCInstrInfo.h"
 #include "llvm/MC/MCRegisterInfo.h"
@@ -26,8 +27,21 @@ static MCAsmInfo *createSimpleMCAsmInfo(const MCRegisterInfo &MRI,
   return MAI;
 }
 
+static MCInstPrinter *createSimpleMCInstPrinter(const Target &T,
+                                               unsigned SyntaxVariant,
+                                               const MCAsmInfo &MAI,
+                                               const MCInstrInfo &MII,
+                                               const MCRegisterInfo &MRI,
+                                               const MCSubtargetInfo &STI) 
+{
+  return new SimpleInstPrinter(MAI, MII, MRI);
+}
+
 // Force static initialization.
 extern "C" void LLVMInitializeSimpleTargetMC() {
   // Register the MC asm info.
   RegisterMCAsmInfoFn X(TheSimpleTarget, createSimpleMCAsmInfo);
+
+  TargetRegistry::RegisterMCInstPrinter(TheSimpleTarget,
+    createSimpleMCInstPrinter);
 }
