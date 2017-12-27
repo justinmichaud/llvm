@@ -317,6 +317,7 @@ enum {
   // such numbers for an official value for WebAssembly. As soon as one is
   // allocated, this enum will be updated to use it.
   EM_WEBASSEMBLY = 0x4157, // WebAssembly architecture
+  EM_M6502 = 0x4158, // WebAssembly architecture
 };
 
 // Object file classes.
@@ -645,6 +646,10 @@ enum {
 // ELF Relocation types for WebAssembly
 enum {
 #include "ELFRelocs/WebAssembly.def"
+};
+
+enum {
+#include "ELFRelocs/M6502.def"
 };
 
 // AMDGPU specific e_flags.

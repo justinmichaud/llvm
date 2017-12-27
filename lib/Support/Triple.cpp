@@ -22,6 +22,7 @@ StringRef Triple::getArchTypeName(ArchType Kind) {
   case UnknownArch:    return "unknown";
 
   case aarch64:        return "aarch64";
+  case m6502:        return "m6502";
   case aarch64_be:     return "aarch64_be";
   case arm:            return "arm";
   case armeb:          return "armeb";
@@ -619,6 +620,7 @@ static StringRef getObjectFormatTypeName(Triple::ObjectFormatType Kind) {
 static Triple::ObjectFormatType getDefaultFormat(const Triple &T) {
   switch (T.getArch()) {
   case Triple::UnknownArch:
+  case Triple::m6502:
   case Triple::aarch64:
   case Triple::arm:
   case Triple::thumb:
@@ -1183,6 +1185,7 @@ static unsigned getArchPointerBitWidth(llvm::Triple::ArchType Arch) {
 
   case llvm::Triple::avr:
   case llvm::Triple::msp430:
+  case llvm::Triple::m6502:
     return 16;
 
   case llvm::Triple::arc:
@@ -1256,6 +1259,7 @@ Triple Triple::get32BitArchVariant() const {
   Triple T(*this);
   switch (getArch()) {
   case Triple::UnknownArch:
+  case Triple::m6502:
   case Triple::amdgcn:
   case Triple::avr:
   case Triple::bpfel:
@@ -1320,6 +1324,7 @@ Triple Triple::get64BitArchVariant() const {
   Triple T(*this);
   switch (getArch()) {
   case Triple::UnknownArch:
+  case Triple::m6502:
   case Triple::arc:
   case Triple::avr:
   case Triple::hexagon:
