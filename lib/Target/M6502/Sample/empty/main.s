@@ -1,5 +1,6 @@
 	.text
 	.abicalls
+	.option	pic0
 	.section	.mdebug.abi32,"",@progbits
 	.nan	legacy
 	.file	"main.c"
@@ -21,13 +22,11 @@ main:                                   # @main
 	addiu	$sp, $sp, -16
 	sw	$fp, 12($sp)            # 4-byte Folded Spill
 	move	 $fp, $sp
-	addiu	$1, $zero, 1
-	addiu	$2, $zero, 5
-	addiu	$3, $zero, 0
 	sw	$zero, 8($fp)
-	sw	$2, 4($fp)
-	lw	$2, 4($fp)
-	addu	$1, $2, $1
+	addiu	$1, $zero, 5
+	sw	$1, 4($fp)
+	lw	$1, 4($fp)
+	addiu	$1, $1, 1
 	sw	$1, 4($fp)
 	lw	$2, 4($fp)
 	move	 $sp, $fp
