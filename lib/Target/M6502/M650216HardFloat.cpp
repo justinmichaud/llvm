@@ -260,7 +260,7 @@ static void assureFPCallStub(Function &F, Module *M,
   LLVMContext &Context = M->getContext();
   bool LE = TM.isLittleEndian();
   std::string Name = F.getName();
-  std::string SectionName = ".mips16.call.fp." + Name;
+  std::string SectionName = ".m650216.call.fp." + Name;
   std::string StubName = "__call_stub_fp_" + Name;
   //
   // see if we already have the stub
@@ -269,11 +269,11 @@ static void assureFPCallStub(Function &F, Module *M,
   if (FStub && !FStub->isDeclaration()) return;
   FStub = Function::Create(F.getFunctionType(),
                            Function::InternalLinkage, StubName, M);
-  FStub->addFnAttr("mips16_fp_stub");
+  FStub->addFnAttr("m650216_fp_stub");
   FStub->addFnAttr(Attribute::Naked);
   FStub->addFnAttr(Attribute::NoInline);
   FStub->addFnAttr(Attribute::NoUnwind);
-  FStub->addFnAttr("nomips16");
+  FStub->addFnAttr("nom650216");
   FStub->setSection(SectionName);
   BasicBlock *BB = BasicBlock::Create(Context, "entry", FStub);
   FPReturnVariant RV = whichFPReturnVariant(FStub->getReturnType());
@@ -394,8 +394,8 @@ static bool fixupFPReturnAndCall(Function &F, Module *M,
         FPReturnVariant RV = whichFPReturnVariant(T);
         if (RV == NoFPRet) continue;
         static const char *const Helper[NoFPRet] = {
-          "__mips16_ret_sf", "__mips16_ret_df", "__mips16_ret_sc",
-          "__mips16_ret_dc"
+          "__m650216_ret_sf", "__m650216_ret_df", "__m650216_ret_sc",
+          "__m650216_ret_dc"
         };
         const char *Name = Helper[RV];
         AttributeList A;
@@ -448,17 +448,17 @@ static void createFPFnStub(Function *F, Module *M, FPParamVariant PV,
   bool LE = TM.isLittleEndian();
   LLVMContext &Context = M->getContext();
   std::string Name = F->getName();
-  std::string SectionName = ".mips16.fn." + Name;
+  std::string SectionName = ".m650216.fn." + Name;
   std::string StubName = "__fn_stub_" + Name;
   std::string LocalName = "$$__fn_local_" + Name;
   Function *FStub = Function::Create
     (F->getFunctionType(),
      Function::InternalLinkage, StubName, M);
-  FStub->addFnAttr("mips16_fp_stub");
+  FStub->addFnAttr("m650216_fp_stub");
   FStub->addFnAttr(Attribute::Naked);
   FStub->addFnAttr(Attribute::NoUnwind);
   FStub->addFnAttr(Attribute::NoInline);
-  FStub->addFnAttr("nomips16");
+  FStub->addFnAttr("nom650216");
   FStub->setSection(SectionName);
   BasicBlock *BB = BasicBlock::Create(Context, "entry", FStub);
 
@@ -492,18 +492,18 @@ static void removeUseSoftFloat(Function &F) {
 }
 
 // This pass only makes sense when the underlying chip has floating point but
-// we are compiling as mips16.
-// For all mips16 functions (that are not stubs we have already generated), or
-// declared via attributes as nomips16, we must:
+// we are compiling as m650216.
+// For all m650216 functions (that are not stubs we have already generated), or
+// declared via attributes as nom650216, we must:
 //    1) fixup all returns of float, double, single and double complex
 //       by calling a helper function before the actual return.
-//    2) generate helper functions (stubs) that can be called by mips32
+//    2) generate helper functions (stubs) that can be called by m650232
 //       functions that will move parameters passed normally passed in
 //       floating point
 //       registers the soft float equivalents.
 //    3) in the case of static relocation, generate helper functions so that
-//       mips16 functions can call extern functions of unknown type (mips16 or
-//       mips32).
+//       m650216 functions can call extern functions of unknown type (m650216 or
+//       m650232).
 //    4) TBD. For pic, calls to extern functions of unknown type are handled by
 //       predefined helper functions in libc but this work is currently done
 //       during call lowering but it should be moved here in the future.
@@ -513,13 +513,13 @@ bool M650216HardFloat::runOnModule(Module &M) {
   DEBUG(errs() << "Run on Module M650216HardFloat\n");
   bool Modified = false;
   for (Module::iterator F = M.begin(), E = M.end(); F != E; ++F) {
-    if (F->hasFnAttribute("nomips16") &&
+    if (F->hasFnAttribute("nom650216") &&
         F->hasFnAttribute("use-soft-float")) {
       removeUseSoftFloat(*F);
       continue;
     }
-    if (F->isDeclaration() || F->hasFnAttribute("mips16_fp_stub") ||
-        F->hasFnAttribute("nomips16")) continue;
+    if (F->isDeclaration() || F->hasFnAttribute("m650216_fp_stub") ||
+        F->hasFnAttribute("nom650216")) continue;
     Modified |= fixupFPReturnAndCall(*F, &M, TM);
     FPParamVariant V = whichFPParamVariantNeeded(*F);
     if (V != NoSig) {

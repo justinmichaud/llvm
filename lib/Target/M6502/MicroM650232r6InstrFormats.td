@@ -12,7 +12,7 @@
 //===----------------------------------------------------------------------===//
 
 class MMR6Arch<string opstr> {
-  string Arch = "micromipsr6";
+  string Arch = "microm6502r6";
   string BaseOpcode = opstr;
   string DecoderNamespace = "MicroM6502R6";
 }

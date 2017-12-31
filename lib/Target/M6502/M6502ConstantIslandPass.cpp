@@ -262,7 +262,7 @@ namespace {
 
     private:
       unsigned MaxDisp;
-      unsigned LongFormMaxDisp; // mips16 has 16/32 bit instructions
+      unsigned LongFormMaxDisp; // m650216 has 16/32 bit instructions
                                 // with different displacements
       unsigned LongFormOpcode;
 
@@ -437,7 +437,7 @@ LLVM_DUMP_METHOD void M6502ConstantIslands::dumpBBs() {
 #endif
 
 bool M6502ConstantIslands::runOnMachineFunction(MachineFunction &mf) {
-  // The intention is for this to be a mips16 only pass for now
+  // The intention is for this to be a m650216 only pass for now
   // FIXME:
   MF = &mf;
   MCP = mf.getConstantPool();

@@ -194,7 +194,7 @@ static void addSaveRestoreRegs(MachineInstrBuilder &MIB,
     case M6502::S2:
       break;
     default:
-      llvm_unreachable("unexpected mips16 callee saved register");
+      llvm_unreachable("unexpected m650216 callee saved register");
 
     }
   }

@@ -504,11 +504,7 @@ public:
     CpRestoreOffset = -1;
 
     const Triple &TheTriple = sti.getTargetTriple();
-    if ((TheTriple.getArch() == Triple::mips) ||
-        (TheTriple.getArch() == Triple::mips64))
-      IsLittleEndian = false;
-    else
-      IsLittleEndian = true;
+    IsLittleEndian = false;
   }
 
   /// True if all of $fcc0 - $fcc7 exist for the current ISA.
@@ -4088,7 +4084,7 @@ bool M6502AsmParser::expandTrunc(MCInst &Inst, bool IsDouble, bool Is64FPU,
 bool M6502AsmParser::expandUlh(MCInst &Inst, bool Signed, SMLoc IDLoc,
                               MCStreamer &Out, const MCSubtargetInfo *STI) {
   if (hasM650232r6() || hasM650264r6()) {
-    return Error(IDLoc, "instruction not supported on mips32r6 or mips64r6");
+    return Error(IDLoc, "instruction not supported on m650232r6 or m650264r6");
   }
 
   const MCOperand &DstRegOp = Inst.getOperand(0);
@@ -4140,7 +4136,7 @@ bool M6502AsmParser::expandUlh(MCInst &Inst, bool Signed, SMLoc IDLoc,
 bool M6502AsmParser::expandUsh(MCInst &Inst, SMLoc IDLoc, MCStreamer &Out,
                               const MCSubtargetInfo *STI) {
   if (hasM650232r6() || hasM650264r6()) {
-    return Error(IDLoc, "instruction not supported on mips32r6 or mips64r6");
+    return Error(IDLoc, "instruction not supported on m650232r6 or m650264r6");
   }
 
   const MCOperand &DstRegOp = Inst.getOperand(0);
@@ -4191,7 +4187,7 @@ bool M6502AsmParser::expandUsh(MCInst &Inst, SMLoc IDLoc, MCStreamer &Out,
 bool M6502AsmParser::expandUxw(MCInst &Inst, SMLoc IDLoc, MCStreamer &Out,
                               const MCSubtargetInfo *STI) {
   if (hasM650232r6() || hasM650264r6()) {
-    return Error(IDLoc, "instruction not supported on mips32r6 or mips64r6");
+    return Error(IDLoc, "instruction not supported on m650232r6 or m650264r6");
   }
 
   const MCOperand &DstRegOp = Inst.getOperand(0);
@@ -6323,7 +6319,7 @@ bool M6502AsmParser::parseSetNoDspDirective() {
 
 bool M6502AsmParser::parseSetM650216Directive() {
   MCAsmParser &Parser = getParser();
-  Parser.Lex(); // Eat "mips16".
+  Parser.Lex(); // Eat "m650216".
 
   // If this is not the end of the statement, report an error.
   if (getLexer().isNot(AsmToken::EndOfStatement)) {
@@ -6331,7 +6327,7 @@ bool M6502AsmParser::parseSetM650216Directive() {
     return false;
   }
 
-  setFeatureBits(M6502::FeatureM650216, "mips16");
+  setFeatureBits(M6502::FeatureM650216, "m650216");
   getTargetStreamer().emitDirectiveSetM650216();
   Parser.Lex(); // Consume the EndOfStatement.
   return false;
@@ -6339,7 +6335,7 @@ bool M6502AsmParser::parseSetM650216Directive() {
 
 bool M6502AsmParser::parseSetNoM650216Directive() {
   MCAsmParser &Parser = getParser();
-  Parser.Lex(); // Eat "nomips16".
+  Parser.Lex(); // Eat "nom650216".
 
   // If this is not the end of the statement, report an error.
   if (getLexer().isNot(AsmToken::EndOfStatement)) {
@@ -6347,7 +6343,7 @@ bool M6502AsmParser::parseSetNoM650216Directive() {
     return false;
   }
 
-  clearFeatureBits(M6502::FeatureM650216, "mips16");
+  clearFeatureBits(M6502::FeatureM650216, "m650216");
   getTargetStreamer().emitDirectiveSetNoM650216();
   Parser.Lex(); // Consume the EndOfStatement.
   return false;
@@ -6551,23 +6547,23 @@ bool M6502AsmParser::parseSetArchDirective() {
 
   StringRef ArchFeatureName =
       StringSwitch<StringRef>(Arch)
-          .Case("mips1", "mips1")
-          .Case("mips2", "mips2")
-          .Case("mips3", "mips3")
-          .Case("mips4", "mips4")
-          .Case("mips5", "mips5")
-          .Case("mips32", "mips32")
-          .Case("mips32r2", "mips32r2")
-          .Case("mips32r3", "mips32r3")
-          .Case("mips32r5", "mips32r5")
-          .Case("mips32r6", "mips32r6")
-          .Case("mips64", "mips64")
-          .Case("mips64r2", "mips64r2")
-          .Case("mips64r3", "mips64r3")
-          .Case("mips64r5", "mips64r5")
-          .Case("mips64r6", "mips64r6")
-          .Case("octeon", "cnmips")
-          .Case("r4000", "mips3") // This is an implementation of M65023.
+          .Case("m65021", "m65021")
+          .Case("m65022", "m65022")
+          .Case("m65023", "m65023")
+          .Case("m65024", "m65024")
+          .Case("m65025", "m65025")
+          .Case("m650232", "m650232")
+          .Case("m650232r2", "m650232r2")
+          .Case("m650232r3", "m650232r3")
+          .Case("m650232r5", "m650232r5")
+          .Case("m650232r6", "m650232r6")
+          .Case("m650264", "m650264")
+          .Case("m650264r2", "m650264r2")
+          .Case("m650264r3", "m650264r3")
+          .Case("m650264r5", "m650264r5")
+          .Case("m650264r6", "m650264r6")
+          .Case("octeon", "cnm6502")
+          .Case("r4000", "m65023") // This is an implementation of M65023.
           .Default("");
 
   if (ArchFeatureName.empty())
@@ -6596,67 +6592,67 @@ bool M6502AsmParser::parseSetFeature(uint64_t Feature) {
     getTargetStreamer().emitDirectiveSetDspr2();
     break;
   case M6502::FeatureMicroM6502:
-    setFeatureBits(M6502::FeatureMicroM6502, "micromips");
+    setFeatureBits(M6502::FeatureMicroM6502, "microm6502");
     getTargetStreamer().emitDirectiveSetMicroM6502();
     break;
   case M6502::FeatureM65021:
-    selectArch("mips1");
+    selectArch("m65021");
     getTargetStreamer().emitDirectiveSetM65021();
     break;
   case M6502::FeatureM65022:
-    selectArch("mips2");
+    selectArch("m65022");
     getTargetStreamer().emitDirectiveSetM65022();
     break;
   case M6502::FeatureM65023:
-    selectArch("mips3");
+    selectArch("m65023");
     getTargetStreamer().emitDirectiveSetM65023();
     break;
   case M6502::FeatureM65024:
-    selectArch("mips4");
+    selectArch("m65024");
     getTargetStreamer().emitDirectiveSetM65024();
     break;
   case M6502::FeatureM65025:
-    selectArch("mips5");
+    selectArch("m65025");
     getTargetStreamer().emitDirectiveSetM65025();
     break;
   case M6502::FeatureM650232:
-    selectArch("mips32");
+    selectArch("m650232");
     getTargetStreamer().emitDirectiveSetM650232();
     break;
   case M6502::FeatureM650232r2:
-    selectArch("mips32r2");
+    selectArch("m650232r2");
     getTargetStreamer().emitDirectiveSetM650232R2();
     break;
   case M6502::FeatureM650232r3:
-    selectArch("mips32r3");
+    selectArch("m650232r3");
     getTargetStreamer().emitDirectiveSetM650232R3();
     break;
   case M6502::FeatureM650232r5:
-    selectArch("mips32r5");
+    selectArch("m650232r5");
     getTargetStreamer().emitDirectiveSetM650232R5();
     break;
   case M6502::FeatureM650232r6:
-    selectArch("mips32r6");
+    selectArch("m650232r6");
     getTargetStreamer().emitDirectiveSetM650232R6();
     break;
   case M6502::FeatureM650264:
-    selectArch("mips64");
+    selectArch("m650264");
     getTargetStreamer().emitDirectiveSetM650264();
     break;
   case M6502::FeatureM650264r2:
-    selectArch("mips64r2");
+    selectArch("m650264r2");
     getTargetStreamer().emitDirectiveSetM650264R2();
     break;
   case M6502::FeatureM650264r3:
-    selectArch("mips64r3");
+    selectArch("m650264r3");
     getTargetStreamer().emitDirectiveSetM650264R3();
     break;
   case M6502::FeatureM650264r5:
-    selectArch("mips64r5");
+    selectArch("m650264r5");
     getTargetStreamer().emitDirectiveSetM650264R5();
     break;
   case M6502::FeatureM650264r6:
-    selectArch("mips64r6");
+    selectArch("m650264r6");
     getTargetStreamer().emitDirectiveSetM650264R6();
     break;
   }
@@ -6894,48 +6890,48 @@ bool M6502AsmParser::parseDirectiveSet() {
     return parseSetMacroDirective();
   } else if (Tok.getString() == "nomacro") {
     return parseSetNoMacroDirective();
-  } else if (Tok.getString() == "mips16") {
+  } else if (Tok.getString() == "m650216") {
     return parseSetM650216Directive();
-  } else if (Tok.getString() == "nomips16") {
+  } else if (Tok.getString() == "nom650216") {
     return parseSetNoM650216Directive();
-  } else if (Tok.getString() == "nomicromips") {
-    clearFeatureBits(M6502::FeatureMicroM6502, "micromips");
+  } else if (Tok.getString() == "nomicrom6502") {
+    clearFeatureBits(M6502::FeatureMicroM6502, "microm6502");
     getTargetStreamer().emitDirectiveSetNoMicroM6502();
     Parser.eatToEndOfStatement();
     return false;
-  } else if (Tok.getString() == "micromips") {
+  } else if (Tok.getString() == "microm6502") {
     return parseSetFeature(M6502::FeatureMicroM6502);
-  } else if (Tok.getString() == "mips0") {
+  } else if (Tok.getString() == "m65020") {
     return parseSetM65020Directive();
-  } else if (Tok.getString() == "mips1") {
+  } else if (Tok.getString() == "m65021") {
     return parseSetFeature(M6502::FeatureM65021);
-  } else if (Tok.getString() == "mips2") {
+  } else if (Tok.getString() == "m65022") {
     return parseSetFeature(M6502::FeatureM65022);
-  } else if (Tok.getString() == "mips3") {
+  } else if (Tok.getString() == "m65023") {
     return parseSetFeature(M6502::FeatureM65023);
-  } else if (Tok.getString() == "mips4") {
+  } else if (Tok.getString() == "m65024") {
     return parseSetFeature(M6502::FeatureM65024);
-  } else if (Tok.getString() == "mips5") {
+  } else if (Tok.getString() == "m65025") {
     return parseSetFeature(M6502::FeatureM65025);
-  } else if (Tok.getString() == "mips32") {
+  } else if (Tok.getString() == "m650232") {
     return parseSetFeature(M6502::FeatureM650232);
-  } else if (Tok.getString() == "mips32r2") {
+  } else if (Tok.getString() == "m650232r2") {
     return parseSetFeature(M6502::FeatureM650232r2);
-  } else if (Tok.getString() == "mips32r3") {
+  } else if (Tok.getString() == "m650232r3") {
     return parseSetFeature(M6502::FeatureM650232r3);
-  } else if (Tok.getString() == "mips32r5") {
+  } else if (Tok.getString() == "m650232r5") {
     return parseSetFeature(M6502::FeatureM650232r5);
-  } else if (Tok.getString() == "mips32r6") {
+  } else if (Tok.getString() == "m650232r6") {
     return parseSetFeature(M6502::FeatureM650232r6);
-  } else if (Tok.getString() == "mips64") {
+  } else if (Tok.getString() == "m650264") {
     return parseSetFeature(M6502::FeatureM650264);
-  } else if (Tok.getString() == "mips64r2") {
+  } else if (Tok.getString() == "m650264r2") {
     return parseSetFeature(M6502::FeatureM650264r2);
-  } else if (Tok.getString() == "mips64r3") {
+  } else if (Tok.getString() == "m650264r3") {
     return parseSetFeature(M6502::FeatureM650264r3);
-  } else if (Tok.getString() == "mips64r5") {
+  } else if (Tok.getString() == "m650264r5") {
     return parseSetFeature(M6502::FeatureM650264r5);
-  } else if (Tok.getString() == "mips64r6") {
+  } else if (Tok.getString() == "m650264r6") {
     return parseSetFeature(M6502::FeatureM650264r6);
   } else if (Tok.getString() == "dsp") {
     return parseSetFeature(M6502::FeatureDSP);
@@ -7735,7 +7731,7 @@ bool M6502AsmParser::ParseDirective(AsmToken DirectiveID) {
     parseDirectiveModule();
     return false;
   }
-  if (IDVal == ".llvm_internal_mips_reallow_module_directive") {
+  if (IDVal == ".llvm_internal_m6502_reallow_module_directive") {
     parseInternalDirectiveReallowModule();
     return false;
   }
@@ -7774,9 +7770,6 @@ bool M6502AsmParser::parseInternalDirectiveReallowModule() {
 
 extern "C" void LLVMInitializeM6502AsmParser() {
   RegisterMCAsmParser<M6502AsmParser> X(getTheM6502Target());
-  RegisterMCAsmParser<M6502AsmParser> Y(getTheM6502elTarget());
-  RegisterMCAsmParser<M6502AsmParser> A(getTheM650264Target());
-  RegisterMCAsmParser<M6502AsmParser> B(getTheM650264elTarget());
 }
 
 #define GET_REGISTER_MATCHER

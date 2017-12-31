@@ -2033,8 +2033,8 @@ SDValue M6502TargetLowering::lowerGlobalAddress(SDValue Op,
   }
 
   // Every other architecture would use shouldAssumeDSOLocal in here, but
-  // mips is special.
-  // * In PIC code mips requires got loads even for local statics!
+  // m6502 is special.
+  // * In PIC code m6502 requires got loads even for local statics!
   // * To save on got entries, for local statics the got entry contains the
   //   page and an additional add instruction takes care of the low bits.
   // * It is legal to access a hidden symbol with a non hidden undefined,
@@ -3468,7 +3468,7 @@ SDValue M6502TargetLowering::LowerFormalArguments(
   }
 
   for (unsigned i = 0, e = ArgLocs.size(); i != e; ++i) {
-    // The mips ABIs for returning structs by value requires that we copy
+    // The m6502 ABIs for returning structs by value requires that we copy
     // the sret argument into $v0 for the return. Save the argument into
     // a virtual register so that we can access it from the return points.
     if (Ins[i].Flags.isSRet()) {
@@ -3602,7 +3602,7 @@ M6502TargetLowering::LowerReturn(SDValue Chain, CallingConv::ID CallConv,
     RetOps.push_back(DAG.getRegister(VA.getLocReg(), VA.getLocVT()));
   }
 
-  // The mips ABIs for returning structs by value requires that we copy
+  // The m6502 ABIs for returning structs by value requires that we copy
   // the sret argument into $v0 for the return. We saved the argument into
   // a virtual register in the entry block, so now we copy the value out
   // and into $v0.
@@ -3644,7 +3644,7 @@ M6502TargetLowering::LowerReturn(SDValue Chain, CallingConv::ID CallConv,
 M6502TargetLowering::ConstraintType
 M6502TargetLowering::getConstraintType(StringRef Constraint) const {
   // M6502 specific constraints
-  // GCC config/mips/constraints.md
+  // GCC config/m6502/constraints.md
   //
   // 'd' : An address register. Equivalent to r
   //       unless generating M650216 code.

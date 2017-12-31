@@ -347,22 +347,22 @@ M6502TargetAsmStreamer::M6502TargetAsmStreamer(MCStreamer &S,
     : M6502TargetStreamer(S), OS(OS) {}
 
 void M6502TargetAsmStreamer::emitDirectiveSetMicroM6502() {
-  OS << "\t.set\tmicromips\n";
+  OS << "\t.set\tmicrom6502\n";
   forbidModuleDirective();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetNoMicroM6502() {
-  OS << "\t.set\tnomicromips\n";
+  OS << "\t.set\tnomicrom6502\n";
   forbidModuleDirective();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM650216() {
-  OS << "\t.set\tmips16\n";
+  OS << "\t.set\tm650216\n";
   forbidModuleDirective();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetNoM650216() {
-  OS << "\t.set\tnomips16\n";
+  OS << "\t.set\tnom650216\n";
   M6502TargetStreamer::emitDirectiveSetNoM650216();
 }
 
@@ -464,82 +464,82 @@ void M6502TargetAsmStreamer::emitDirectiveSetArch(StringRef Arch) {
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM65020() {
-  OS << "\t.set\tmips0\n";
+  OS << "\t.set\tm65020\n";
   M6502TargetStreamer::emitDirectiveSetM65020();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM65021() {
-  OS << "\t.set\tmips1\n";
+  OS << "\t.set\tm65021\n";
   M6502TargetStreamer::emitDirectiveSetM65021();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM65022() {
-  OS << "\t.set\tmips2\n";
+  OS << "\t.set\tm65022\n";
   M6502TargetStreamer::emitDirectiveSetM65022();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM65023() {
-  OS << "\t.set\tmips3\n";
+  OS << "\t.set\tm65023\n";
   M6502TargetStreamer::emitDirectiveSetM65023();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM65024() {
-  OS << "\t.set\tmips4\n";
+  OS << "\t.set\tm65024\n";
   M6502TargetStreamer::emitDirectiveSetM65024();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM65025() {
-  OS << "\t.set\tmips5\n";
+  OS << "\t.set\tm65025\n";
   M6502TargetStreamer::emitDirectiveSetM65025();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM650232() {
-  OS << "\t.set\tmips32\n";
+  OS << "\t.set\tm650232\n";
   M6502TargetStreamer::emitDirectiveSetM650232();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM650232R2() {
-  OS << "\t.set\tmips32r2\n";
+  OS << "\t.set\tm650232r2\n";
   M6502TargetStreamer::emitDirectiveSetM650232R2();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM650232R3() {
-  OS << "\t.set\tmips32r3\n";
+  OS << "\t.set\tm650232r3\n";
   M6502TargetStreamer::emitDirectiveSetM650232R3();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM650232R5() {
-  OS << "\t.set\tmips32r5\n";
+  OS << "\t.set\tm650232r5\n";
   M6502TargetStreamer::emitDirectiveSetM650232R5();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM650232R6() {
-  OS << "\t.set\tmips32r6\n";
+  OS << "\t.set\tm650232r6\n";
   M6502TargetStreamer::emitDirectiveSetM650232R6();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM650264() {
-  OS << "\t.set\tmips64\n";
+  OS << "\t.set\tm650264\n";
   M6502TargetStreamer::emitDirectiveSetM650264();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM650264R2() {
-  OS << "\t.set\tmips64r2\n";
+  OS << "\t.set\tm650264r2\n";
   M6502TargetStreamer::emitDirectiveSetM650264R2();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM650264R3() {
-  OS << "\t.set\tmips64r3\n";
+  OS << "\t.set\tm650264r3\n";
   M6502TargetStreamer::emitDirectiveSetM650264R3();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM650264R5() {
-  OS << "\t.set\tmips64r5\n";
+  OS << "\t.set\tm650264r5\n";
   M6502TargetStreamer::emitDirectiveSetM650264R5();
 }
 
 void M6502TargetAsmStreamer::emitDirectiveSetM650264R6() {
-  OS << "\t.set\tmips64r6\n";
+  OS << "\t.set\tm650264r6\n";
   M6502TargetStreamer::emitDirectiveSetM650264R6();
 }
 
@@ -714,11 +714,7 @@ M6502TargetELFStreamer::M6502TargetELFStreamer(MCStreamer &S,
   // fully, but any external user of the API that uses the MCTargetStreamer
   // would otherwise crash on assertion failure.
 
-  ABI = M6502ABIInfo(
-      STI.getTargetTriple().getArch() == Triple::ArchType::mipsel ||
-              STI.getTargetTriple().getArch() == Triple::ArchType::mips
-          ? M6502ABIInfo::O32()
-          : M6502ABIInfo::N64());
+  ABI = M6502ABIInfo(M6502ABIInfo::O32());
 
   // Architecture
   if (Features[M6502::FeatureM650264r6])
@@ -845,17 +841,6 @@ void M6502TargetELFStreamer::finish() {
 }
 
 void M6502TargetELFStreamer::emitAssignment(MCSymbol *S, const MCExpr *Value) {
-  auto *Symbol = cast<MCSymbolELF>(S);
-  // If on rhs is micromips symbol then mark Symbol as microM6502.
-  if (Value->getKind() != MCExpr::SymbolRef)
-    return;
-  const auto &RhsSym = cast<MCSymbolELF>(
-      static_cast<const MCSymbolRefExpr *>(Value)->getSymbol());
-
-  if (!(RhsSym.getOther() & ELF::STO_MIPS_MICROMIPS))
-    return;
-
-  Symbol->setOther(ELF::STO_MIPS_MICROMIPS);
 }
 
 MCELFStreamer &M6502TargetELFStreamer::getStreamer() {

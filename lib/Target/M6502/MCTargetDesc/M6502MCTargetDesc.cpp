@@ -42,18 +42,6 @@ using namespace llvm;
 #define GET_REGINFO_MC_DESC
 #include "M6502GenRegisterInfo.inc"
 
-/// Select the M6502 CPU for the given triple and cpu name.
-/// FIXME: Merge with the copy in M6502Subtarget.cpp
-StringRef M6502_MC::selectM6502CPU(const Triple &TT, StringRef CPU) {
-  if (CPU.empty() || CPU == "generic") {
-    if (TT.getArch() == Triple::mips || TT.getArch() == Triple::mipsel)
-      CPU = "mips32";
-    else
-      CPU = "mips64";
-  }
-  return CPU;
-}
-
 static MCInstrInfo *createM6502MCInstrInfo() {
   MCInstrInfo *X = new MCInstrInfo();
   InitM6502MCInstrInfo(X);
@@ -68,7 +56,6 @@ static MCRegisterInfo *createM6502MCRegisterInfo(const Triple &TT) {
 
 static MCSubtargetInfo *createM6502MCSubtargetInfo(const Triple &TT,
                                                   StringRef CPU, StringRef FS) {
-  CPU = M6502_MC::selectM6502CPU(TT, CPU);
   return createM6502MCSubtargetInfoImpl(TT, CPU, FS);
 }
 
@@ -101,8 +88,7 @@ static MCStreamer *createMCStreamer(const Triple &T, MCContext &Context,
     S = createM6502ELFStreamer(Context, std::move(MAB), OS, std::move(Emitter),
                               RelaxAll);
   else
-    S = createM6502ELFStreamer(Context, std::move(MAB), OS,
-                                  std::move(Emitter), RelaxAll);
+    llvm_unreachable("");
   return S;
 }
 
@@ -155,8 +141,7 @@ static MCInstrAnalysis *createM6502MCInstrAnalysis(const MCInstrInfo *Info) {
 }
 
 extern "C" void LLVMInitializeM6502TargetMC() {
-  for (Target *T : {&getTheM6502Target(), &getTheM6502elTarget(),
-                    &getTheM650264Target(), &getTheM650264elTarget()}) {
+  for (Target *T : {&getTheM6502Target()}) {
     // Register the MC asm info.
     RegisterMCAsmInfoFn X(*T, createM6502MCAsmInfo);
 
@@ -192,9 +177,6 @@ extern "C" void LLVMInitializeM6502TargetMC() {
   }
 
   // Register the MC Code Emitter
-  for (Target *T : {&getTheM6502Target(), &getTheM650264Target()})
+  for (Target *T : {&getTheM6502Target()})
     TargetRegistry::RegisterMCCodeEmitter(*T, createM6502MCCodeEmitterEB);
-
-  for (Target *T : {&getTheM6502elTarget(), &getTheM650264elTarget()})
-    TargetRegistry::RegisterMCCodeEmitter(*T, createM6502MCCodeEmitterEL);
 }

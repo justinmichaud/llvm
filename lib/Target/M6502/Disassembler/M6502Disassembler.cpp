@@ -540,11 +540,7 @@ static DecodeStatus DecodeMovePRegPair(MCInst &Inst, unsigned RegPair,
                                        const void *Decoder);
 
 namespace llvm {
-
-Target &getTheM6502elTarget();
 Target &getTheM6502Target();
-Target &getTheM650264Target();
-Target &getTheM650264elTarget();
 
 } // end namespace llvm
 
@@ -555,23 +551,10 @@ static MCDisassembler *createM6502Disassembler(
   return new M6502Disassembler(STI, Ctx, true);
 }
 
-static MCDisassembler *createM6502elDisassembler(
-                       const Target &T,
-                       const MCSubtargetInfo &STI,
-                       MCContext &Ctx) {
-  return new M6502Disassembler(STI, Ctx, false);
-}
-
 extern "C" void LLVMInitializeM6502Disassembler() {
   // Register the disassembler.
   TargetRegistry::RegisterMCDisassembler(getTheM6502Target(),
                                          createM6502Disassembler);
-  TargetRegistry::RegisterMCDisassembler(getTheM6502elTarget(),
-                                         createM6502elDisassembler);
-  TargetRegistry::RegisterMCDisassembler(getTheM650264Target(),
-                                         createM6502Disassembler);
-  TargetRegistry::RegisterMCDisassembler(getTheM650264elTarget(),
-                                         createM6502elDisassembler);
 }
 
 #include "M6502GenDisassemblerTables.inc"

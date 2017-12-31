@@ -7,7 +7,7 @@
 //
 //===----------------------------------------------------------------------===//
 //
-// Subclass of M6502DAGToDAGISel specialized for mips32/64.
+// Subclass of M6502DAGToDAGISel specialized for m650232/64.
 //
 //===----------------------------------------------------------------------===//
 
@@ -859,7 +859,7 @@ bool M6502SEDAGToDAGISel::trySelect(SDNode *Node) {
     default:
       break;
 
-    case Intrinsic::mips_cfcmsa: {
+    case Intrinsic::m6502_cfcmsa: {
       SDValue ChainIn = Node->getOperand(0);
       SDValue RegIdx = Node->getOperand(2);
       SDValue Reg = CurDAG->getCopyFromReg(ChainIn, DL,
@@ -876,7 +876,7 @@ bool M6502SEDAGToDAGISel::trySelect(SDNode *Node) {
     default:
       break;
 
-    case Intrinsic::mips_move_v:
+    case Intrinsic::m6502_move_v:
       // Like an assignment but will always produce a move.v even if
       // unnecessary.
       ReplaceNode(Node, CurDAG->getMachineNode(M6502::MOVE_V, DL,
@@ -892,7 +892,7 @@ bool M6502SEDAGToDAGISel::trySelect(SDNode *Node) {
     default:
       break;
 
-    case Intrinsic::mips_ctcmsa: {
+    case Intrinsic::m6502_ctcmsa: {
       SDValue ChainIn = Node->getOperand(0);
       SDValue RegIdx  = Node->getOperand(2);
       SDValue Value   = Node->getOperand(3);

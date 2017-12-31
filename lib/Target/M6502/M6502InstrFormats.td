@@ -47,7 +47,7 @@ def Std2MicroM6502 : InstrMapping {
   // The key column is the unpredicated instructions.
   let KeyCol = ["se"];
   // Value columns are PredSense=true and PredSense=false
-  let ValueCols = [["se"], ["micromips"]];
+  let ValueCols = [["se"], ["microm6502"]];
 }
 
 class StdMMR6Rel;
@@ -61,7 +61,7 @@ def Std2MicroM6502R6 : InstrMapping {
   // The key column is the unpredicated instructions.
   let KeyCol = ["se"];
   // Value columns are PredSense=true and PredSense=false
-  let ValueCols = [["se"], ["micromipsr6"]];
+  let ValueCols = [["se"], ["microm6502r6"]];
 }
 
 class StdArch {

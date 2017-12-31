@@ -716,7 +716,7 @@ void M6502AsmPrinter::EmitStartOfAsmFile(Module &M) {
   // FIXME: For ifunc related functions we could iterate over and look
   // for a feature string that doesn't match the default one.
   const Triple &TT = TM.getTargetTriple();
-  StringRef CPU = M6502_MC::selectM6502CPU(TT, TM.getTargetCPU());
+  StringRef CPU = TM.getTargetCPU();
   StringRef FS = TM.getTargetFeatureString();
   const M6502TargetMachine &MTM = static_cast<const M6502TargetMachine &>(TM);
   const M6502Subtarget STI(TT, CPU, FS, MTM.isLittleEndian(), MTM, 0);
@@ -973,10 +973,10 @@ void M6502AsmPrinter::EmitFPCallStub(
   //
   OutStreamer->PushSection();
   //
-  // .section mips16.call.fpxxxx,"ax",@progbits
+  // .section m650216.call.fpxxxx,"ax",@progbits
   //
   MCSectionELF *M = OutContext.getELFSection(
-      ".mips16.call.fp." + std::string(Symbol), ELF::SHT_PROGBITS,
+      ".m650216.call.fp." + std::string(Symbol), ELF::SHT_PROGBITS,
       ELF::SHF_ALLOC | ELF::SHF_EXECINSTR);
   OutStreamer->SwitchSection(M, nullptr);
   //
@@ -985,8 +985,8 @@ void M6502AsmPrinter::EmitFPCallStub(
   OutStreamer->EmitValueToAlignment(4);
   M6502TargetStreamer &TS = getTargetStreamer();
   //
-  // .set nomips16
-  // .set nomicromips
+  // .set nom650216
+  // .set nomicrom6502
   //
   TS.emitDirectiveSetNoM650216();
   TS.emitDirectiveSetNoMicroM6502();
@@ -1068,7 +1068,7 @@ void M6502AsmPrinter::EmitEndOfAsmFile(Module &M) {
 
 void M6502AsmPrinter::EmitSled(const MachineInstr &MI, SledKind Kind) {
   const uint8_t NoopsInSledCount = Subtarget->isGP64bit() ? 15 : 11;
-  // For mips32 we want to emit the following pattern:
+  // For m650232 we want to emit the following pattern:
   //
   // .Lxray_sled_N:
   //   ALIGN
@@ -1102,7 +1102,7 @@ void M6502AsmPrinter::EmitSled(const MachineInstr &MI, SledKind Kind) {
   // containing the gp displacement relocation.
   // FIXME: Is this correct for the static relocation model?
   //
-  // For mips64 we want to emit the following pattern:
+  // For m650264 we want to emit the following pattern:
   //
   // .Lxray_sled_N:
   //   ALIGN
@@ -1227,7 +1227,4 @@ bool M6502AsmPrinter::isLongBranchPseudo(int Opcode) const {
 // Force static initialization.
 extern "C" void LLVMInitializeM6502AsmPrinter() {
   RegisterAsmPrinter<M6502AsmPrinter> X(getTheM6502Target());
-  RegisterAsmPrinter<M6502AsmPrinter> Y(getTheM6502elTarget());
-  RegisterAsmPrinter<M6502AsmPrinter> A(getTheM650264Target());
-  RegisterAsmPrinter<M6502AsmPrinter> B(getTheM650264elTarget());
 }

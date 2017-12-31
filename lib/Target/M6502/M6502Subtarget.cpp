@@ -45,17 +45,17 @@ static cl::opt<bool> M6502_Os16("m6502-os16", cl::init(false),
                                cl::Hidden);
 
 static cl::opt<bool> M650216HardFloat("m650216-hard-float", cl::NotHidden,
-                                     cl::desc("Enable mips16 hard float."),
+                                     cl::desc("Enable m650216 hard float."),
                                      cl::init(false));
 
 static cl::opt<bool>
     M650216ConstantIslands("m650216-constant-islands", cl::NotHidden,
-                          cl::desc("Enable mips16 constant islands."),
+                          cl::desc("Enable m650216 constant islands."),
                           cl::init(true));
 
 static cl::opt<bool>
     GPOpt("m6502-mgpopt", cl::Hidden,
-          cl::desc("Enable gp-relative addressing of mips small data items"));
+          cl::desc("Enable gp-relative addressing of m6502 small data items"));
 
 void M6502Subtarget::anchor() {}
 
@@ -148,7 +148,7 @@ CodeGenOpt::Level M6502Subtarget::getOptLevelToEnablePostRAScheduler() const {
 M6502Subtarget &
 M6502Subtarget::initializeSubtargetDependencies(StringRef CPU, StringRef FS,
                                                const TargetMachine &TM) {
-  std::string CPUName = M6502_MC::selectM6502CPU(TM.getTargetTriple(), CPU);
+  std::string CPUName = CPU;
 
   // Parse features string.
   ParseSubtargetFeatures(CPUName, FS);

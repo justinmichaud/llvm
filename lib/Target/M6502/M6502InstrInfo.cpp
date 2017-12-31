@@ -442,7 +442,7 @@ M6502InstrInfo::genInstrWithNewOpc(unsigned NewOpc,
   // branch distance in non-microM6502 mode.
   // Additional M6502R6 does not permit the use of register $zero for compact
   // branches.
-  // FIXME: Certain atomic sequences on mips64 generate 32bit references to
+  // FIXME: Certain atomic sequences on m650264 generate 32bit references to
   // M6502::ZERO, which is incorrect. This test should be updated to use
   // Subtarget.getABI().GetZeroReg() when those atomic sequences and others
   // are fixed.

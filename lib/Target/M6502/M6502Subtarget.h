@@ -164,7 +164,7 @@ class M6502Subtarget : public M6502GenSubtargetInfo {
 
   InstrItineraryData InstrItins;
 
-  // We can override the determination of whether we are in mips16 mode
+  // We can override the determination of whether we are in m650216 mode
   // as from the command line
   enum {NoOverride, M650216Override, NoM650216Override} OverrideMode;
 
@@ -256,10 +256,10 @@ public:
   bool inM650216ModeDefault() const {
     return InM650216Mode;
   }
-  // Hard float for mips16 means essentially to compile as soft float
+  // Hard float for m650216 means essentially to compile as soft float
   // but to use a runtime library for soft float that is written with
-  // native mips32 floating point instructions (those runtime routines
-  // run in mips32 hard float mode).
+  // native m650232 floating point instructions (those runtime routines
+  // run in m650232 hard float mode).
   bool inM650216HardFloat() const {
     return inM650216Mode() && InM650216HardFloat;
   }
@@ -299,7 +299,7 @@ public:
   bool isXRaySupported() const override { return true; }
 
   // for now constant islands are on for the whole compilation unit but we only
-  // really use them if in addition we are in mips16 mode
+  // really use them if in addition we are in m650216 mode
   static bool useConstantIslands();
 
   unsigned getStackAlignment() const { return stackAlignment; }

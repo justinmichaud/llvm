@@ -84,7 +84,7 @@ void M6502InstPrinter::printInst(const MCInst *MI, raw_ostream &O,
   case M6502::RDHWR:
   case M6502::RDHWR64:
     O << "\t.set\tpush\n";
-    O << "\t.set\tmips32r2\n";
+    O << "\t.set\tm650232r2\n";
     break;
   case M6502::Save16:
     O << "\tsave\t";

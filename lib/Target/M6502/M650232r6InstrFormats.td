@@ -20,13 +20,13 @@ def M6502R62MicroM6502R6 : InstrMapping {
   // Instructions with the same predicate sense form a column.
   let ColFields = ["Arch"];
   // The key column is the unpredicated instructions.
-  let KeyCol = ["mipsr6"];
+  let KeyCol = ["m6502r6"];
   // Value columns are PredSense=true and PredSense=false
-  let ValueCols = [["mipsr6"], ["micromipsr6"]];
+  let ValueCols = [["m6502r6"], ["microm6502r6"]];
 }
 
 class M6502R6Arch<string opstr> {
-  string Arch = "mipsr6";
+  string Arch = "m6502r6";
   string BaseOpcode = opstr;
 }
 

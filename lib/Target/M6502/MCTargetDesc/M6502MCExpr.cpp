@@ -23,7 +23,7 @@
 
 using namespace llvm;
 
-#define DEBUG_TYPE "mipsmcexpr"
+#define DEBUG_TYPE "m6502mcexpr"
 
 const M6502MCExpr *M6502MCExpr::create(M6502MCExpr::M6502ExprKind Kind,
                                      const MCExpr *Expr, MCContext &Ctx) {

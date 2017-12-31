@@ -88,70 +88,70 @@ def FeatureNoOddSPReg  : SubtargetFeature<"nooddspreg", "UseOddSPReg", "false",
                               "registers">;
 def FeatureVFPU        : SubtargetFeature<"vfpu", "HasVFPU",
                                 "true", "Enable vector FPU instructions">;
-def FeatureM65021       : SubtargetFeature<"mips1", "M6502ArchVersion", "M65021",
+def FeatureM65021       : SubtargetFeature<"m65021", "M6502ArchVersion", "M65021",
                                 "M6502 I ISA Support [highly experimental]">;
-def FeatureM65022       : SubtargetFeature<"mips2", "M6502ArchVersion", "M65022",
+def FeatureM65022       : SubtargetFeature<"m65022", "M6502ArchVersion", "M65022",
                                 "M6502 II ISA Support [highly experimental]",
                                 [FeatureM65021]>;
-def FeatureM65023_32    : SubtargetFeature<"mips3_32", "HasM65023_32", "true",
+def FeatureM65023_32    : SubtargetFeature<"m65023_32", "HasM65023_32", "true",
                                 "Subset of M6502-III that is also in M650232 "
                                 "[highly experimental]">;
-def FeatureM65023_32r2  : SubtargetFeature<"mips3_32r2", "HasM65023_32r2", "true",
+def FeatureM65023_32r2  : SubtargetFeature<"m65023_32r2", "HasM65023_32r2", "true",
                                 "Subset of M6502-III that is also in M650232r2 "
                                 "[highly experimental]">;
-def FeatureM65023       : SubtargetFeature<"mips3", "M6502ArchVersion", "M65023",
+def FeatureM65023       : SubtargetFeature<"m65023", "M6502ArchVersion", "M65023",
                                 "M6502 III ISA Support [highly experimental]",
                                 [FeatureM65022, FeatureM65023_32,
                                  FeatureM65023_32r2, FeatureGP64Bit,
                                  FeatureFP64Bit]>;
-def FeatureM65024_32    : SubtargetFeature<"mips4_32", "HasM65024_32", "true",
+def FeatureM65024_32    : SubtargetFeature<"m65024_32", "HasM65024_32", "true",
                                 "Subset of M6502-IV that is also in M650232 "
                                 "[highly experimental]">;
-def FeatureM65024_32r2  : SubtargetFeature<"mips4_32r2", "HasM65024_32r2", "true",
+def FeatureM65024_32r2  : SubtargetFeature<"m65024_32r2", "HasM65024_32r2", "true",
                                 "Subset of M6502-IV that is also in M650232r2 "
                                 "[highly experimental]">;
-def FeatureM65024       : SubtargetFeature<"mips4", "M6502ArchVersion",
+def FeatureM65024       : SubtargetFeature<"m65024", "M6502ArchVersion",
                                 "M65024", "M6502 IV ISA Support",
                                 [FeatureM65023, FeatureM65024_32,
                                  FeatureM65024_32r2]>;
-def FeatureM65025_32r2  : SubtargetFeature<"mips5_32r2", "HasM65025_32r2", "true",
+def FeatureM65025_32r2  : SubtargetFeature<"m65025_32r2", "HasM65025_32r2", "true",
                                 "Subset of M6502-V that is also in M650232r2 "
                                 "[highly experimental]">;
-def FeatureM65025       : SubtargetFeature<"mips5", "M6502ArchVersion", "M65025",
+def FeatureM65025       : SubtargetFeature<"m65025", "M6502ArchVersion", "M65025",
                                 "M6502 V ISA Support [highly experimental]",
                                 [FeatureM65024, FeatureM65025_32r2]>;
-def FeatureM650232      : SubtargetFeature<"mips32", "M6502ArchVersion", "M650232",
+def FeatureM650232      : SubtargetFeature<"m650232", "M6502ArchVersion", "M650232",
                                 "M650232 ISA Support",
                                 [FeatureM65022, FeatureM65023_32,
                                  FeatureM65024_32]>;
-def FeatureM650232r2    : SubtargetFeature<"mips32r2", "M6502ArchVersion",
+def FeatureM650232r2    : SubtargetFeature<"m650232r2", "M6502ArchVersion",
                                 "M650232r2", "M650232r2 ISA Support",
                                 [FeatureM65023_32r2, FeatureM65024_32r2,
                                  FeatureM65025_32r2, FeatureM650232]>;
-def FeatureM650232r3    : SubtargetFeature<"mips32r3", "M6502ArchVersion",
+def FeatureM650232r3    : SubtargetFeature<"m650232r3", "M6502ArchVersion",
                                 "M650232r3", "M650232r3 ISA Support",
                                 [FeatureM650232r2]>;
-def FeatureM650232r5    : SubtargetFeature<"mips32r5", "M6502ArchVersion",
+def FeatureM650232r5    : SubtargetFeature<"m650232r5", "M6502ArchVersion",
                                 "M650232r5", "M650232r5 ISA Support",
                                 [FeatureM650232r3]>;
-def FeatureM650232r6    : SubtargetFeature<"mips32r6", "M6502ArchVersion",
+def FeatureM650232r6    : SubtargetFeature<"m650232r6", "M6502ArchVersion",
                                 "M650232r6",
                                 "M650232r6 ISA Support [experimental]",
                                 [FeatureM650232r5, FeatureFP64Bit,
                                  FeatureNaN2008]>;
-def FeatureM650264      : SubtargetFeature<"mips64", "M6502ArchVersion",
+def FeatureM650264      : SubtargetFeature<"m650264", "M6502ArchVersion",
                                 "M650264", "M650264 ISA Support",
                                 [FeatureM65025, FeatureM650232]>;
-def FeatureM650264r2    : SubtargetFeature<"mips64r2", "M6502ArchVersion",
+def FeatureM650264r2    : SubtargetFeature<"m650264r2", "M6502ArchVersion",
                                 "M650264r2", "M650264r2 ISA Support",
                                 [FeatureM650264, FeatureM650232r2]>;
-def FeatureM650264r3    : SubtargetFeature<"mips64r3", "M6502ArchVersion",
+def FeatureM650264r3    : SubtargetFeature<"m650264r3", "M6502ArchVersion",
                                 "M650264r3", "M650264r3 ISA Support",
                                 [FeatureM650264r2, FeatureM650232r3]>;
-def FeatureM650264r5    : SubtargetFeature<"mips64r5", "M6502ArchVersion",
+def FeatureM650264r5    : SubtargetFeature<"m650264r5", "M6502ArchVersion",
                                 "M650264r5", "M650264r5 ISA Support",
                                 [FeatureM650264r3, FeatureM650232r5]>;
-def FeatureM650264r6    : SubtargetFeature<"mips64r6", "M6502ArchVersion",
+def FeatureM650264r6    : SubtargetFeature<"m650264r6", "M6502ArchVersion",
                                 "M650264r6",
                                 "M650264r6 ISA Support [experimental]",
                                 [FeatureM650232r6, FeatureM650264r5,
@@ -159,7 +159,7 @@ def FeatureM650264r6    : SubtargetFeature<"mips64r6", "M6502ArchVersion",
 def FeatureSym32       : SubtargetFeature<"sym32", "HasSym32", "true",
                                           "Symbols are 32 bit on M650264">;
 
-def FeatureM650216  : SubtargetFeature<"mips16", "InM650216Mode", "true",
+def FeatureM650216  : SubtargetFeature<"m650216", "InM650216Mode", "true",
                                       "M650216 mode">;
 
 def FeatureDSP : SubtargetFeature<"dsp", "HasDSP", "true", "M6502 DSP ASE">;
@@ -173,10 +173,10 @@ def FeatureMSA : SubtargetFeature<"msa", "HasMSA", "true", "M6502 MSA ASE">;
 
 def FeatureEVA : SubtargetFeature<"eva", "HasEVA", "true", "M6502 EVA ASE">;
 
-def FeatureMicroM6502  : SubtargetFeature<"micromips", "InMicroM6502Mode", "true",
+def FeatureMicroM6502  : SubtargetFeature<"microm6502", "InMicroM6502Mode", "true",
                                          "microM6502 mode">;
 
-def FeatureCnM6502     : SubtargetFeature<"cnmips", "HasCnM6502",
+def FeatureCnM6502     : SubtargetFeature<"cnm6502", "HasCnM6502",
                                 "true", "Octeon cnM6502 Support",
                                 [FeatureM650264r2]>;
 
@@ -204,22 +204,22 @@ def ImplP5600 : SubtargetFeature<"p5600", "ProcImpl",
 class Proc<string Name, list<SubtargetFeature> Features>
  : ProcessorModel<Name, M6502GenericModel, Features>;
 
-def : Proc<"mips1", [FeatureM65021]>;
-def : Proc<"mips2", [FeatureM65022]>;
-def : Proc<"mips32", [FeatureM650232]>;
-def : Proc<"mips32r2", [FeatureM650232r2]>;
-def : Proc<"mips32r3", [FeatureM650232r3]>;
-def : Proc<"mips32r5", [FeatureM650232r5]>;
-def : Proc<"mips32r6", [FeatureM650232r6]>;
+def : Proc<"m65021", [FeatureM65021]>;
+def : Proc<"m65022", [FeatureM65022]>;
+def : Proc<"m650232", [FeatureM650232]>;
+def : Proc<"m650232r2", [FeatureM650232r2]>;
+def : Proc<"m650232r3", [FeatureM650232r3]>;
+def : Proc<"m650232r5", [FeatureM650232r5]>;
+def : Proc<"m650232r6", [FeatureM650232r6]>;
 
-def : Proc<"mips3", [FeatureM65023]>;
-def : Proc<"mips4", [FeatureM65024]>;
-def : Proc<"mips5", [FeatureM65025]>;
-def : Proc<"mips64", [FeatureM650264]>;
-def : Proc<"mips64r2", [FeatureM650264r2]>;
-def : Proc<"mips64r3", [FeatureM650264r3]>;
-def : Proc<"mips64r5", [FeatureM650264r5]>;
-def : Proc<"mips64r6", [FeatureM650264r6]>;
+def : Proc<"m65023", [FeatureM65023]>;
+def : Proc<"m65024", [FeatureM65024]>;
+def : Proc<"m65025", [FeatureM65025]>;
+def : Proc<"m650264", [FeatureM650264]>;
+def : Proc<"m650264r2", [FeatureM650264r2]>;
+def : Proc<"m650264r3", [FeatureM650264r3]>;
+def : Proc<"m650264r5", [FeatureM650264r5]>;
+def : Proc<"m650264r6", [FeatureM650264r6]>;
 def : Proc<"octeon", [FeatureM650264r2, FeatureCnM6502]>;
 def : ProcessorModel<"p5600", M6502P5600Model, [ImplP5600]>;
 

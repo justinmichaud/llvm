@@ -52,10 +52,6 @@ MCAsmBackend *createM6502AsmBackend(const Target &T, const MCRegisterInfo &MRI,
 std::unique_ptr<MCObjectWriter>
 createM6502ELFObjectWriter(raw_pwrite_stream &OS, const Triple &TT, bool IsN32);
 
-namespace M6502_MC {
-StringRef selectM6502CPU(const Triple &TT, StringRef CPU);
-}
-
 } // End llvm namespace
 
 // Defines symbolic names for M6502 registers.  This defines a mapping from

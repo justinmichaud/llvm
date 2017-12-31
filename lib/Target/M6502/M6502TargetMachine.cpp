@@ -38,14 +38,11 @@
 
 using namespace llvm;
 
-#define DEBUG_TYPE "mips"
+#define DEBUG_TYPE "m6502"
 
 extern "C" void LLVMInitializeM6502Target() {
   // Register the target.
   RegisterTargetMachine<M6502ebTargetMachine> X(getTheM6502Target());
-  RegisterTargetMachine<M6502elTargetMachine> Y(getTheM6502elTarget());
-  RegisterTargetMachine<M6502ebTargetMachine> A(getTheM650264Target());
-  RegisterTargetMachine<M6502elTargetMachine> B(getTheM650264elTarget());
 }
 
 static std::string computeDataLayout(const Triple &TT, StringRef CPU,
@@ -54,7 +51,7 @@ static std::string computeDataLayout(const Triple &TT, StringRef CPU,
   std::string Ret;
   M6502ABIInfo ABI = M6502ABIInfo::computeTargetABI(TT, CPU, Options.MCOptions);
 
-  // There are both little and big endian mips.
+  // There are both little and big endian m6502.
   if (isLittle)
     Ret += "e";
   else
@@ -116,9 +113,9 @@ M6502TargetMachine::M6502TargetMachine(const Target &T, const Triple &TT,
       ABI(M6502ABIInfo::computeTargetABI(TT, CPU, Options.MCOptions)),
       Subtarget(nullptr), DefaultSubtarget(TT, CPU, FS, isLittle, *this,
                                            Options.StackAlignmentOverride),
-      NoM650216Subtarget(TT, CPU, FS.empty() ? "-mips16" : FS.str() + ",-mips16",
+      NoM650216Subtarget(TT, CPU, FS.empty() ? "-m650216" : FS.str() + ",-m650216",
                         isLittle, *this, Options.StackAlignmentOverride),
-      M650216Subtarget(TT, CPU, FS.empty() ? "+mips16" : FS.str() + ",+mips16",
+      M650216Subtarget(TT, CPU, FS.empty() ? "+m650216" : FS.str() + ",+m650216",
                       isLittle, *this, Options.StackAlignmentOverride) {
   Subtarget = &DefaultSubtarget;
   initAsmInfo();
@@ -158,14 +155,14 @@ M6502TargetMachine::getSubtargetImpl(const Function &F) const {
                        ? FSAttr.getValueAsString().str()
                        : TargetFS;
   bool hasM650216Attr =
-      !F.getFnAttribute("mips16").hasAttribute(Attribute::None);
+      !F.getFnAttribute("m650216").hasAttribute(Attribute::None);
   bool hasNoM650216Attr =
-      !F.getFnAttribute("nomips16").hasAttribute(Attribute::None);
+      !F.getFnAttribute("nom650216").hasAttribute(Attribute::None);
 
   bool HasMicroM6502Attr =
-      !F.getFnAttribute("micromips").hasAttribute(Attribute::None);
+      !F.getFnAttribute("microm6502").hasAttribute(Attribute::None);
   bool HasNoMicroM6502Attr =
-      !F.getFnAttribute("nomicromips").hasAttribute(Attribute::None);
+      !F.getFnAttribute("nomicrom6502").hasAttribute(Attribute::None);
 
   // FIXME: This is related to the code below to reset the target options,
   // we need to know whether or not the soft float flag is set on the
@@ -175,13 +172,13 @@ M6502TargetMachine::getSubtargetImpl(const Function &F) const {
       F.getFnAttribute("use-soft-float").getValueAsString() == "true";
 
   if (hasM650216Attr)
-    FS += FS.empty() ? "+mips16" : ",+mips16";
+    FS += FS.empty() ? "+m650216" : ",+m650216";
   else if (hasNoM650216Attr)
-    FS += FS.empty() ? "-mips16" : ",-mips16";
+    FS += FS.empty() ? "-m650216" : ",-m650216";
   if (HasMicroM6502Attr)
-    FS += FS.empty() ? "+micromips" : ",+micromips";
+    FS += FS.empty() ? "+microm6502" : ",+microm6502";
   else if (HasNoMicroM6502Attr)
-    FS += FS.empty() ? "-micromips" : ",-micromips";
+    FS += FS.empty() ? "-microm6502" : ",-microm6502";
   if (softFloat)
     FS += FS.empty() ? "+soft-float" : ",+soft-float";
 

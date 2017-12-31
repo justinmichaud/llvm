@@ -147,7 +147,7 @@ void M6502MCCodeEmitter::EmitInstruction(uint64_t Val, unsigned Size,
                                         raw_ostream &OS) const {
   // Output the instruction encoding in little endian byte order.
   // Little-endian byte ordering:
-  //   mips32r2:   4 | 3 | 2 | 1
+  //   m650232r2:   4 | 3 | 2 | 1
   //   microM6502:  2 | 1 | 4 | 3
   if (IsLittleEndian && Size == 4 && isMicroM6502(STI)) {
     EmitInstruction(Val >> 16, 2, STI, OS);
@@ -210,12 +210,12 @@ encodeInstruction(const MCInst &MI, raw_ostream &OS,
   int NewOpcode = -1;
   if (isMicroM6502(STI)) {
     if (isM650232r6(STI)) {
-      NewOpcode = M6502::M6502R62MicroM6502R6(Opcode, M6502::Arch_micromipsr6);
+      NewOpcode = M6502::M6502R62MicroM6502R6(Opcode, M6502::Arch_microm6502r6);
       if (NewOpcode == -1)
-        NewOpcode = M6502::Std2MicroM6502R6(Opcode, M6502::Arch_micromipsr6);
+        NewOpcode = M6502::Std2MicroM6502R6(Opcode, M6502::Arch_microm6502r6);
     }
     else
-      NewOpcode = M6502::Std2MicroM6502(Opcode, M6502::Arch_micromips);
+      NewOpcode = M6502::Std2MicroM6502(Opcode, M6502::Arch_microm6502);
 
     // Check whether it is Dsp instruction.
     if (NewOpcode == -1)

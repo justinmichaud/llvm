@@ -232,7 +232,7 @@ getReservedRegs(const MachineFunction &MF) const {
   Reserved.set(M6502::MSAMap);
   Reserved.set(M6502::MSAUnmap);
 
-  // Reserve RA if in mips16 mode.
+  // Reserve RA if in m650216 mode.
   if (Subtarget.inM650216Mode()) {
     const M6502FunctionInfo *M6502FI = MF.getInfo<M6502FunctionInfo>();
     Reserved.set(M6502::RA);

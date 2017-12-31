@@ -7,7 +7,7 @@
 //
 //===----------------------------------------------------------------------===//
 //
-// Subclass of M6502TargetLowering specialized for mips32/64.
+// Subclass of M6502TargetLowering specialized for m650232/64.
 //
 //===----------------------------------------------------------------------===//
 
@@ -1220,7 +1220,7 @@ static SDValue extractLOHI(SDValue Op, const SDLoc &DL, SelectionDAG &DAG) {
   return DAG.getNode(ISD::BUILD_PAIR, DL, MVT::i64, Lo, Hi);
 }
 
-// This function expands mips intrinsic nodes which have 64-bit input operands
+// This function expands m6502 intrinsic nodes which have 64-bit input operands
 // or output values.
 //
 // out64 = intrinsic-node in64
@@ -1457,70 +1457,70 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
   switch (Intrinsic) {
   default:
     return SDValue();
-  case Intrinsic::mips_shilo:
+  case Intrinsic::m6502_shilo:
     return lowerDSPIntr(Op, DAG, M6502ISD::SHILO);
-  case Intrinsic::mips_dpau_h_qbl:
+  case Intrinsic::m6502_dpau_h_qbl:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPAU_H_QBL);
-  case Intrinsic::mips_dpau_h_qbr:
+  case Intrinsic::m6502_dpau_h_qbr:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPAU_H_QBR);
-  case Intrinsic::mips_dpsu_h_qbl:
+  case Intrinsic::m6502_dpsu_h_qbl:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPSU_H_QBL);
-  case Intrinsic::mips_dpsu_h_qbr:
+  case Intrinsic::m6502_dpsu_h_qbr:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPSU_H_QBR);
-  case Intrinsic::mips_dpa_w_ph:
+  case Intrinsic::m6502_dpa_w_ph:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPA_W_PH);
-  case Intrinsic::mips_dps_w_ph:
+  case Intrinsic::m6502_dps_w_ph:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPS_W_PH);
-  case Intrinsic::mips_dpax_w_ph:
+  case Intrinsic::m6502_dpax_w_ph:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPAX_W_PH);
-  case Intrinsic::mips_dpsx_w_ph:
+  case Intrinsic::m6502_dpsx_w_ph:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPSX_W_PH);
-  case Intrinsic::mips_mulsa_w_ph:
+  case Intrinsic::m6502_mulsa_w_ph:
     return lowerDSPIntr(Op, DAG, M6502ISD::MULSA_W_PH);
-  case Intrinsic::mips_mult:
+  case Intrinsic::m6502_mult:
     return lowerDSPIntr(Op, DAG, M6502ISD::Mult);
-  case Intrinsic::mips_multu:
+  case Intrinsic::m6502_multu:
     return lowerDSPIntr(Op, DAG, M6502ISD::Multu);
-  case Intrinsic::mips_madd:
+  case Intrinsic::m6502_madd:
     return lowerDSPIntr(Op, DAG, M6502ISD::MAdd);
-  case Intrinsic::mips_maddu:
+  case Intrinsic::m6502_maddu:
     return lowerDSPIntr(Op, DAG, M6502ISD::MAddu);
-  case Intrinsic::mips_msub:
+  case Intrinsic::m6502_msub:
     return lowerDSPIntr(Op, DAG, M6502ISD::MSub);
-  case Intrinsic::mips_msubu:
+  case Intrinsic::m6502_msubu:
     return lowerDSPIntr(Op, DAG, M6502ISD::MSubu);
-  case Intrinsic::mips_addv_b:
-  case Intrinsic::mips_addv_h:
-  case Intrinsic::mips_addv_w:
-  case Intrinsic::mips_addv_d:
+  case Intrinsic::m6502_addv_b:
+  case Intrinsic::m6502_addv_h:
+  case Intrinsic::m6502_addv_w:
+  case Intrinsic::m6502_addv_d:
     return DAG.getNode(ISD::ADD, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_addvi_b:
-  case Intrinsic::mips_addvi_h:
-  case Intrinsic::mips_addvi_w:
-  case Intrinsic::mips_addvi_d:
+  case Intrinsic::m6502_addvi_b:
+  case Intrinsic::m6502_addvi_h:
+  case Intrinsic::m6502_addvi_w:
+  case Intrinsic::m6502_addvi_d:
     return DAG.getNode(ISD::ADD, DL, Op->getValueType(0), Op->getOperand(1),
                        lowerMSASplatImm(Op, 2, DAG));
-  case Intrinsic::mips_and_v:
+  case Intrinsic::m6502_and_v:
     return DAG.getNode(ISD::AND, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_andi_b:
+  case Intrinsic::m6502_andi_b:
     return DAG.getNode(ISD::AND, DL, Op->getValueType(0), Op->getOperand(1),
                        lowerMSASplatImm(Op, 2, DAG));
-  case Intrinsic::mips_bclr_b:
-  case Intrinsic::mips_bclr_h:
-  case Intrinsic::mips_bclr_w:
-  case Intrinsic::mips_bclr_d:
+  case Intrinsic::m6502_bclr_b:
+  case Intrinsic::m6502_bclr_h:
+  case Intrinsic::m6502_bclr_w:
+  case Intrinsic::m6502_bclr_d:
     return lowerMSABitClear(Op, DAG);
-  case Intrinsic::mips_bclri_b:
-  case Intrinsic::mips_bclri_h:
-  case Intrinsic::mips_bclri_w:
-  case Intrinsic::mips_bclri_d:
+  case Intrinsic::m6502_bclri_b:
+  case Intrinsic::m6502_bclri_h:
+  case Intrinsic::m6502_bclri_w:
+  case Intrinsic::m6502_bclri_d:
     return lowerMSABitClearImm(Op, DAG);
-  case Intrinsic::mips_binsli_b:
-  case Intrinsic::mips_binsli_h:
-  case Intrinsic::mips_binsli_w:
-  case Intrinsic::mips_binsli_d: {
+  case Intrinsic::m6502_binsli_b:
+  case Intrinsic::m6502_binsli_h:
+  case Intrinsic::m6502_binsli_w:
+  case Intrinsic::m6502_binsli_d: {
     // binsli_x(IfClear, IfSet, nbits) -> (vselect LBitsMask, IfSet, IfClear)
     EVT VecTy = Op->getValueType(0);
     EVT EltTy = VecTy.getVectorElementType();
@@ -1532,10 +1532,10 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
                        DAG.getConstant(Mask, DL, VecTy, true),
                        Op->getOperand(2), Op->getOperand(1));
   }
-  case Intrinsic::mips_binsri_b:
-  case Intrinsic::mips_binsri_h:
-  case Intrinsic::mips_binsri_w:
-  case Intrinsic::mips_binsri_d: {
+  case Intrinsic::m6502_binsri_b:
+  case Intrinsic::m6502_binsri_h:
+  case Intrinsic::m6502_binsri_w:
+  case Intrinsic::m6502_binsri_d: {
     // binsri_x(IfClear, IfSet, nbits) -> (vselect RBitsMask, IfSet, IfClear)
     EVT VecTy = Op->getValueType(0);
     EVT EltTy = VecTy.getVectorElementType();
@@ -1547,24 +1547,24 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
                        DAG.getConstant(Mask, DL, VecTy, true),
                        Op->getOperand(2), Op->getOperand(1));
   }
-  case Intrinsic::mips_bmnz_v:
+  case Intrinsic::m6502_bmnz_v:
     return DAG.getNode(ISD::VSELECT, DL, Op->getValueType(0), Op->getOperand(3),
                        Op->getOperand(2), Op->getOperand(1));
-  case Intrinsic::mips_bmnzi_b:
+  case Intrinsic::m6502_bmnzi_b:
     return DAG.getNode(ISD::VSELECT, DL, Op->getValueType(0),
                        lowerMSASplatImm(Op, 3, DAG), Op->getOperand(2),
                        Op->getOperand(1));
-  case Intrinsic::mips_bmz_v:
+  case Intrinsic::m6502_bmz_v:
     return DAG.getNode(ISD::VSELECT, DL, Op->getValueType(0), Op->getOperand(3),
                        Op->getOperand(1), Op->getOperand(2));
-  case Intrinsic::mips_bmzi_b:
+  case Intrinsic::m6502_bmzi_b:
     return DAG.getNode(ISD::VSELECT, DL, Op->getValueType(0),
                        lowerMSASplatImm(Op, 3, DAG), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_bneg_b:
-  case Intrinsic::mips_bneg_h:
-  case Intrinsic::mips_bneg_w:
-  case Intrinsic::mips_bneg_d: {
+  case Intrinsic::m6502_bneg_b:
+  case Intrinsic::m6502_bneg_h:
+  case Intrinsic::m6502_bneg_w:
+  case Intrinsic::m6502_bneg_d: {
     EVT VecTy = Op->getValueType(0);
     SDValue One = DAG.getConstant(1, DL, VecTy);
 
@@ -1572,35 +1572,35 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
                        DAG.getNode(ISD::SHL, DL, VecTy, One,
                                    truncateVecElts(Op, DAG)));
   }
-  case Intrinsic::mips_bnegi_b:
-  case Intrinsic::mips_bnegi_h:
-  case Intrinsic::mips_bnegi_w:
-  case Intrinsic::mips_bnegi_d:
+  case Intrinsic::m6502_bnegi_b:
+  case Intrinsic::m6502_bnegi_h:
+  case Intrinsic::m6502_bnegi_w:
+  case Intrinsic::m6502_bnegi_d:
     return lowerMSABinaryBitImmIntr(Op, DAG, ISD::XOR, Op->getOperand(2),
                                     !Subtarget.isLittle());
-  case Intrinsic::mips_bnz_b:
-  case Intrinsic::mips_bnz_h:
-  case Intrinsic::mips_bnz_w:
-  case Intrinsic::mips_bnz_d:
+  case Intrinsic::m6502_bnz_b:
+  case Intrinsic::m6502_bnz_h:
+  case Intrinsic::m6502_bnz_w:
+  case Intrinsic::m6502_bnz_d:
     return DAG.getNode(M6502ISD::VALL_NONZERO, DL, Op->getValueType(0),
                        Op->getOperand(1));
-  case Intrinsic::mips_bnz_v:
+  case Intrinsic::m6502_bnz_v:
     return DAG.getNode(M6502ISD::VANY_NONZERO, DL, Op->getValueType(0),
                        Op->getOperand(1));
-  case Intrinsic::mips_bsel_v:
+  case Intrinsic::m6502_bsel_v:
     // bsel_v(Mask, IfClear, IfSet) -> (vselect Mask, IfSet, IfClear)
     return DAG.getNode(ISD::VSELECT, DL, Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(3),
                        Op->getOperand(2));
-  case Intrinsic::mips_bseli_b:
+  case Intrinsic::m6502_bseli_b:
     // bseli_v(Mask, IfClear, IfSet) -> (vselect Mask, IfSet, IfClear)
     return DAG.getNode(ISD::VSELECT, DL, Op->getValueType(0),
                        Op->getOperand(1), lowerMSASplatImm(Op, 3, DAG),
                        Op->getOperand(2));
-  case Intrinsic::mips_bset_b:
-  case Intrinsic::mips_bset_h:
-  case Intrinsic::mips_bset_w:
-  case Intrinsic::mips_bset_d: {
+  case Intrinsic::m6502_bset_b:
+  case Intrinsic::m6502_bset_h:
+  case Intrinsic::m6502_bset_w:
+  case Intrinsic::m6502_bset_d: {
     EVT VecTy = Op->getValueType(0);
     SDValue One = DAG.getConstant(1, DL, VecTy);
 
@@ -1608,86 +1608,86 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
                        DAG.getNode(ISD::SHL, DL, VecTy, One,
                                    truncateVecElts(Op, DAG)));
   }
-  case Intrinsic::mips_bseti_b:
-  case Intrinsic::mips_bseti_h:
-  case Intrinsic::mips_bseti_w:
-  case Intrinsic::mips_bseti_d:
+  case Intrinsic::m6502_bseti_b:
+  case Intrinsic::m6502_bseti_h:
+  case Intrinsic::m6502_bseti_w:
+  case Intrinsic::m6502_bseti_d:
     return lowerMSABinaryBitImmIntr(Op, DAG, ISD::OR, Op->getOperand(2),
                                     !Subtarget.isLittle());
-  case Intrinsic::mips_bz_b:
-  case Intrinsic::mips_bz_h:
-  case Intrinsic::mips_bz_w:
-  case Intrinsic::mips_bz_d:
+  case Intrinsic::m6502_bz_b:
+  case Intrinsic::m6502_bz_h:
+  case Intrinsic::m6502_bz_w:
+  case Intrinsic::m6502_bz_d:
     return DAG.getNode(M6502ISD::VALL_ZERO, DL, Op->getValueType(0),
                        Op->getOperand(1));
-  case Intrinsic::mips_bz_v:
+  case Intrinsic::m6502_bz_v:
     return DAG.getNode(M6502ISD::VANY_ZERO, DL, Op->getValueType(0),
                        Op->getOperand(1));
-  case Intrinsic::mips_ceq_b:
-  case Intrinsic::mips_ceq_h:
-  case Intrinsic::mips_ceq_w:
-  case Intrinsic::mips_ceq_d:
+  case Intrinsic::m6502_ceq_b:
+  case Intrinsic::m6502_ceq_h:
+  case Intrinsic::m6502_ceq_w:
+  case Intrinsic::m6502_ceq_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETEQ);
-  case Intrinsic::mips_ceqi_b:
-  case Intrinsic::mips_ceqi_h:
-  case Intrinsic::mips_ceqi_w:
-  case Intrinsic::mips_ceqi_d:
+  case Intrinsic::m6502_ceqi_b:
+  case Intrinsic::m6502_ceqi_h:
+  case Intrinsic::m6502_ceqi_w:
+  case Intrinsic::m6502_ceqi_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         lowerMSASplatImm(Op, 2, DAG, true), ISD::SETEQ);
-  case Intrinsic::mips_cle_s_b:
-  case Intrinsic::mips_cle_s_h:
-  case Intrinsic::mips_cle_s_w:
-  case Intrinsic::mips_cle_s_d:
+  case Intrinsic::m6502_cle_s_b:
+  case Intrinsic::m6502_cle_s_h:
+  case Intrinsic::m6502_cle_s_w:
+  case Intrinsic::m6502_cle_s_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETLE);
-  case Intrinsic::mips_clei_s_b:
-  case Intrinsic::mips_clei_s_h:
-  case Intrinsic::mips_clei_s_w:
-  case Intrinsic::mips_clei_s_d:
+  case Intrinsic::m6502_clei_s_b:
+  case Intrinsic::m6502_clei_s_h:
+  case Intrinsic::m6502_clei_s_w:
+  case Intrinsic::m6502_clei_s_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         lowerMSASplatImm(Op, 2, DAG, true), ISD::SETLE);
-  case Intrinsic::mips_cle_u_b:
-  case Intrinsic::mips_cle_u_h:
-  case Intrinsic::mips_cle_u_w:
-  case Intrinsic::mips_cle_u_d:
+  case Intrinsic::m6502_cle_u_b:
+  case Intrinsic::m6502_cle_u_h:
+  case Intrinsic::m6502_cle_u_w:
+  case Intrinsic::m6502_cle_u_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETULE);
-  case Intrinsic::mips_clei_u_b:
-  case Intrinsic::mips_clei_u_h:
-  case Intrinsic::mips_clei_u_w:
-  case Intrinsic::mips_clei_u_d:
+  case Intrinsic::m6502_clei_u_b:
+  case Intrinsic::m6502_clei_u_h:
+  case Intrinsic::m6502_clei_u_w:
+  case Intrinsic::m6502_clei_u_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         lowerMSASplatImm(Op, 2, DAG), ISD::SETULE);
-  case Intrinsic::mips_clt_s_b:
-  case Intrinsic::mips_clt_s_h:
-  case Intrinsic::mips_clt_s_w:
-  case Intrinsic::mips_clt_s_d:
+  case Intrinsic::m6502_clt_s_b:
+  case Intrinsic::m6502_clt_s_h:
+  case Intrinsic::m6502_clt_s_w:
+  case Intrinsic::m6502_clt_s_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETLT);
-  case Intrinsic::mips_clti_s_b:
-  case Intrinsic::mips_clti_s_h:
-  case Intrinsic::mips_clti_s_w:
-  case Intrinsic::mips_clti_s_d:
+  case Intrinsic::m6502_clti_s_b:
+  case Intrinsic::m6502_clti_s_h:
+  case Intrinsic::m6502_clti_s_w:
+  case Intrinsic::m6502_clti_s_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         lowerMSASplatImm(Op, 2, DAG, true), ISD::SETLT);
-  case Intrinsic::mips_clt_u_b:
-  case Intrinsic::mips_clt_u_h:
-  case Intrinsic::mips_clt_u_w:
-  case Intrinsic::mips_clt_u_d:
+  case Intrinsic::m6502_clt_u_b:
+  case Intrinsic::m6502_clt_u_h:
+  case Intrinsic::m6502_clt_u_w:
+  case Intrinsic::m6502_clt_u_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETULT);
-  case Intrinsic::mips_clti_u_b:
-  case Intrinsic::mips_clti_u_h:
-  case Intrinsic::mips_clti_u_w:
-  case Intrinsic::mips_clti_u_d:
+  case Intrinsic::m6502_clti_u_b:
+  case Intrinsic::m6502_clti_u_h:
+  case Intrinsic::m6502_clti_u_w:
+  case Intrinsic::m6502_clti_u_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         lowerMSASplatImm(Op, 2, DAG), ISD::SETULT);
-  case Intrinsic::mips_copy_s_b:
-  case Intrinsic::mips_copy_s_h:
-  case Intrinsic::mips_copy_s_w:
+  case Intrinsic::m6502_copy_s_b:
+  case Intrinsic::m6502_copy_s_h:
+  case Intrinsic::m6502_copy_s_w:
     return lowerMSACopyIntr(Op, DAG, M6502ISD::VEXTRACT_SEXT_ELT);
-  case Intrinsic::mips_copy_s_d:
+  case Intrinsic::m6502_copy_s_d:
     if (Subtarget.hasM650264())
       // Lower directly into VEXTRACT_SEXT_ELT since i64 is legal on M650264.
       return lowerMSACopyIntr(Op, DAG, M6502ISD::VEXTRACT_SEXT_ELT);
@@ -1698,11 +1698,11 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
                          Op->getValueType(0), Op->getOperand(1),
                          Op->getOperand(2));
     }
-  case Intrinsic::mips_copy_u_b:
-  case Intrinsic::mips_copy_u_h:
-  case Intrinsic::mips_copy_u_w:
+  case Intrinsic::m6502_copy_u_b:
+  case Intrinsic::m6502_copy_u_h:
+  case Intrinsic::m6502_copy_u_w:
     return lowerMSACopyIntr(Op, DAG, M6502ISD::VEXTRACT_ZEXT_ELT);
-  case Intrinsic::mips_copy_u_d:
+  case Intrinsic::m6502_copy_u_d:
     if (Subtarget.hasM650264())
       // Lower directly into VEXTRACT_ZEXT_ELT since i64 is legal on M650264.
       return lowerMSACopyIntr(Op, DAG, M6502ISD::VEXTRACT_ZEXT_ELT);
@@ -1716,81 +1716,81 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
                          Op->getValueType(0), Op->getOperand(1),
                          Op->getOperand(2));
     }
-  case Intrinsic::mips_div_s_b:
-  case Intrinsic::mips_div_s_h:
-  case Intrinsic::mips_div_s_w:
-  case Intrinsic::mips_div_s_d:
+  case Intrinsic::m6502_div_s_b:
+  case Intrinsic::m6502_div_s_h:
+  case Intrinsic::m6502_div_s_w:
+  case Intrinsic::m6502_div_s_d:
     return DAG.getNode(ISD::SDIV, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_div_u_b:
-  case Intrinsic::mips_div_u_h:
-  case Intrinsic::mips_div_u_w:
-  case Intrinsic::mips_div_u_d:
+  case Intrinsic::m6502_div_u_b:
+  case Intrinsic::m6502_div_u_h:
+  case Intrinsic::m6502_div_u_w:
+  case Intrinsic::m6502_div_u_d:
     return DAG.getNode(ISD::UDIV, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_fadd_w:
-  case Intrinsic::mips_fadd_d:
+  case Intrinsic::m6502_fadd_w:
+  case Intrinsic::m6502_fadd_d:
     // TODO: If intrinsics have fast-math-flags, propagate them.
     return DAG.getNode(ISD::FADD, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  // Don't lower mips_fcaf_[wd] since LLVM folds SETFALSE condcodes away
-  case Intrinsic::mips_fceq_w:
-  case Intrinsic::mips_fceq_d:
+  // Don't lower m6502_fcaf_[wd] since LLVM folds SETFALSE condcodes away
+  case Intrinsic::m6502_fceq_w:
+  case Intrinsic::m6502_fceq_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETOEQ);
-  case Intrinsic::mips_fcle_w:
-  case Intrinsic::mips_fcle_d:
+  case Intrinsic::m6502_fcle_w:
+  case Intrinsic::m6502_fcle_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETOLE);
-  case Intrinsic::mips_fclt_w:
-  case Intrinsic::mips_fclt_d:
+  case Intrinsic::m6502_fclt_w:
+  case Intrinsic::m6502_fclt_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETOLT);
-  case Intrinsic::mips_fcne_w:
-  case Intrinsic::mips_fcne_d:
+  case Intrinsic::m6502_fcne_w:
+  case Intrinsic::m6502_fcne_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETONE);
-  case Intrinsic::mips_fcor_w:
-  case Intrinsic::mips_fcor_d:
+  case Intrinsic::m6502_fcor_w:
+  case Intrinsic::m6502_fcor_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETO);
-  case Intrinsic::mips_fcueq_w:
-  case Intrinsic::mips_fcueq_d:
+  case Intrinsic::m6502_fcueq_w:
+  case Intrinsic::m6502_fcueq_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETUEQ);
-  case Intrinsic::mips_fcule_w:
-  case Intrinsic::mips_fcule_d:
+  case Intrinsic::m6502_fcule_w:
+  case Intrinsic::m6502_fcule_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETULE);
-  case Intrinsic::mips_fcult_w:
-  case Intrinsic::mips_fcult_d:
+  case Intrinsic::m6502_fcult_w:
+  case Intrinsic::m6502_fcult_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETULT);
-  case Intrinsic::mips_fcun_w:
-  case Intrinsic::mips_fcun_d:
+  case Intrinsic::m6502_fcun_w:
+  case Intrinsic::m6502_fcun_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETUO);
-  case Intrinsic::mips_fcune_w:
-  case Intrinsic::mips_fcune_d:
+  case Intrinsic::m6502_fcune_w:
+  case Intrinsic::m6502_fcune_d:
     return DAG.getSetCC(DL, Op->getValueType(0), Op->getOperand(1),
                         Op->getOperand(2), ISD::SETUNE);
-  case Intrinsic::mips_fdiv_w:
-  case Intrinsic::mips_fdiv_d:
+  case Intrinsic::m6502_fdiv_w:
+  case Intrinsic::m6502_fdiv_d:
     // TODO: If intrinsics have fast-math-flags, propagate them.
     return DAG.getNode(ISD::FDIV, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_ffint_u_w:
-  case Intrinsic::mips_ffint_u_d:
+  case Intrinsic::m6502_ffint_u_w:
+  case Intrinsic::m6502_ffint_u_d:
     return DAG.getNode(ISD::UINT_TO_FP, DL, Op->getValueType(0),
                        Op->getOperand(1));
-  case Intrinsic::mips_ffint_s_w:
-  case Intrinsic::mips_ffint_s_d:
+  case Intrinsic::m6502_ffint_s_w:
+  case Intrinsic::m6502_ffint_s_d:
     return DAG.getNode(ISD::SINT_TO_FP, DL, Op->getValueType(0),
                        Op->getOperand(1));
-  case Intrinsic::mips_fill_b:
-  case Intrinsic::mips_fill_h:
-  case Intrinsic::mips_fill_w:
-  case Intrinsic::mips_fill_d: {
+  case Intrinsic::m6502_fill_b:
+  case Intrinsic::m6502_fill_h:
+  case Intrinsic::m6502_fill_w:
+  case Intrinsic::m6502_fill_d: {
     EVT ResTy = Op->getValueType(0);
     SmallVector<SDValue, 16> Ops(ResTy.getVectorNumElements(),
                                  Op->getOperand(1));
@@ -1799,94 +1799,94 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
     // an equivalent v4i32.
     return DAG.getBuildVector(ResTy, DL, Ops);
   }
-  case Intrinsic::mips_fexp2_w:
-  case Intrinsic::mips_fexp2_d: {
+  case Intrinsic::m6502_fexp2_w:
+  case Intrinsic::m6502_fexp2_d: {
     // TODO: If intrinsics have fast-math-flags, propagate them.
     EVT ResTy = Op->getValueType(0);
     return DAG.getNode(
         ISD::FMUL, SDLoc(Op), ResTy, Op->getOperand(1),
         DAG.getNode(ISD::FEXP2, SDLoc(Op), ResTy, Op->getOperand(2)));
   }
-  case Intrinsic::mips_flog2_w:
-  case Intrinsic::mips_flog2_d:
+  case Intrinsic::m6502_flog2_w:
+  case Intrinsic::m6502_flog2_d:
     return DAG.getNode(ISD::FLOG2, DL, Op->getValueType(0), Op->getOperand(1));
-  case Intrinsic::mips_fmadd_w:
-  case Intrinsic::mips_fmadd_d:
+  case Intrinsic::m6502_fmadd_w:
+  case Intrinsic::m6502_fmadd_d:
     return DAG.getNode(ISD::FMA, SDLoc(Op), Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(2), Op->getOperand(3));
-  case Intrinsic::mips_fmul_w:
-  case Intrinsic::mips_fmul_d:
+  case Intrinsic::m6502_fmul_w:
+  case Intrinsic::m6502_fmul_d:
     // TODO: If intrinsics have fast-math-flags, propagate them.
     return DAG.getNode(ISD::FMUL, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_fmsub_w:
-  case Intrinsic::mips_fmsub_d: {
+  case Intrinsic::m6502_fmsub_w:
+  case Intrinsic::m6502_fmsub_d: {
     // TODO: If intrinsics have fast-math-flags, propagate them.
     EVT ResTy = Op->getValueType(0);
     return DAG.getNode(ISD::FSUB, SDLoc(Op), ResTy, Op->getOperand(1),
                        DAG.getNode(ISD::FMUL, SDLoc(Op), ResTy,
                                    Op->getOperand(2), Op->getOperand(3)));
   }
-  case Intrinsic::mips_frint_w:
-  case Intrinsic::mips_frint_d:
+  case Intrinsic::m6502_frint_w:
+  case Intrinsic::m6502_frint_d:
     return DAG.getNode(ISD::FRINT, DL, Op->getValueType(0), Op->getOperand(1));
-  case Intrinsic::mips_fsqrt_w:
-  case Intrinsic::mips_fsqrt_d:
+  case Intrinsic::m6502_fsqrt_w:
+  case Intrinsic::m6502_fsqrt_d:
     return DAG.getNode(ISD::FSQRT, DL, Op->getValueType(0), Op->getOperand(1));
-  case Intrinsic::mips_fsub_w:
-  case Intrinsic::mips_fsub_d:
+  case Intrinsic::m6502_fsub_w:
+  case Intrinsic::m6502_fsub_d:
     // TODO: If intrinsics have fast-math-flags, propagate them.
     return DAG.getNode(ISD::FSUB, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_ftrunc_u_w:
-  case Intrinsic::mips_ftrunc_u_d:
+  case Intrinsic::m6502_ftrunc_u_w:
+  case Intrinsic::m6502_ftrunc_u_d:
     return DAG.getNode(ISD::FP_TO_UINT, DL, Op->getValueType(0),
                        Op->getOperand(1));
-  case Intrinsic::mips_ftrunc_s_w:
-  case Intrinsic::mips_ftrunc_s_d:
+  case Intrinsic::m6502_ftrunc_s_w:
+  case Intrinsic::m6502_ftrunc_s_d:
     return DAG.getNode(ISD::FP_TO_SINT, DL, Op->getValueType(0),
                        Op->getOperand(1));
-  case Intrinsic::mips_ilvev_b:
-  case Intrinsic::mips_ilvev_h:
-  case Intrinsic::mips_ilvev_w:
-  case Intrinsic::mips_ilvev_d:
+  case Intrinsic::m6502_ilvev_b:
+  case Intrinsic::m6502_ilvev_h:
+  case Intrinsic::m6502_ilvev_w:
+  case Intrinsic::m6502_ilvev_d:
     return DAG.getNode(M6502ISD::ILVEV, DL, Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(2));
-  case Intrinsic::mips_ilvl_b:
-  case Intrinsic::mips_ilvl_h:
-  case Intrinsic::mips_ilvl_w:
-  case Intrinsic::mips_ilvl_d:
+  case Intrinsic::m6502_ilvl_b:
+  case Intrinsic::m6502_ilvl_h:
+  case Intrinsic::m6502_ilvl_w:
+  case Intrinsic::m6502_ilvl_d:
     return DAG.getNode(M6502ISD::ILVL, DL, Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(2));
-  case Intrinsic::mips_ilvod_b:
-  case Intrinsic::mips_ilvod_h:
-  case Intrinsic::mips_ilvod_w:
-  case Intrinsic::mips_ilvod_d:
+  case Intrinsic::m6502_ilvod_b:
+  case Intrinsic::m6502_ilvod_h:
+  case Intrinsic::m6502_ilvod_w:
+  case Intrinsic::m6502_ilvod_d:
     return DAG.getNode(M6502ISD::ILVOD, DL, Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(2));
-  case Intrinsic::mips_ilvr_b:
-  case Intrinsic::mips_ilvr_h:
-  case Intrinsic::mips_ilvr_w:
-  case Intrinsic::mips_ilvr_d:
+  case Intrinsic::m6502_ilvr_b:
+  case Intrinsic::m6502_ilvr_h:
+  case Intrinsic::m6502_ilvr_w:
+  case Intrinsic::m6502_ilvr_d:
     return DAG.getNode(M6502ISD::ILVR, DL, Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(2));
-  case Intrinsic::mips_insert_b:
-  case Intrinsic::mips_insert_h:
-  case Intrinsic::mips_insert_w:
-  case Intrinsic::mips_insert_d:
+  case Intrinsic::m6502_insert_b:
+  case Intrinsic::m6502_insert_h:
+  case Intrinsic::m6502_insert_w:
+  case Intrinsic::m6502_insert_d:
     return DAG.getNode(ISD::INSERT_VECTOR_ELT, SDLoc(Op), Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(3), Op->getOperand(2));
-  case Intrinsic::mips_insve_b:
-  case Intrinsic::mips_insve_h:
-  case Intrinsic::mips_insve_w:
-  case Intrinsic::mips_insve_d: {
+  case Intrinsic::m6502_insve_b:
+  case Intrinsic::m6502_insve_h:
+  case Intrinsic::m6502_insve_w:
+  case Intrinsic::m6502_insve_d: {
     // Report an error for out of range values.
     int64_t Max;
     switch (Intrinsic) {
-    case Intrinsic::mips_insve_b: Max = 15; break;
-    case Intrinsic::mips_insve_h: Max = 7; break;
-    case Intrinsic::mips_insve_w: Max = 3; break;
-    case Intrinsic::mips_insve_d: Max = 1; break;
+    case Intrinsic::m6502_insve_b: Max = 15; break;
+    case Intrinsic::m6502_insve_h: Max = 7; break;
+    case Intrinsic::m6502_insve_w: Max = 3; break;
+    case Intrinsic::m6502_insve_d: Max = 1; break;
     default: llvm_unreachable("Unmatched intrinsic");
     }
     int64_t Value = cast<ConstantSDNode>(Op->getOperand(2))->getSExtValue();
@@ -1896,160 +1896,160 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
                        Op->getOperand(1), Op->getOperand(2), Op->getOperand(3),
                        DAG.getConstant(0, DL, MVT::i32));
     }
-  case Intrinsic::mips_ldi_b:
-  case Intrinsic::mips_ldi_h:
-  case Intrinsic::mips_ldi_w:
-  case Intrinsic::mips_ldi_d:
+  case Intrinsic::m6502_ldi_b:
+  case Intrinsic::m6502_ldi_h:
+  case Intrinsic::m6502_ldi_w:
+  case Intrinsic::m6502_ldi_d:
     return lowerMSASplatImm(Op, 1, DAG, true);
-  case Intrinsic::mips_lsa:
-  case Intrinsic::mips_dlsa: {
+  case Intrinsic::m6502_lsa:
+  case Intrinsic::m6502_dlsa: {
     EVT ResTy = Op->getValueType(0);
     return DAG.getNode(ISD::ADD, SDLoc(Op), ResTy, Op->getOperand(1),
                        DAG.getNode(ISD::SHL, SDLoc(Op), ResTy,
                                    Op->getOperand(2), Op->getOperand(3)));
   }
-  case Intrinsic::mips_maddv_b:
-  case Intrinsic::mips_maddv_h:
-  case Intrinsic::mips_maddv_w:
-  case Intrinsic::mips_maddv_d: {
+  case Intrinsic::m6502_maddv_b:
+  case Intrinsic::m6502_maddv_h:
+  case Intrinsic::m6502_maddv_w:
+  case Intrinsic::m6502_maddv_d: {
     EVT ResTy = Op->getValueType(0);
     return DAG.getNode(ISD::ADD, SDLoc(Op), ResTy, Op->getOperand(1),
                        DAG.getNode(ISD::MUL, SDLoc(Op), ResTy,
                                    Op->getOperand(2), Op->getOperand(3)));
   }
-  case Intrinsic::mips_max_s_b:
-  case Intrinsic::mips_max_s_h:
-  case Intrinsic::mips_max_s_w:
-  case Intrinsic::mips_max_s_d:
+  case Intrinsic::m6502_max_s_b:
+  case Intrinsic::m6502_max_s_h:
+  case Intrinsic::m6502_max_s_w:
+  case Intrinsic::m6502_max_s_d:
     return DAG.getNode(M6502ISD::VSMAX, DL, Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(2));
-  case Intrinsic::mips_max_u_b:
-  case Intrinsic::mips_max_u_h:
-  case Intrinsic::mips_max_u_w:
-  case Intrinsic::mips_max_u_d:
+  case Intrinsic::m6502_max_u_b:
+  case Intrinsic::m6502_max_u_h:
+  case Intrinsic::m6502_max_u_w:
+  case Intrinsic::m6502_max_u_d:
     return DAG.getNode(M6502ISD::VUMAX, DL, Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(2));
-  case Intrinsic::mips_maxi_s_b:
-  case Intrinsic::mips_maxi_s_h:
-  case Intrinsic::mips_maxi_s_w:
-  case Intrinsic::mips_maxi_s_d:
+  case Intrinsic::m6502_maxi_s_b:
+  case Intrinsic::m6502_maxi_s_h:
+  case Intrinsic::m6502_maxi_s_w:
+  case Intrinsic::m6502_maxi_s_d:
     return DAG.getNode(M6502ISD::VSMAX, DL, Op->getValueType(0),
                        Op->getOperand(1), lowerMSASplatImm(Op, 2, DAG, true));
-  case Intrinsic::mips_maxi_u_b:
-  case Intrinsic::mips_maxi_u_h:
-  case Intrinsic::mips_maxi_u_w:
-  case Intrinsic::mips_maxi_u_d:
+  case Intrinsic::m6502_maxi_u_b:
+  case Intrinsic::m6502_maxi_u_h:
+  case Intrinsic::m6502_maxi_u_w:
+  case Intrinsic::m6502_maxi_u_d:
     return DAG.getNode(M6502ISD::VUMAX, DL, Op->getValueType(0),
                        Op->getOperand(1), lowerMSASplatImm(Op, 2, DAG));
-  case Intrinsic::mips_min_s_b:
-  case Intrinsic::mips_min_s_h:
-  case Intrinsic::mips_min_s_w:
-  case Intrinsic::mips_min_s_d:
+  case Intrinsic::m6502_min_s_b:
+  case Intrinsic::m6502_min_s_h:
+  case Intrinsic::m6502_min_s_w:
+  case Intrinsic::m6502_min_s_d:
     return DAG.getNode(M6502ISD::VSMIN, DL, Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(2));
-  case Intrinsic::mips_min_u_b:
-  case Intrinsic::mips_min_u_h:
-  case Intrinsic::mips_min_u_w:
-  case Intrinsic::mips_min_u_d:
+  case Intrinsic::m6502_min_u_b:
+  case Intrinsic::m6502_min_u_h:
+  case Intrinsic::m6502_min_u_w:
+  case Intrinsic::m6502_min_u_d:
     return DAG.getNode(M6502ISD::VUMIN, DL, Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(2));
-  case Intrinsic::mips_mini_s_b:
-  case Intrinsic::mips_mini_s_h:
-  case Intrinsic::mips_mini_s_w:
-  case Intrinsic::mips_mini_s_d:
+  case Intrinsic::m6502_mini_s_b:
+  case Intrinsic::m6502_mini_s_h:
+  case Intrinsic::m6502_mini_s_w:
+  case Intrinsic::m6502_mini_s_d:
     return DAG.getNode(M6502ISD::VSMIN, DL, Op->getValueType(0),
                        Op->getOperand(1), lowerMSASplatImm(Op, 2, DAG, true));
-  case Intrinsic::mips_mini_u_b:
-  case Intrinsic::mips_mini_u_h:
-  case Intrinsic::mips_mini_u_w:
-  case Intrinsic::mips_mini_u_d:
+  case Intrinsic::m6502_mini_u_b:
+  case Intrinsic::m6502_mini_u_h:
+  case Intrinsic::m6502_mini_u_w:
+  case Intrinsic::m6502_mini_u_d:
     return DAG.getNode(M6502ISD::VUMIN, DL, Op->getValueType(0),
                        Op->getOperand(1), lowerMSASplatImm(Op, 2, DAG));
-  case Intrinsic::mips_mod_s_b:
-  case Intrinsic::mips_mod_s_h:
-  case Intrinsic::mips_mod_s_w:
-  case Intrinsic::mips_mod_s_d:
+  case Intrinsic::m6502_mod_s_b:
+  case Intrinsic::m6502_mod_s_h:
+  case Intrinsic::m6502_mod_s_w:
+  case Intrinsic::m6502_mod_s_d:
     return DAG.getNode(ISD::SREM, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_mod_u_b:
-  case Intrinsic::mips_mod_u_h:
-  case Intrinsic::mips_mod_u_w:
-  case Intrinsic::mips_mod_u_d:
+  case Intrinsic::m6502_mod_u_b:
+  case Intrinsic::m6502_mod_u_h:
+  case Intrinsic::m6502_mod_u_w:
+  case Intrinsic::m6502_mod_u_d:
     return DAG.getNode(ISD::UREM, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_mulv_b:
-  case Intrinsic::mips_mulv_h:
-  case Intrinsic::mips_mulv_w:
-  case Intrinsic::mips_mulv_d:
+  case Intrinsic::m6502_mulv_b:
+  case Intrinsic::m6502_mulv_h:
+  case Intrinsic::m6502_mulv_w:
+  case Intrinsic::m6502_mulv_d:
     return DAG.getNode(ISD::MUL, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_msubv_b:
-  case Intrinsic::mips_msubv_h:
-  case Intrinsic::mips_msubv_w:
-  case Intrinsic::mips_msubv_d: {
+  case Intrinsic::m6502_msubv_b:
+  case Intrinsic::m6502_msubv_h:
+  case Intrinsic::m6502_msubv_w:
+  case Intrinsic::m6502_msubv_d: {
     EVT ResTy = Op->getValueType(0);
     return DAG.getNode(ISD::SUB, SDLoc(Op), ResTy, Op->getOperand(1),
                        DAG.getNode(ISD::MUL, SDLoc(Op), ResTy,
                                    Op->getOperand(2), Op->getOperand(3)));
   }
-  case Intrinsic::mips_nlzc_b:
-  case Intrinsic::mips_nlzc_h:
-  case Intrinsic::mips_nlzc_w:
-  case Intrinsic::mips_nlzc_d:
+  case Intrinsic::m6502_nlzc_b:
+  case Intrinsic::m6502_nlzc_h:
+  case Intrinsic::m6502_nlzc_w:
+  case Intrinsic::m6502_nlzc_d:
     return DAG.getNode(ISD::CTLZ, DL, Op->getValueType(0), Op->getOperand(1));
-  case Intrinsic::mips_nor_v: {
+  case Intrinsic::m6502_nor_v: {
     SDValue Res = DAG.getNode(ISD::OR, DL, Op->getValueType(0),
                               Op->getOperand(1), Op->getOperand(2));
     return DAG.getNOT(DL, Res, Res->getValueType(0));
   }
-  case Intrinsic::mips_nori_b: {
+  case Intrinsic::m6502_nori_b: {
     SDValue Res =  DAG.getNode(ISD::OR, DL, Op->getValueType(0),
                                Op->getOperand(1),
                                lowerMSASplatImm(Op, 2, DAG));
     return DAG.getNOT(DL, Res, Res->getValueType(0));
   }
-  case Intrinsic::mips_or_v:
+  case Intrinsic::m6502_or_v:
     return DAG.getNode(ISD::OR, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_ori_b:
+  case Intrinsic::m6502_ori_b:
     return DAG.getNode(ISD::OR, DL, Op->getValueType(0),
                        Op->getOperand(1), lowerMSASplatImm(Op, 2, DAG));
-  case Intrinsic::mips_pckev_b:
-  case Intrinsic::mips_pckev_h:
-  case Intrinsic::mips_pckev_w:
-  case Intrinsic::mips_pckev_d:
+  case Intrinsic::m6502_pckev_b:
+  case Intrinsic::m6502_pckev_h:
+  case Intrinsic::m6502_pckev_w:
+  case Intrinsic::m6502_pckev_d:
     return DAG.getNode(M6502ISD::PCKEV, DL, Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(2));
-  case Intrinsic::mips_pckod_b:
-  case Intrinsic::mips_pckod_h:
-  case Intrinsic::mips_pckod_w:
-  case Intrinsic::mips_pckod_d:
+  case Intrinsic::m6502_pckod_b:
+  case Intrinsic::m6502_pckod_h:
+  case Intrinsic::m6502_pckod_w:
+  case Intrinsic::m6502_pckod_d:
     return DAG.getNode(M6502ISD::PCKOD, DL, Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(2));
-  case Intrinsic::mips_pcnt_b:
-  case Intrinsic::mips_pcnt_h:
-  case Intrinsic::mips_pcnt_w:
-  case Intrinsic::mips_pcnt_d:
+  case Intrinsic::m6502_pcnt_b:
+  case Intrinsic::m6502_pcnt_h:
+  case Intrinsic::m6502_pcnt_w:
+  case Intrinsic::m6502_pcnt_d:
     return DAG.getNode(ISD::CTPOP, DL, Op->getValueType(0), Op->getOperand(1));
-  case Intrinsic::mips_sat_s_b:
-  case Intrinsic::mips_sat_s_h:
-  case Intrinsic::mips_sat_s_w:
-  case Intrinsic::mips_sat_s_d:
-  case Intrinsic::mips_sat_u_b:
-  case Intrinsic::mips_sat_u_h:
-  case Intrinsic::mips_sat_u_w:
-  case Intrinsic::mips_sat_u_d: {
+  case Intrinsic::m6502_sat_s_b:
+  case Intrinsic::m6502_sat_s_h:
+  case Intrinsic::m6502_sat_s_w:
+  case Intrinsic::m6502_sat_s_d:
+  case Intrinsic::m6502_sat_u_b:
+  case Intrinsic::m6502_sat_u_h:
+  case Intrinsic::m6502_sat_u_w:
+  case Intrinsic::m6502_sat_u_d: {
     // Report an error for out of range values.
     int64_t Max;
     switch (Intrinsic) {
-    case Intrinsic::mips_sat_s_b:
-    case Intrinsic::mips_sat_u_b: Max = 7;  break;
-    case Intrinsic::mips_sat_s_h:
-    case Intrinsic::mips_sat_u_h: Max = 15; break;
-    case Intrinsic::mips_sat_s_w:
-    case Intrinsic::mips_sat_u_w: Max = 31; break;
-    case Intrinsic::mips_sat_s_d:
-    case Intrinsic::mips_sat_u_d: Max = 63; break;
+    case Intrinsic::m6502_sat_s_b:
+    case Intrinsic::m6502_sat_u_b: Max = 7;  break;
+    case Intrinsic::m6502_sat_s_h:
+    case Intrinsic::m6502_sat_u_h: Max = 15; break;
+    case Intrinsic::m6502_sat_s_w:
+    case Intrinsic::m6502_sat_u_w: Max = 31; break;
+    case Intrinsic::m6502_sat_s_d:
+    case Intrinsic::m6502_sat_u_d: Max = 63; break;
     default: llvm_unreachable("Unmatched intrinsic");
     }
     int64_t Value = cast<ConstantSDNode>(Op->getOperand(2))->getSExtValue();
@@ -2057,26 +2057,26 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
       report_fatal_error("Immediate out of range");
     return SDValue();
   }
-  case Intrinsic::mips_shf_b:
-  case Intrinsic::mips_shf_h:
-  case Intrinsic::mips_shf_w: {
+  case Intrinsic::m6502_shf_b:
+  case Intrinsic::m6502_shf_h:
+  case Intrinsic::m6502_shf_w: {
     int64_t Value = cast<ConstantSDNode>(Op->getOperand(2))->getSExtValue();
     if (Value < 0 || Value > 255)
       report_fatal_error("Immediate out of range");
     return DAG.getNode(M6502ISD::SHF, DL, Op->getValueType(0),
                        Op->getOperand(2), Op->getOperand(1));
   }
-  case Intrinsic::mips_sldi_b:
-  case Intrinsic::mips_sldi_h:
-  case Intrinsic::mips_sldi_w:
-  case Intrinsic::mips_sldi_d: {
+  case Intrinsic::m6502_sldi_b:
+  case Intrinsic::m6502_sldi_h:
+  case Intrinsic::m6502_sldi_w:
+  case Intrinsic::m6502_sldi_d: {
     // Report an error for out of range values.
     int64_t Max;
     switch (Intrinsic) {
-    case Intrinsic::mips_sldi_b: Max = 15; break;
-    case Intrinsic::mips_sldi_h: Max = 7; break;
-    case Intrinsic::mips_sldi_w: Max = 3; break;
-    case Intrinsic::mips_sldi_d: Max = 1; break;
+    case Intrinsic::m6502_sldi_b: Max = 15; break;
+    case Intrinsic::m6502_sldi_h: Max = 7; break;
+    case Intrinsic::m6502_sldi_w: Max = 3; break;
+    case Intrinsic::m6502_sldi_d: Max = 1; break;
     default: llvm_unreachable("Unmatched intrinsic");
     }
     int64_t Value = cast<ConstantSDNode>(Op->getOperand(3))->getSExtValue();
@@ -2084,22 +2084,22 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
       report_fatal_error("Immediate out of range");
     return SDValue();
   }
-  case Intrinsic::mips_sll_b:
-  case Intrinsic::mips_sll_h:
-  case Intrinsic::mips_sll_w:
-  case Intrinsic::mips_sll_d:
+  case Intrinsic::m6502_sll_b:
+  case Intrinsic::m6502_sll_h:
+  case Intrinsic::m6502_sll_w:
+  case Intrinsic::m6502_sll_d:
     return DAG.getNode(ISD::SHL, DL, Op->getValueType(0), Op->getOperand(1),
                        truncateVecElts(Op, DAG));
-  case Intrinsic::mips_slli_b:
-  case Intrinsic::mips_slli_h:
-  case Intrinsic::mips_slli_w:
-  case Intrinsic::mips_slli_d:
+  case Intrinsic::m6502_slli_b:
+  case Intrinsic::m6502_slli_h:
+  case Intrinsic::m6502_slli_w:
+  case Intrinsic::m6502_slli_d:
     return DAG.getNode(ISD::SHL, DL, Op->getValueType(0),
                        Op->getOperand(1), lowerMSASplatImm(Op, 2, DAG));
-  case Intrinsic::mips_splat_b:
-  case Intrinsic::mips_splat_h:
-  case Intrinsic::mips_splat_w:
-  case Intrinsic::mips_splat_d:
+  case Intrinsic::m6502_splat_b:
+  case Intrinsic::m6502_splat_h:
+  case Intrinsic::m6502_splat_w:
+  case Intrinsic::m6502_splat_d:
     // We can't lower via VECTOR_SHUFFLE because it requires constant shuffle
     // masks, nor can we lower via BUILD_VECTOR & EXTRACT_VECTOR_ELT because
     // EXTRACT_VECTOR_ELT can't extract i64's on M650232.
@@ -2107,36 +2107,36 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
     return DAG.getNode(M6502ISD::VSHF, DL, Op->getValueType(0),
                        lowerMSASplatZExt(Op, 2, DAG), Op->getOperand(1),
                        Op->getOperand(1));
-  case Intrinsic::mips_splati_b:
-  case Intrinsic::mips_splati_h:
-  case Intrinsic::mips_splati_w:
-  case Intrinsic::mips_splati_d:
+  case Intrinsic::m6502_splati_b:
+  case Intrinsic::m6502_splati_h:
+  case Intrinsic::m6502_splati_w:
+  case Intrinsic::m6502_splati_d:
     return DAG.getNode(M6502ISD::VSHF, DL, Op->getValueType(0),
                        lowerMSASplatImm(Op, 2, DAG), Op->getOperand(1),
                        Op->getOperand(1));
-  case Intrinsic::mips_sra_b:
-  case Intrinsic::mips_sra_h:
-  case Intrinsic::mips_sra_w:
-  case Intrinsic::mips_sra_d:
+  case Intrinsic::m6502_sra_b:
+  case Intrinsic::m6502_sra_h:
+  case Intrinsic::m6502_sra_w:
+  case Intrinsic::m6502_sra_d:
     return DAG.getNode(ISD::SRA, DL, Op->getValueType(0), Op->getOperand(1),
                        truncateVecElts(Op, DAG));
-  case Intrinsic::mips_srai_b:
-  case Intrinsic::mips_srai_h:
-  case Intrinsic::mips_srai_w:
-  case Intrinsic::mips_srai_d:
+  case Intrinsic::m6502_srai_b:
+  case Intrinsic::m6502_srai_h:
+  case Intrinsic::m6502_srai_w:
+  case Intrinsic::m6502_srai_d:
     return DAG.getNode(ISD::SRA, DL, Op->getValueType(0),
                        Op->getOperand(1), lowerMSASplatImm(Op, 2, DAG));
-  case Intrinsic::mips_srari_b:
-  case Intrinsic::mips_srari_h:
-  case Intrinsic::mips_srari_w:
-  case Intrinsic::mips_srari_d: {
+  case Intrinsic::m6502_srari_b:
+  case Intrinsic::m6502_srari_h:
+  case Intrinsic::m6502_srari_w:
+  case Intrinsic::m6502_srari_d: {
     // Report an error for out of range values.
     int64_t Max;
     switch (Intrinsic) {
-    case Intrinsic::mips_srari_b: Max = 7; break;
-    case Intrinsic::mips_srari_h: Max = 15; break;
-    case Intrinsic::mips_srari_w: Max = 31; break;
-    case Intrinsic::mips_srari_d: Max = 63; break;
+    case Intrinsic::m6502_srari_b: Max = 7; break;
+    case Intrinsic::m6502_srari_h: Max = 15; break;
+    case Intrinsic::m6502_srari_w: Max = 31; break;
+    case Intrinsic::m6502_srari_d: Max = 63; break;
     default: llvm_unreachable("Unmatched intrinsic");
     }
     int64_t Value = cast<ConstantSDNode>(Op->getOperand(2))->getSExtValue();
@@ -2144,29 +2144,29 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
       report_fatal_error("Immediate out of range");
     return SDValue();
   }
-  case Intrinsic::mips_srl_b:
-  case Intrinsic::mips_srl_h:
-  case Intrinsic::mips_srl_w:
-  case Intrinsic::mips_srl_d:
+  case Intrinsic::m6502_srl_b:
+  case Intrinsic::m6502_srl_h:
+  case Intrinsic::m6502_srl_w:
+  case Intrinsic::m6502_srl_d:
     return DAG.getNode(ISD::SRL, DL, Op->getValueType(0), Op->getOperand(1),
                        truncateVecElts(Op, DAG));
-  case Intrinsic::mips_srli_b:
-  case Intrinsic::mips_srli_h:
-  case Intrinsic::mips_srli_w:
-  case Intrinsic::mips_srli_d:
+  case Intrinsic::m6502_srli_b:
+  case Intrinsic::m6502_srli_h:
+  case Intrinsic::m6502_srli_w:
+  case Intrinsic::m6502_srli_d:
     return DAG.getNode(ISD::SRL, DL, Op->getValueType(0),
                        Op->getOperand(1), lowerMSASplatImm(Op, 2, DAG));
-  case Intrinsic::mips_srlri_b:
-  case Intrinsic::mips_srlri_h:
-  case Intrinsic::mips_srlri_w:
-  case Intrinsic::mips_srlri_d: {
+  case Intrinsic::m6502_srlri_b:
+  case Intrinsic::m6502_srlri_h:
+  case Intrinsic::m6502_srlri_w:
+  case Intrinsic::m6502_srlri_d: {
     // Report an error for out of range values.
     int64_t Max;
     switch (Intrinsic) {
-    case Intrinsic::mips_srlri_b: Max = 7; break;
-    case Intrinsic::mips_srlri_h: Max = 15; break;
-    case Intrinsic::mips_srlri_w: Max = 31; break;
-    case Intrinsic::mips_srlri_d: Max = 63; break;
+    case Intrinsic::m6502_srlri_b: Max = 7; break;
+    case Intrinsic::m6502_srlri_h: Max = 15; break;
+    case Intrinsic::m6502_srlri_w: Max = 31; break;
+    case Intrinsic::m6502_srlri_d: Max = 63; break;
     default: llvm_unreachable("Unmatched intrinsic");
     }
     int64_t Value = cast<ConstantSDNode>(Op->getOperand(2))->getSExtValue();
@@ -2174,28 +2174,28 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_WO_CHAIN(SDValue Op,
       report_fatal_error("Immediate out of range");
     return SDValue();
   }
-  case Intrinsic::mips_subv_b:
-  case Intrinsic::mips_subv_h:
-  case Intrinsic::mips_subv_w:
-  case Intrinsic::mips_subv_d:
+  case Intrinsic::m6502_subv_b:
+  case Intrinsic::m6502_subv_h:
+  case Intrinsic::m6502_subv_w:
+  case Intrinsic::m6502_subv_d:
     return DAG.getNode(ISD::SUB, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_subvi_b:
-  case Intrinsic::mips_subvi_h:
-  case Intrinsic::mips_subvi_w:
-  case Intrinsic::mips_subvi_d:
+  case Intrinsic::m6502_subvi_b:
+  case Intrinsic::m6502_subvi_h:
+  case Intrinsic::m6502_subvi_w:
+  case Intrinsic::m6502_subvi_d:
     return DAG.getNode(ISD::SUB, DL, Op->getValueType(0),
                        Op->getOperand(1), lowerMSASplatImm(Op, 2, DAG));
-  case Intrinsic::mips_vshf_b:
-  case Intrinsic::mips_vshf_h:
-  case Intrinsic::mips_vshf_w:
-  case Intrinsic::mips_vshf_d:
+  case Intrinsic::m6502_vshf_b:
+  case Intrinsic::m6502_vshf_h:
+  case Intrinsic::m6502_vshf_w:
+  case Intrinsic::m6502_vshf_d:
     return DAG.getNode(M6502ISD::VSHF, DL, Op->getValueType(0),
                        Op->getOperand(1), Op->getOperand(2), Op->getOperand(3));
-  case Intrinsic::mips_xor_v:
+  case Intrinsic::m6502_xor_v:
     return DAG.getNode(ISD::XOR, DL, Op->getValueType(0), Op->getOperand(1),
                        Op->getOperand(2));
-  case Intrinsic::mips_xori_b:
+  case Intrinsic::m6502_xori_b:
     return DAG.getNode(ISD::XOR, DL, Op->getValueType(0),
                        Op->getOperand(1), lowerMSASplatImm(Op, 2, DAG));
   case Intrinsic::thread_pointer: {
@@ -2231,50 +2231,50 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_W_CHAIN(SDValue Op,
   switch (Intr) {
   default:
     return SDValue();
-  case Intrinsic::mips_extp:
+  case Intrinsic::m6502_extp:
     return lowerDSPIntr(Op, DAG, M6502ISD::EXTP);
-  case Intrinsic::mips_extpdp:
+  case Intrinsic::m6502_extpdp:
     return lowerDSPIntr(Op, DAG, M6502ISD::EXTPDP);
-  case Intrinsic::mips_extr_w:
+  case Intrinsic::m6502_extr_w:
     return lowerDSPIntr(Op, DAG, M6502ISD::EXTR_W);
-  case Intrinsic::mips_extr_r_w:
+  case Intrinsic::m6502_extr_r_w:
     return lowerDSPIntr(Op, DAG, M6502ISD::EXTR_R_W);
-  case Intrinsic::mips_extr_rs_w:
+  case Intrinsic::m6502_extr_rs_w:
     return lowerDSPIntr(Op, DAG, M6502ISD::EXTR_RS_W);
-  case Intrinsic::mips_extr_s_h:
+  case Intrinsic::m6502_extr_s_h:
     return lowerDSPIntr(Op, DAG, M6502ISD::EXTR_S_H);
-  case Intrinsic::mips_mthlip:
+  case Intrinsic::m6502_mthlip:
     return lowerDSPIntr(Op, DAG, M6502ISD::MTHLIP);
-  case Intrinsic::mips_mulsaq_s_w_ph:
+  case Intrinsic::m6502_mulsaq_s_w_ph:
     return lowerDSPIntr(Op, DAG, M6502ISD::MULSAQ_S_W_PH);
-  case Intrinsic::mips_maq_s_w_phl:
+  case Intrinsic::m6502_maq_s_w_phl:
     return lowerDSPIntr(Op, DAG, M6502ISD::MAQ_S_W_PHL);
-  case Intrinsic::mips_maq_s_w_phr:
+  case Intrinsic::m6502_maq_s_w_phr:
     return lowerDSPIntr(Op, DAG, M6502ISD::MAQ_S_W_PHR);
-  case Intrinsic::mips_maq_sa_w_phl:
+  case Intrinsic::m6502_maq_sa_w_phl:
     return lowerDSPIntr(Op, DAG, M6502ISD::MAQ_SA_W_PHL);
-  case Intrinsic::mips_maq_sa_w_phr:
+  case Intrinsic::m6502_maq_sa_w_phr:
     return lowerDSPIntr(Op, DAG, M6502ISD::MAQ_SA_W_PHR);
-  case Intrinsic::mips_dpaq_s_w_ph:
+  case Intrinsic::m6502_dpaq_s_w_ph:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPAQ_S_W_PH);
-  case Intrinsic::mips_dpsq_s_w_ph:
+  case Intrinsic::m6502_dpsq_s_w_ph:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPSQ_S_W_PH);
-  case Intrinsic::mips_dpaq_sa_l_w:
+  case Intrinsic::m6502_dpaq_sa_l_w:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPAQ_SA_L_W);
-  case Intrinsic::mips_dpsq_sa_l_w:
+  case Intrinsic::m6502_dpsq_sa_l_w:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPSQ_SA_L_W);
-  case Intrinsic::mips_dpaqx_s_w_ph:
+  case Intrinsic::m6502_dpaqx_s_w_ph:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPAQX_S_W_PH);
-  case Intrinsic::mips_dpaqx_sa_w_ph:
+  case Intrinsic::m6502_dpaqx_sa_w_ph:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPAQX_SA_W_PH);
-  case Intrinsic::mips_dpsqx_s_w_ph:
+  case Intrinsic::m6502_dpsqx_s_w_ph:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPSQX_S_W_PH);
-  case Intrinsic::mips_dpsqx_sa_w_ph:
+  case Intrinsic::m6502_dpsqx_sa_w_ph:
     return lowerDSPIntr(Op, DAG, M6502ISD::DPSQX_SA_W_PH);
-  case Intrinsic::mips_ld_b:
-  case Intrinsic::mips_ld_h:
-  case Intrinsic::mips_ld_w:
-  case Intrinsic::mips_ld_d:
+  case Intrinsic::m6502_ld_b:
+  case Intrinsic::m6502_ld_h:
+  case Intrinsic::m6502_ld_w:
+  case Intrinsic::m6502_ld_d:
    return lowerMSALoadIntr(Op, DAG, Intr, Subtarget);
   }
 }
@@ -2306,10 +2306,10 @@ SDValue M6502SETargetLowering::lowerINTRINSIC_VOID(SDValue Op,
   switch (Intr) {
   default:
     return SDValue();
-  case Intrinsic::mips_st_b:
-  case Intrinsic::mips_st_h:
-  case Intrinsic::mips_st_w:
-  case Intrinsic::mips_st_d:
+  case Intrinsic::m6502_st_b:
+  case Intrinsic::m6502_st_h:
+  case Intrinsic::m6502_st_w:
+  case Intrinsic::m6502_st_d:
     return lowerMSAStoreIntr(Op, DAG, Intr, Subtarget);
   }
 }
@@ -3550,7 +3550,7 @@ M6502SETargetLowering::emitLD_F16_PSEUDO(MachineInstr &MI,
 //  fill.w $rtemp, $wtemp
 //  fexdo.w $wd, $wtemp, $wtemp
 //
-// For FPG64Opnd on mips32r2+:
+// For FPG64Opnd on m650232r2+:
 //
 // FPROUND MSA128F16:$wd, FGR64Opnd:$fs
 // =>
@@ -3562,7 +3562,7 @@ M6502SETargetLowering::emitLD_F16_PSEUDO(MachineInstr &MI,
 //  fexdo.w $wtemp2, $wtemp, $wtemp
 //  fexdo.h $wd, $temp2, $temp2
 //
-// For FGR64Opnd on mips64r2+:
+// For FGR64Opnd on m650264r2+:
 //
 // FPROUND MSA128F16:$wd, FGR64Opnd:$fs
 // =>

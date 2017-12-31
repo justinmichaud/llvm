@@ -277,7 +277,7 @@ class MOVEP_FM_MM16 {
 //===----------------------------------------------------------------------===//
 
 class MMArch {
-  string Arch = "micromips";
+  string Arch = "microm6502";
 }
 
 class ADD_FM_MM<bits<6> op, bits<10> funct> : MMArch {

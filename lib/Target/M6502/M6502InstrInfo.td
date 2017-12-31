@@ -3004,19 +3004,19 @@ include "M6502EVAInstrInfo.td"
 include "M6502MTInstrFormats.td"
 include "M6502MTInstrInfo.td"
 
-// Micromips
+// Microm6502
 include "MicroM6502InstrFormats.td"
 include "MicroM6502InstrInfo.td"
 include "MicroM6502InstrFPU.td"
 
-// Micromips r6
+// Microm6502 r6
 include "MicroM650232r6InstrFormats.td"
 include "MicroM650232r6InstrInfo.td"
 
-// Micromips64 r6
+// Microm650264 r6
 include "MicroM650264r6InstrFormats.td"
 include "MicroM650264r6InstrInfo.td"
 
-// Micromips DSP
+// Microm6502 DSP
 include "MicroM6502DSPInstrFormats.td"
 include "MicroM6502DSPInstrInfo.td"

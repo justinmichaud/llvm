@@ -7,7 +7,7 @@
 //
 //===----------------------------------------------------------------------===//
 //
-// Subclass of M6502TargetLowering specialized for mips16.
+// Subclass of M6502TargetLowering specialized for m650216.
 //
 //===----------------------------------------------------------------------===//
 #include "M650216ISelLowering.h"
@@ -56,66 +56,66 @@ struct M650216IntrinsicHelperType{
 
 // Libcalls for which no helper is generated. Sorted by name for binary search.
 static const M650216Libcall HardFloatLibCalls[] = {
-  { RTLIB::ADD_F64, "__mips16_adddf3" },
-  { RTLIB::ADD_F32, "__mips16_addsf3" },
-  { RTLIB::DIV_F64, "__mips16_divdf3" },
-  { RTLIB::DIV_F32, "__mips16_divsf3" },
-  { RTLIB::OEQ_F64, "__mips16_eqdf2" },
-  { RTLIB::OEQ_F32, "__mips16_eqsf2" },
-  { RTLIB::FPEXT_F32_F64, "__mips16_extendsfdf2" },
-  { RTLIB::FPTOSINT_F64_I32, "__mips16_fix_truncdfsi" },
-  { RTLIB::FPTOSINT_F32_I32, "__mips16_fix_truncsfsi" },
-  { RTLIB::SINTTOFP_I32_F64, "__mips16_floatsidf" },
-  { RTLIB::SINTTOFP_I32_F32, "__mips16_floatsisf" },
-  { RTLIB::UINTTOFP_I32_F64, "__mips16_floatunsidf" },
-  { RTLIB::UINTTOFP_I32_F32, "__mips16_floatunsisf" },
-  { RTLIB::OGE_F64, "__mips16_gedf2" },
-  { RTLIB::OGE_F32, "__mips16_gesf2" },
-  { RTLIB::OGT_F64, "__mips16_gtdf2" },
-  { RTLIB::OGT_F32, "__mips16_gtsf2" },
-  { RTLIB::OLE_F64, "__mips16_ledf2" },
-  { RTLIB::OLE_F32, "__mips16_lesf2" },
-  { RTLIB::OLT_F64, "__mips16_ltdf2" },
-  { RTLIB::OLT_F32, "__mips16_ltsf2" },
-  { RTLIB::MUL_F64, "__mips16_muldf3" },
-  { RTLIB::MUL_F32, "__mips16_mulsf3" },
-  { RTLIB::UNE_F64, "__mips16_nedf2" },
-  { RTLIB::UNE_F32, "__mips16_nesf2" },
-  { RTLIB::UNKNOWN_LIBCALL, "__mips16_ret_dc" }, // No associated libcall.
-  { RTLIB::UNKNOWN_LIBCALL, "__mips16_ret_df" }, // No associated libcall.
-  { RTLIB::UNKNOWN_LIBCALL, "__mips16_ret_sc" }, // No associated libcall.
-  { RTLIB::UNKNOWN_LIBCALL, "__mips16_ret_sf" }, // No associated libcall.
-  { RTLIB::SUB_F64, "__mips16_subdf3" },
-  { RTLIB::SUB_F32, "__mips16_subsf3" },
-  { RTLIB::FPROUND_F64_F32, "__mips16_truncdfsf2" },
-  { RTLIB::UO_F64, "__mips16_unorddf2" },
-  { RTLIB::UO_F32, "__mips16_unordsf2" }
+  { RTLIB::ADD_F64, "__m650216_adddf3" },
+  { RTLIB::ADD_F32, "__m650216_addsf3" },
+  { RTLIB::DIV_F64, "__m650216_divdf3" },
+  { RTLIB::DIV_F32, "__m650216_divsf3" },
+  { RTLIB::OEQ_F64, "__m650216_eqdf2" },
+  { RTLIB::OEQ_F32, "__m650216_eqsf2" },
+  { RTLIB::FPEXT_F32_F64, "__m650216_extendsfdf2" },
+  { RTLIB::FPTOSINT_F64_I32, "__m650216_fix_truncdfsi" },
+  { RTLIB::FPTOSINT_F32_I32, "__m650216_fix_truncsfsi" },
+  { RTLIB::SINTTOFP_I32_F64, "__m650216_floatsidf" },
+  { RTLIB::SINTTOFP_I32_F32, "__m650216_floatsisf" },
+  { RTLIB::UINTTOFP_I32_F64, "__m650216_floatunsidf" },
+  { RTLIB::UINTTOFP_I32_F32, "__m650216_floatunsisf" },
+  { RTLIB::OGE_F64, "__m650216_gedf2" },
+  { RTLIB::OGE_F32, "__m650216_gesf2" },
+  { RTLIB::OGT_F64, "__m650216_gtdf2" },
+  { RTLIB::OGT_F32, "__m650216_gtsf2" },
+  { RTLIB::OLE_F64, "__m650216_ledf2" },
+  { RTLIB::OLE_F32, "__m650216_lesf2" },
+  { RTLIB::OLT_F64, "__m650216_ltdf2" },
+  { RTLIB::OLT_F32, "__m650216_ltsf2" },
+  { RTLIB::MUL_F64, "__m650216_muldf3" },
+  { RTLIB::MUL_F32, "__m650216_mulsf3" },
+  { RTLIB::UNE_F64, "__m650216_nedf2" },
+  { RTLIB::UNE_F32, "__m650216_nesf2" },
+  { RTLIB::UNKNOWN_LIBCALL, "__m650216_ret_dc" }, // No associated libcall.
+  { RTLIB::UNKNOWN_LIBCALL, "__m650216_ret_df" }, // No associated libcall.
+  { RTLIB::UNKNOWN_LIBCALL, "__m650216_ret_sc" }, // No associated libcall.
+  { RTLIB::UNKNOWN_LIBCALL, "__m650216_ret_sf" }, // No associated libcall.
+  { RTLIB::SUB_F64, "__m650216_subdf3" },
+  { RTLIB::SUB_F32, "__m650216_subsf3" },
+  { RTLIB::FPROUND_F64_F32, "__m650216_truncdfsf2" },
+  { RTLIB::UO_F64, "__m650216_unorddf2" },
+  { RTLIB::UO_F32, "__m650216_unordsf2" }
 };
 
 static const M650216IntrinsicHelperType M650216IntrinsicHelper[] = {
-  {"__fixunsdfsi", "__mips16_call_stub_2" },
-  {"ceil",  "__mips16_call_stub_df_2"},
-  {"ceilf", "__mips16_call_stub_sf_1"},
-  {"copysign",  "__mips16_call_stub_df_10"},
-  {"copysignf", "__mips16_call_stub_sf_5"},
-  {"cos",  "__mips16_call_stub_df_2"},
-  {"cosf", "__mips16_call_stub_sf_1"},
-  {"exp2",  "__mips16_call_stub_df_2"},
-  {"exp2f", "__mips16_call_stub_sf_1"},
-  {"floor",  "__mips16_call_stub_df_2"},
-  {"floorf", "__mips16_call_stub_sf_1"},
-  {"log2",  "__mips16_call_stub_df_2"},
-  {"log2f", "__mips16_call_stub_sf_1"},
-  {"nearbyint",  "__mips16_call_stub_df_2"},
-  {"nearbyintf", "__mips16_call_stub_sf_1"},
-  {"rint",  "__mips16_call_stub_df_2"},
-  {"rintf", "__mips16_call_stub_sf_1"},
-  {"sin",  "__mips16_call_stub_df_2"},
-  {"sinf", "__mips16_call_stub_sf_1"},
-  {"sqrt",  "__mips16_call_stub_df_2"},
-  {"sqrtf", "__mips16_call_stub_sf_1"},
-  {"trunc",  "__mips16_call_stub_df_2"},
-  {"truncf", "__mips16_call_stub_sf_1"},
+  {"__fixunsdfsi", "__m650216_call_stub_2" },
+  {"ceil",  "__m650216_call_stub_df_2"},
+  {"ceilf", "__m650216_call_stub_sf_1"},
+  {"copysign",  "__m650216_call_stub_df_10"},
+  {"copysignf", "__m650216_call_stub_sf_5"},
+  {"cos",  "__m650216_call_stub_df_2"},
+  {"cosf", "__m650216_call_stub_sf_1"},
+  {"exp2",  "__m650216_call_stub_df_2"},
+  {"exp2f", "__m650216_call_stub_sf_1"},
+  {"floor",  "__m650216_call_stub_df_2"},
+  {"floorf", "__m650216_call_stub_sf_1"},
+  {"log2",  "__m650216_call_stub_df_2"},
+  {"log2f", "__m650216_call_stub_sf_1"},
+  {"nearbyint",  "__m650216_call_stub_df_2"},
+  {"nearbyintf", "__m650216_call_stub_sf_1"},
+  {"rint",  "__m650216_call_stub_df_2"},
+  {"rintf", "__m650216_call_stub_sf_1"},
+  {"sin",  "__m650216_call_stub_df_2"},
+  {"sinf", "__m650216_call_stub_sf_1"},
+  {"sqrt",  "__m650216_call_stub_df_2"},
+  {"sqrtf", "__m650216_call_stub_sf_1"},
+  {"trunc",  "__m650216_call_stub_df_2"},
+  {"truncf", "__m650216_call_stub_sf_1"},
 };
 
 M650216TargetLowering::M650216TargetLowering(const M6502TargetMachine &TM,
@@ -245,7 +245,7 @@ M650216TargetLowering::EmitInstrWithCustomInserter(MachineInstr &MI,
 bool M650216TargetLowering::isEligibleForTailCallOptimization(
     const CCState &CCInfo, unsigned NextStackOffset,
     const M6502FunctionInfo &FI) const {
-  // No tail call optimization for mips16.
+  // No tail call optimization for m650216.
   return false;
 }
 
@@ -257,8 +257,8 @@ void M650216TargetLowering::setM650216HardFloatLibCalls() {
       setLibcallName(HardFloatLibCalls[I].Libcall, HardFloatLibCalls[I].Name);
   }
 
-  setLibcallName(RTLIB::O_F64, "__mips16_unorddf2");
-  setLibcallName(RTLIB::O_F32, "__mips16_unordsf2");
+  setLibcallName(RTLIB::O_F64, "__m650216_unorddf2");
+  setLibcallName(RTLIB::O_F32, "__m650216_unordsf2");
 }
 
 //
@@ -327,7 +327,7 @@ unsigned int M650216TargetLowering::getM650216HelperFunctionStubNumber
 //              others  NO PREFIX
 //
 //
-// The full name of a helper function is__mips16_call_stub +
+// The full name of a helper function is__m650216_call_stub +
 //    return type dependent prefix + stub number
 //
 // FIXME: This is something that probably should be in a different source file
@@ -342,7 +342,7 @@ unsigned int M650216TargetLowering::getM650216HelperFunctionStubNumber
 // sf, df, sc, dc, in which we only care about ones which have sf or df as a
 // first parameter.
 //
-#define P_ "__mips16_call_stub_"
+#define P_ "__m650216_call_stub_"
 #define MAX_STUB_NUMBER 10
 #define T1 P "1", P "2", 0, 0, P "5", P "6", 0, 0, P "9", P "10"
 #define T P "0" , T1
@@ -431,7 +431,7 @@ getOpndList(SmallVectorImpl<SDValue> &Ops,
 
   if (Subtarget.inM650216HardFloat()) {
     //
-    // currently we don't have symbols tagged with the mips16 or mips32
+    // currently we don't have symbols tagged with the m650216 or m650232
     // qualifier so we will assume that we don't know what kind it is.
     // and generate the helper
     //

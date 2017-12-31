@@ -883,7 +883,7 @@ void M6502SEFrameLowering::determineCalleeSaves(MachineFunction &MF,
   // Add an emergency spill slot if a pseudo was expanded.
   if (ExpandPseudo(MF).expand()) {
     // The spill slot should be half the size of the accumulator. If target is
-    // mips64, it should be 64-bit, otherwise it should be 32-bt.
+    // m650264, it should be 64-bit, otherwise it should be 32-bt.
     const TargetRegisterClass &RC = STI.hasM650264() ?
       M6502::GPR64RegClass : M6502::GPR32RegClass;
     int FI = MF.getFrameInfo().CreateStackObject(TRI->getSpillSize(RC),

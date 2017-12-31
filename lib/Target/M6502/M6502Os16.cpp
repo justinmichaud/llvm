@@ -25,7 +25,7 @@ using namespace llvm;
 static cl::opt<std::string> M650232FunctionMask(
   "m650232-function-mask",
   cl::init(""),
-  cl::desc("Force function to be mips32"),
+  cl::desc("Force function to be m650232"),
   cl::Hidden);
 
 namespace {
@@ -128,8 +128,8 @@ bool M6502Os16::runOnModule(Module &M) {
           functionIndex = 0;
         switch (M650232FunctionMask[functionIndex]) {
         case '1':
-          DEBUG(dbgs() << "mask forced mips32: " << F.getName() << "\n");
-          F.addFnAttr("nomips16");
+          DEBUG(dbgs() << "mask forced m650232: " << F.getName() << "\n");
+          F.addFnAttr("nom650216");
           break;
         case '.':
           doneUsingMask = true;
@@ -142,12 +142,12 @@ bool M6502Os16::runOnModule(Module &M) {
     }
     else {
       if (needsFP(F)) {
-        DEBUG(dbgs() << "os16 forced mips32: " << F.getName() << "\n");
-        F.addFnAttr("nomips16");
+        DEBUG(dbgs() << "os16 forced m650232: " << F.getName() << "\n");
+        F.addFnAttr("nom650216");
       }
       else {
-        DEBUG(dbgs() << "os16 forced mips16: " << F.getName() << "\n");
-        F.addFnAttr("mips16");
+        DEBUG(dbgs() << "os16 forced m650216: " << F.getName() << "\n");
+        F.addFnAttr("m650216");
       }
     }
   }

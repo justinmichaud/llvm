@@ -49,16 +49,6 @@ unsigned M6502ABIInfo::GetCalleeAllocdArgSizeInBytes(CallingConv::ID CC) const {
 
 M6502ABIInfo M6502ABIInfo::computeTargetABI(const Triple &TT, StringRef CPU,
                                           const MCTargetOptions &Options) {
-  if (Options.getABIName().startswith("o32"))
-    return M6502ABIInfo::O32();
-  if (Options.getABIName().startswith("n32"))
-    return M6502ABIInfo::N32();
-  if (Options.getABIName().startswith("n64"))
-    return M6502ABIInfo::N64();
-  assert(Options.getABIName().empty() && "Unknown ABI option for M6502");
-
-  if (TT.getArch() == Triple::mips64 || TT.getArch() == Triple::mips64el)
-    return M6502ABIInfo::N64();
   return M6502ABIInfo::O32();
 }
 

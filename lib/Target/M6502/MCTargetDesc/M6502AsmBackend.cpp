@@ -216,7 +216,7 @@ M6502AsmBackend::createObjectWriter(raw_pwrite_stream &OS) const {
 }
 
 // Little-endian fixup data byte ordering:
-//   mips32r2:   a | b | x | x
+//   m650232r2:   a | b | x | x
 //   microM6502:  x | x | a | b
 
 static bool needsMMLEByteOrder(unsigned Kind) {

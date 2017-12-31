@@ -1480,40 +1480,40 @@ class MSA_VEC_PSEUDO_BASE<SDPatternOperator OpNode, RegisterOperand ROWD,
       MSAPseudo<(outs ROWD:$wd), (ins ROWS:$ws, ROWT:$wt),
                 [(set ROWD:$wd, (OpNode ROWS:$ws, ROWT:$wt))]>;
 
-class ADD_A_B_DESC : MSA_3R_DESC_BASE<"add_a.b", int_mips_add_a_b, MSA128BOpnd>,
+class ADD_A_B_DESC : MSA_3R_DESC_BASE<"add_a.b", int_m6502_add_a_b, MSA128BOpnd>,
                      IsCommutable;
-class ADD_A_H_DESC : MSA_3R_DESC_BASE<"add_a.h", int_mips_add_a_h, MSA128HOpnd>,
+class ADD_A_H_DESC : MSA_3R_DESC_BASE<"add_a.h", int_m6502_add_a_h, MSA128HOpnd>,
                      IsCommutable;
-class ADD_A_W_DESC : MSA_3R_DESC_BASE<"add_a.w", int_mips_add_a_w, MSA128WOpnd>,
+class ADD_A_W_DESC : MSA_3R_DESC_BASE<"add_a.w", int_m6502_add_a_w, MSA128WOpnd>,
                      IsCommutable;
-class ADD_A_D_DESC : MSA_3R_DESC_BASE<"add_a.d", int_mips_add_a_d, MSA128DOpnd>,
+class ADD_A_D_DESC : MSA_3R_DESC_BASE<"add_a.d", int_m6502_add_a_d, MSA128DOpnd>,
                      IsCommutable;
 
-class ADDS_A_B_DESC : MSA_3R_DESC_BASE<"adds_a.b", int_mips_adds_a_b,
+class ADDS_A_B_DESC : MSA_3R_DESC_BASE<"adds_a.b", int_m6502_adds_a_b,
                                        MSA128BOpnd>, IsCommutable;
-class ADDS_A_H_DESC : MSA_3R_DESC_BASE<"adds_a.h", int_mips_adds_a_h,
+class ADDS_A_H_DESC : MSA_3R_DESC_BASE<"adds_a.h", int_m6502_adds_a_h,
                                        MSA128HOpnd>, IsCommutable;
-class ADDS_A_W_DESC : MSA_3R_DESC_BASE<"adds_a.w", int_mips_adds_a_w,
+class ADDS_A_W_DESC : MSA_3R_DESC_BASE<"adds_a.w", int_m6502_adds_a_w,
                                        MSA128WOpnd>, IsCommutable;
-class ADDS_A_D_DESC : MSA_3R_DESC_BASE<"adds_a.d", int_mips_adds_a_d,
+class ADDS_A_D_DESC : MSA_3R_DESC_BASE<"adds_a.d", int_m6502_adds_a_d,
                                        MSA128DOpnd>, IsCommutable;
 
-class ADDS_S_B_DESC : MSA_3R_DESC_BASE<"adds_s.b", int_mips_adds_s_b,
+class ADDS_S_B_DESC : MSA_3R_DESC_BASE<"adds_s.b", int_m6502_adds_s_b,
                                        MSA128BOpnd>, IsCommutable;
-class ADDS_S_H_DESC : MSA_3R_DESC_BASE<"adds_s.h", int_mips_adds_s_h,
+class ADDS_S_H_DESC : MSA_3R_DESC_BASE<"adds_s.h", int_m6502_adds_s_h,
                                        MSA128HOpnd>, IsCommutable;
-class ADDS_S_W_DESC : MSA_3R_DESC_BASE<"adds_s.w", int_mips_adds_s_w,
+class ADDS_S_W_DESC : MSA_3R_DESC_BASE<"adds_s.w", int_m6502_adds_s_w,
                                        MSA128WOpnd>, IsCommutable;
-class ADDS_S_D_DESC : MSA_3R_DESC_BASE<"adds_s.d", int_mips_adds_s_d,
+class ADDS_S_D_DESC : MSA_3R_DESC_BASE<"adds_s.d", int_m6502_adds_s_d,
                                        MSA128DOpnd>, IsCommutable;
 
-class ADDS_U_B_DESC : MSA_3R_DESC_BASE<"adds_u.b", int_mips_adds_u_b,
+class ADDS_U_B_DESC : MSA_3R_DESC_BASE<"adds_u.b", int_m6502_adds_u_b,
                                        MSA128BOpnd>, IsCommutable;
-class ADDS_U_H_DESC : MSA_3R_DESC_BASE<"adds_u.h", int_mips_adds_u_h,
+class ADDS_U_H_DESC : MSA_3R_DESC_BASE<"adds_u.h", int_m6502_adds_u_h,
                                        MSA128HOpnd>, IsCommutable;
-class ADDS_U_W_DESC : MSA_3R_DESC_BASE<"adds_u.w", int_mips_adds_u_w,
+class ADDS_U_W_DESC : MSA_3R_DESC_BASE<"adds_u.w", int_m6502_adds_u_w,
                                        MSA128WOpnd>, IsCommutable;
-class ADDS_U_D_DESC : MSA_3R_DESC_BASE<"adds_u.d", int_mips_adds_u_d,
+class ADDS_U_D_DESC : MSA_3R_DESC_BASE<"adds_u.d", int_m6502_adds_u_d,
                                        MSA128DOpnd>, IsCommutable;
 
 class ADDV_B_DESC : MSA_3R_DESC_BASE<"addv.b", add, MSA128BOpnd>, IsCommutable;
@@ -1538,58 +1538,58 @@ class AND_V_D_PSEUDO_DESC : MSA_VEC_PSEUDO_BASE<and, MSA128DOpnd>;
 class ANDI_B_DESC : MSA_I8_DESC_BASE<"andi.b", and, vsplati8_uimm8,
                                      MSA128BOpnd>;
 
-class ASUB_S_B_DESC : MSA_3R_DESC_BASE<"asub_s.b", int_mips_asub_s_b,
+class ASUB_S_B_DESC : MSA_3R_DESC_BASE<"asub_s.b", int_m6502_asub_s_b,
                                        MSA128BOpnd>;
-class ASUB_S_H_DESC : MSA_3R_DESC_BASE<"asub_s.h", int_mips_asub_s_h,
+class ASUB_S_H_DESC : MSA_3R_DESC_BASE<"asub_s.h", int_m6502_asub_s_h,
                                        MSA128HOpnd>;
-class ASUB_S_W_DESC : MSA_3R_DESC_BASE<"asub_s.w", int_mips_asub_s_w,
+class ASUB_S_W_DESC : MSA_3R_DESC_BASE<"asub_s.w", int_m6502_asub_s_w,
                                        MSA128WOpnd>;
-class ASUB_S_D_DESC : MSA_3R_DESC_BASE<"asub_s.d", int_mips_asub_s_d,
+class ASUB_S_D_DESC : MSA_3R_DESC_BASE<"asub_s.d", int_m6502_asub_s_d,
                                        MSA128DOpnd>;
 
-class ASUB_U_B_DESC : MSA_3R_DESC_BASE<"asub_u.b", int_mips_asub_u_b,
+class ASUB_U_B_DESC : MSA_3R_DESC_BASE<"asub_u.b", int_m6502_asub_u_b,
                                        MSA128BOpnd>;
-class ASUB_U_H_DESC : MSA_3R_DESC_BASE<"asub_u.h", int_mips_asub_u_h,
+class ASUB_U_H_DESC : MSA_3R_DESC_BASE<"asub_u.h", int_m6502_asub_u_h,
                                        MSA128HOpnd>;
-class ASUB_U_W_DESC : MSA_3R_DESC_BASE<"asub_u.w", int_mips_asub_u_w,
+class ASUB_U_W_DESC : MSA_3R_DESC_BASE<"asub_u.w", int_m6502_asub_u_w,
                                        MSA128WOpnd>;
-class ASUB_U_D_DESC : MSA_3R_DESC_BASE<"asub_u.d", int_mips_asub_u_d,
+class ASUB_U_D_DESC : MSA_3R_DESC_BASE<"asub_u.d", int_m6502_asub_u_d,
                                        MSA128DOpnd>;
 
-class AVE_S_B_DESC : MSA_3R_DESC_BASE<"ave_s.b", int_mips_ave_s_b, MSA128BOpnd>,
+class AVE_S_B_DESC : MSA_3R_DESC_BASE<"ave_s.b", int_m6502_ave_s_b, MSA128BOpnd>,
                      IsCommutable;
-class AVE_S_H_DESC : MSA_3R_DESC_BASE<"ave_s.h", int_mips_ave_s_h, MSA128HOpnd>,
+class AVE_S_H_DESC : MSA_3R_DESC_BASE<"ave_s.h", int_m6502_ave_s_h, MSA128HOpnd>,
                      IsCommutable;
-class AVE_S_W_DESC : MSA_3R_DESC_BASE<"ave_s.w", int_mips_ave_s_w, MSA128WOpnd>,
+class AVE_S_W_DESC : MSA_3R_DESC_BASE<"ave_s.w", int_m6502_ave_s_w, MSA128WOpnd>,
                      IsCommutable;
-class AVE_S_D_DESC : MSA_3R_DESC_BASE<"ave_s.d", int_mips_ave_s_d, MSA128DOpnd>,
-                     IsCommutable;
-
-class AVE_U_B_DESC : MSA_3R_DESC_BASE<"ave_u.b", int_mips_ave_u_b, MSA128BOpnd>,
-                     IsCommutable;
-class AVE_U_H_DESC : MSA_3R_DESC_BASE<"ave_u.h", int_mips_ave_u_h, MSA128HOpnd>,
-                     IsCommutable;
-class AVE_U_W_DESC : MSA_3R_DESC_BASE<"ave_u.w", int_mips_ave_u_w, MSA128WOpnd>,
-                     IsCommutable;
-class AVE_U_D_DESC : MSA_3R_DESC_BASE<"ave_u.d", int_mips_ave_u_d, MSA128DOpnd>,
+class AVE_S_D_DESC : MSA_3R_DESC_BASE<"ave_s.d", int_m6502_ave_s_d, MSA128DOpnd>,
                      IsCommutable;
 
-class AVER_S_B_DESC : MSA_3R_DESC_BASE<"aver_s.b", int_mips_aver_s_b,
+class AVE_U_B_DESC : MSA_3R_DESC_BASE<"ave_u.b", int_m6502_ave_u_b, MSA128BOpnd>,
+                     IsCommutable;
+class AVE_U_H_DESC : MSA_3R_DESC_BASE<"ave_u.h", int_m6502_ave_u_h, MSA128HOpnd>,
+                     IsCommutable;
+class AVE_U_W_DESC : MSA_3R_DESC_BASE<"ave_u.w", int_m6502_ave_u_w, MSA128WOpnd>,
+                     IsCommutable;
+class AVE_U_D_DESC : MSA_3R_DESC_BASE<"ave_u.d", int_m6502_ave_u_d, MSA128DOpnd>,
+                     IsCommutable;
+
+class AVER_S_B_DESC : MSA_3R_DESC_BASE<"aver_s.b", int_m6502_aver_s_b,
                                        MSA128BOpnd>, IsCommutable;
-class AVER_S_H_DESC : MSA_3R_DESC_BASE<"aver_s.h", int_mips_aver_s_h,
+class AVER_S_H_DESC : MSA_3R_DESC_BASE<"aver_s.h", int_m6502_aver_s_h,
                                        MSA128HOpnd>, IsCommutable;
-class AVER_S_W_DESC : MSA_3R_DESC_BASE<"aver_s.w", int_mips_aver_s_w,
+class AVER_S_W_DESC : MSA_3R_DESC_BASE<"aver_s.w", int_m6502_aver_s_w,
                                        MSA128WOpnd>, IsCommutable;
-class AVER_S_D_DESC : MSA_3R_DESC_BASE<"aver_s.d", int_mips_aver_s_d,
+class AVER_S_D_DESC : MSA_3R_DESC_BASE<"aver_s.d", int_m6502_aver_s_d,
                                        MSA128DOpnd>, IsCommutable;
 
-class AVER_U_B_DESC : MSA_3R_DESC_BASE<"aver_u.b", int_mips_aver_u_b,
+class AVER_U_B_DESC : MSA_3R_DESC_BASE<"aver_u.b", int_m6502_aver_u_b,
                                        MSA128BOpnd>, IsCommutable;
-class AVER_U_H_DESC : MSA_3R_DESC_BASE<"aver_u.h", int_mips_aver_u_h,
+class AVER_U_H_DESC : MSA_3R_DESC_BASE<"aver_u.h", int_m6502_aver_u_h,
                                        MSA128HOpnd>, IsCommutable;
-class AVER_U_W_DESC : MSA_3R_DESC_BASE<"aver_u.w", int_mips_aver_u_w,
+class AVER_U_W_DESC : MSA_3R_DESC_BASE<"aver_u.w", int_m6502_aver_u_w,
                                        MSA128WOpnd>, IsCommutable;
-class AVER_U_D_DESC : MSA_3R_DESC_BASE<"aver_u.d", int_mips_aver_u_d,
+class AVER_U_D_DESC : MSA_3R_DESC_BASE<"aver_u.d", int_m6502_aver_u_d,
                                        MSA128DOpnd>, IsCommutable;
 
 class BCLR_B_DESC : MSA_3R_DESC_BASE<"bclr.b", vbclr_b, MSA128BOpnd>;
@@ -1606,13 +1606,13 @@ class BCLRI_W_DESC : MSA_BIT_W_DESC_BASE<"bclri.w", and, vsplat_uimm_inv_pow2,
 class BCLRI_D_DESC : MSA_BIT_D_DESC_BASE<"bclri.d", and, vsplat_uimm_inv_pow2,
                                          MSA128DOpnd>;
 
-class BINSL_B_DESC : MSA_3R_BINSX_DESC_BASE<"binsl.b", int_mips_binsl_b,
+class BINSL_B_DESC : MSA_3R_BINSX_DESC_BASE<"binsl.b", int_m6502_binsl_b,
                                             MSA128BOpnd>;
-class BINSL_H_DESC : MSA_3R_BINSX_DESC_BASE<"binsl.h", int_mips_binsl_h,
+class BINSL_H_DESC : MSA_3R_BINSX_DESC_BASE<"binsl.h", int_m6502_binsl_h,
                                             MSA128HOpnd>;
-class BINSL_W_DESC : MSA_3R_BINSX_DESC_BASE<"binsl.w", int_mips_binsl_w,
+class BINSL_W_DESC : MSA_3R_BINSX_DESC_BASE<"binsl.w", int_m6502_binsl_w,
                                             MSA128WOpnd>;
-class BINSL_D_DESC : MSA_3R_BINSX_DESC_BASE<"binsl.d", int_mips_binsl_d,
+class BINSL_D_DESC : MSA_3R_BINSX_DESC_BASE<"binsl.d", int_m6502_binsl_d,
                                             MSA128DOpnd>;
 
 class BINSLI_B_DESC : MSA_BIT_BINSLI_DESC_BASE<"binsli.b", v16i8, vsplat_maskl_bits_uimm3, MSA128BOpnd>;
@@ -1620,13 +1620,13 @@ class BINSLI_H_DESC : MSA_BIT_BINSLI_DESC_BASE<"binsli.h", v8i16, vsplat_maskl_b
 class BINSLI_W_DESC : MSA_BIT_BINSLI_DESC_BASE<"binsli.w", v4i32, vsplat_maskl_bits_uimm5, MSA128WOpnd>;
 class BINSLI_D_DESC : MSA_BIT_BINSLI_DESC_BASE<"binsli.d", v2i64, vsplat_maskl_bits_uimm6, MSA128DOpnd>;
 
-class BINSR_B_DESC : MSA_3R_BINSX_DESC_BASE<"binsr.b", int_mips_binsr_b,
+class BINSR_B_DESC : MSA_3R_BINSX_DESC_BASE<"binsr.b", int_m6502_binsr_b,
                                             MSA128BOpnd>;
-class BINSR_H_DESC : MSA_3R_BINSX_DESC_BASE<"binsr.h", int_mips_binsr_h,
+class BINSR_H_DESC : MSA_3R_BINSX_DESC_BASE<"binsr.h", int_m6502_binsr_h,
                                             MSA128HOpnd>;
-class BINSR_W_DESC : MSA_3R_BINSX_DESC_BASE<"binsr.w", int_mips_binsr_w,
+class BINSR_W_DESC : MSA_3R_BINSX_DESC_BASE<"binsr.w", int_m6502_binsr_w,
                                             MSA128WOpnd>;
-class BINSR_D_DESC : MSA_3R_BINSX_DESC_BASE<"binsr.d", int_mips_binsr_d,
+class BINSR_D_DESC : MSA_3R_BINSX_DESC_BASE<"binsr.d", int_m6502_binsr_d,
                                             MSA128DOpnd>;
 
 class BINSRI_B_DESC
@@ -1894,63 +1894,63 @@ class DIV_U_H_DESC : MSA_3R_DESC_BASE<"div_u.h", udiv, MSA128HOpnd>;
 class DIV_U_W_DESC : MSA_3R_DESC_BASE<"div_u.w", udiv, MSA128WOpnd>;
 class DIV_U_D_DESC : MSA_3R_DESC_BASE<"div_u.d", udiv, MSA128DOpnd>;
 
-class DOTP_S_H_DESC : MSA_3R_DESC_BASE<"dotp_s.h", int_mips_dotp_s_h,
+class DOTP_S_H_DESC : MSA_3R_DESC_BASE<"dotp_s.h", int_m6502_dotp_s_h,
                                        MSA128HOpnd, MSA128BOpnd, MSA128BOpnd>,
                       IsCommutable;
-class DOTP_S_W_DESC : MSA_3R_DESC_BASE<"dotp_s.w", int_mips_dotp_s_w,
+class DOTP_S_W_DESC : MSA_3R_DESC_BASE<"dotp_s.w", int_m6502_dotp_s_w,
                                        MSA128WOpnd, MSA128HOpnd, MSA128HOpnd>,
                       IsCommutable;
-class DOTP_S_D_DESC : MSA_3R_DESC_BASE<"dotp_s.d", int_mips_dotp_s_d,
+class DOTP_S_D_DESC : MSA_3R_DESC_BASE<"dotp_s.d", int_m6502_dotp_s_d,
                                        MSA128DOpnd, MSA128WOpnd, MSA128WOpnd>,
                       IsCommutable;
 
-class DOTP_U_H_DESC : MSA_3R_DESC_BASE<"dotp_u.h", int_mips_dotp_u_h,
+class DOTP_U_H_DESC : MSA_3R_DESC_BASE<"dotp_u.h", int_m6502_dotp_u_h,
                                        MSA128HOpnd, MSA128BOpnd, MSA128BOpnd>,
                       IsCommutable;
-class DOTP_U_W_DESC : MSA_3R_DESC_BASE<"dotp_u.w", int_mips_dotp_u_w,
+class DOTP_U_W_DESC : MSA_3R_DESC_BASE<"dotp_u.w", int_m6502_dotp_u_w,
                                        MSA128WOpnd, MSA128HOpnd, MSA128HOpnd>,
                       IsCommutable;
-class DOTP_U_D_DESC : MSA_3R_DESC_BASE<"dotp_u.d", int_mips_dotp_u_d,
+class DOTP_U_D_DESC : MSA_3R_DESC_BASE<"dotp_u.d", int_m6502_dotp_u_d,
                                        MSA128DOpnd, MSA128WOpnd, MSA128WOpnd>,
                       IsCommutable;
 
-class DPADD_S_H_DESC : MSA_3R_4R_DESC_BASE<"dpadd_s.h", int_mips_dpadd_s_h,
+class DPADD_S_H_DESC : MSA_3R_4R_DESC_BASE<"dpadd_s.h", int_m6502_dpadd_s_h,
                                            MSA128HOpnd, MSA128BOpnd,
                                            MSA128BOpnd>, IsCommutable;
-class DPADD_S_W_DESC : MSA_3R_4R_DESC_BASE<"dpadd_s.w", int_mips_dpadd_s_w,
+class DPADD_S_W_DESC : MSA_3R_4R_DESC_BASE<"dpadd_s.w", int_m6502_dpadd_s_w,
                                            MSA128WOpnd, MSA128HOpnd,
                                            MSA128HOpnd>, IsCommutable;
-class DPADD_S_D_DESC : MSA_3R_4R_DESC_BASE<"dpadd_s.d", int_mips_dpadd_s_d,
+class DPADD_S_D_DESC : MSA_3R_4R_DESC_BASE<"dpadd_s.d", int_m6502_dpadd_s_d,
                                            MSA128DOpnd, MSA128WOpnd,
                                            MSA128WOpnd>, IsCommutable;
 
-class DPADD_U_H_DESC : MSA_3R_4R_DESC_BASE<"dpadd_u.h", int_mips_dpadd_u_h,
+class DPADD_U_H_DESC : MSA_3R_4R_DESC_BASE<"dpadd_u.h", int_m6502_dpadd_u_h,
                                            MSA128HOpnd, MSA128BOpnd,
                                            MSA128BOpnd>, IsCommutable;
-class DPADD_U_W_DESC : MSA_3R_4R_DESC_BASE<"dpadd_u.w", int_mips_dpadd_u_w,
+class DPADD_U_W_DESC : MSA_3R_4R_DESC_BASE<"dpadd_u.w", int_m6502_dpadd_u_w,
                                            MSA128WOpnd, MSA128HOpnd,
                                            MSA128HOpnd>, IsCommutable;
-class DPADD_U_D_DESC : MSA_3R_4R_DESC_BASE<"dpadd_u.d", int_mips_dpadd_u_d,
+class DPADD_U_D_DESC : MSA_3R_4R_DESC_BASE<"dpadd_u.d", int_m6502_dpadd_u_d,
                                            MSA128DOpnd, MSA128WOpnd,
                                            MSA128WOpnd>, IsCommutable;
 
-class DPSUB_S_H_DESC : MSA_3R_4R_DESC_BASE<"dpsub_s.h", int_mips_dpsub_s_h,
+class DPSUB_S_H_DESC : MSA_3R_4R_DESC_BASE<"dpsub_s.h", int_m6502_dpsub_s_h,
                                            MSA128HOpnd, MSA128BOpnd,
                                            MSA128BOpnd>;
-class DPSUB_S_W_DESC : MSA_3R_4R_DESC_BASE<"dpsub_s.w", int_mips_dpsub_s_w,
+class DPSUB_S_W_DESC : MSA_3R_4R_DESC_BASE<"dpsub_s.w", int_m6502_dpsub_s_w,
                                            MSA128WOpnd, MSA128HOpnd,
                                            MSA128HOpnd>;
-class DPSUB_S_D_DESC : MSA_3R_4R_DESC_BASE<"dpsub_s.d", int_mips_dpsub_s_d,
+class DPSUB_S_D_DESC : MSA_3R_4R_DESC_BASE<"dpsub_s.d", int_m6502_dpsub_s_d,
                                            MSA128DOpnd, MSA128WOpnd,
                                            MSA128WOpnd>;
 
-class DPSUB_U_H_DESC : MSA_3R_4R_DESC_BASE<"dpsub_u.h", int_mips_dpsub_u_h,
+class DPSUB_U_H_DESC : MSA_3R_4R_DESC_BASE<"dpsub_u.h", int_m6502_dpsub_u_h,
                                            MSA128HOpnd, MSA128BOpnd,
                                            MSA128BOpnd>;
-class DPSUB_U_W_DESC : MSA_3R_4R_DESC_BASE<"dpsub_u.w", int_mips_dpsub_u_w,
+class DPSUB_U_W_DESC : MSA_3R_4R_DESC_BASE<"dpsub_u.w", int_m6502_dpsub_u_w,
                                            MSA128WOpnd, MSA128HOpnd,
                                            MSA128HOpnd>;
-class DPSUB_U_D_DESC : MSA_3R_4R_DESC_BASE<"dpsub_u.d", int_mips_dpsub_u_d,
+class DPSUB_U_D_DESC : MSA_3R_4R_DESC_BASE<"dpsub_u.d", int_m6502_dpsub_u_d,
                                            MSA128DOpnd, MSA128WOpnd,
                                            MSA128WOpnd>;
 
@@ -1959,9 +1959,9 @@ class FADD_W_DESC : MSA_3RF_DESC_BASE<"fadd.w", fadd, MSA128WOpnd>,
 class FADD_D_DESC : MSA_3RF_DESC_BASE<"fadd.d", fadd, MSA128DOpnd>,
                     IsCommutable;
 
-class FCAF_W_DESC : MSA_3RF_DESC_BASE<"fcaf.w", int_mips_fcaf_w, MSA128WOpnd>,
+class FCAF_W_DESC : MSA_3RF_DESC_BASE<"fcaf.w", int_m6502_fcaf_w, MSA128WOpnd>,
                     IsCommutable;
-class FCAF_D_DESC : MSA_3RF_DESC_BASE<"fcaf.d", int_mips_fcaf_d, MSA128DOpnd>,
+class FCAF_D_DESC : MSA_3RF_DESC_BASE<"fcaf.d", int_m6502_fcaf_d, MSA128DOpnd>,
                     IsCommutable;
 
 class FCEQ_W_DESC : MSA_3RF_DESC_BASE<"fceq.w", vfsetoeq_v4f32, MSA128WOpnd>,
@@ -1969,9 +1969,9 @@ class FCEQ_W_DESC : MSA_3RF_DESC_BASE<"fceq.w", vfsetoeq_v4f32, MSA128WOpnd>,
 class FCEQ_D_DESC : MSA_3RF_DESC_BASE<"fceq.d", vfsetoeq_v2f64, MSA128DOpnd>,
                     IsCommutable;
 
-class FCLASS_W_DESC : MSA_2RF_DESC_BASE<"fclass.w", int_mips_fclass_w,
+class FCLASS_W_DESC : MSA_2RF_DESC_BASE<"fclass.w", int_m6502_fclass_w,
                                         MSA128WOpnd>;
-class FCLASS_D_DESC : MSA_2RF_DESC_BASE<"fclass.d", int_mips_fclass_d,
+class FCLASS_D_DESC : MSA_2RF_DESC_BASE<"fclass.d", int_m6502_fclass_d,
                                         MSA128DOpnd>;
 
 class FCLE_W_DESC : MSA_3RF_DESC_BASE<"fcle.w", vfsetole_v4f32, MSA128WOpnd>;
@@ -2018,9 +2018,9 @@ class FCUNE_D_DESC : MSA_3RF_DESC_BASE<"fcune.d", vfsetune_v2f64, MSA128DOpnd>,
 class FDIV_W_DESC : MSA_3RF_DESC_BASE<"fdiv.w", fdiv, MSA128WOpnd>;
 class FDIV_D_DESC : MSA_3RF_DESC_BASE<"fdiv.d", fdiv, MSA128DOpnd>;
 
-class FEXDO_H_DESC : MSA_3RF_DESC_BASE<"fexdo.h", int_mips_fexdo_h,
+class FEXDO_H_DESC : MSA_3RF_DESC_BASE<"fexdo.h", int_m6502_fexdo_h,
                                        MSA128HOpnd, MSA128WOpnd, MSA128WOpnd>;
-class FEXDO_W_DESC : MSA_3RF_DESC_BASE<"fexdo.w", int_mips_fexdo_w,
+class FEXDO_W_DESC : MSA_3RF_DESC_BASE<"fexdo.w", int_m6502_fexdo_w,
                                        MSA128WOpnd, MSA128DOpnd, MSA128DOpnd>;
 
 // The fexp2.df instruction multiplies the first operand by 2 to the power of
@@ -2037,14 +2037,14 @@ let usesCustomInserter = 1 in {
                 [(set MSA128D:$wd, (fexp2 MSA128D:$ws))]>;
 }
 
-class FEXUPL_W_DESC : MSA_2RF_DESC_BASE<"fexupl.w", int_mips_fexupl_w,
+class FEXUPL_W_DESC : MSA_2RF_DESC_BASE<"fexupl.w", int_m6502_fexupl_w,
                                         MSA128WOpnd, MSA128HOpnd>;
-class FEXUPL_D_DESC : MSA_2RF_DESC_BASE<"fexupl.d", int_mips_fexupl_d,
+class FEXUPL_D_DESC : MSA_2RF_DESC_BASE<"fexupl.d", int_m6502_fexupl_d,
                                         MSA128DOpnd, MSA128WOpnd>;
 
-class FEXUPR_W_DESC : MSA_2RF_DESC_BASE<"fexupr.w", int_mips_fexupr_w,
+class FEXUPR_W_DESC : MSA_2RF_DESC_BASE<"fexupr.w", int_m6502_fexupr_w,
                                         MSA128WOpnd, MSA128HOpnd>;
-class FEXUPR_D_DESC : MSA_2RF_DESC_BASE<"fexupr.d", int_mips_fexupr_d,
+class FEXUPR_D_DESC : MSA_2RF_DESC_BASE<"fexupr.d", int_m6502_fexupr_d,
                                         MSA128DOpnd, MSA128WOpnd>;
 
 class FFINT_S_W_DESC : MSA_2RF_DESC_BASE<"ffint_s.w", sint_to_fp, MSA128WOpnd>;
@@ -2053,14 +2053,14 @@ class FFINT_S_D_DESC : MSA_2RF_DESC_BASE<"ffint_s.d", sint_to_fp, MSA128DOpnd>;
 class FFINT_U_W_DESC : MSA_2RF_DESC_BASE<"ffint_u.w", uint_to_fp, MSA128WOpnd>;
 class FFINT_U_D_DESC : MSA_2RF_DESC_BASE<"ffint_u.d", uint_to_fp, MSA128DOpnd>;
 
-class FFQL_W_DESC : MSA_2RF_DESC_BASE<"ffql.w", int_mips_ffql_w,
+class FFQL_W_DESC : MSA_2RF_DESC_BASE<"ffql.w", int_m6502_ffql_w,
                                       MSA128WOpnd, MSA128HOpnd>;
-class FFQL_D_DESC : MSA_2RF_DESC_BASE<"ffql.d", int_mips_ffql_d,
+class FFQL_D_DESC : MSA_2RF_DESC_BASE<"ffql.d", int_m6502_ffql_d,
                                       MSA128DOpnd, MSA128WOpnd>;
 
-class FFQR_W_DESC : MSA_2RF_DESC_BASE<"ffqr.w", int_mips_ffqr_w,
+class FFQR_W_DESC : MSA_2RF_DESC_BASE<"ffqr.w", int_m6502_ffqr_w,
                                       MSA128WOpnd, MSA128HOpnd>;
-class FFQR_D_DESC : MSA_2RF_DESC_BASE<"ffqr.d", int_mips_ffqr_d,
+class FFQR_D_DESC : MSA_2RF_DESC_BASE<"ffqr.d", int_m6502_ffqr_d,
                                       MSA128DOpnd, MSA128WOpnd>;
 
 class FILL_B_DESC : MSA_2R_FILL_DESC_BASE<"fill.b", v16i8, vsplati8,
@@ -2083,20 +2083,20 @@ class FLOG2_D_DESC : MSA_2RF_DESC_BASE<"flog2.d", flog2, MSA128DOpnd>;
 class FMADD_W_DESC : MSA_3RF_4RF_DESC_BASE<"fmadd.w", fma, MSA128WOpnd>;
 class FMADD_D_DESC : MSA_3RF_4RF_DESC_BASE<"fmadd.d", fma, MSA128DOpnd>;
 
-class FMAX_W_DESC : MSA_3RF_DESC_BASE<"fmax.w", int_mips_fmax_w, MSA128WOpnd>;
-class FMAX_D_DESC : MSA_3RF_DESC_BASE<"fmax.d", int_mips_fmax_d, MSA128DOpnd>;
+class FMAX_W_DESC : MSA_3RF_DESC_BASE<"fmax.w", int_m6502_fmax_w, MSA128WOpnd>;
+class FMAX_D_DESC : MSA_3RF_DESC_BASE<"fmax.d", int_m6502_fmax_d, MSA128DOpnd>;
 
-class FMAX_A_W_DESC : MSA_3RF_DESC_BASE<"fmax_a.w", int_mips_fmax_a_w,
+class FMAX_A_W_DESC : MSA_3RF_DESC_BASE<"fmax_a.w", int_m6502_fmax_a_w,
                                         MSA128WOpnd>;
-class FMAX_A_D_DESC : MSA_3RF_DESC_BASE<"fmax_a.d", int_mips_fmax_a_d,
+class FMAX_A_D_DESC : MSA_3RF_DESC_BASE<"fmax_a.d", int_m6502_fmax_a_d,
                                         MSA128DOpnd>;
 
-class FMIN_W_DESC : MSA_3RF_DESC_BASE<"fmin.w", int_mips_fmin_w, MSA128WOpnd>;
-class FMIN_D_DESC : MSA_3RF_DESC_BASE<"fmin.d", int_mips_fmin_d, MSA128DOpnd>;
+class FMIN_W_DESC : MSA_3RF_DESC_BASE<"fmin.w", int_m6502_fmin_w, MSA128WOpnd>;
+class FMIN_D_DESC : MSA_3RF_DESC_BASE<"fmin.d", int_m6502_fmin_d, MSA128DOpnd>;
 
-class FMIN_A_W_DESC : MSA_3RF_DESC_BASE<"fmin_a.w", int_mips_fmin_a_w,
+class FMIN_A_W_DESC : MSA_3RF_DESC_BASE<"fmin_a.w", int_m6502_fmin_a_w,
                                         MSA128WOpnd>;
-class FMIN_A_D_DESC : MSA_3RF_DESC_BASE<"fmin_a.d", int_mips_fmin_a_d,
+class FMIN_A_D_DESC : MSA_3RF_DESC_BASE<"fmin_a.d", int_m6502_fmin_a_d,
                                         MSA128DOpnd>;
 
 class FMSUB_W_DESC : MSA_3RF_4RF_DESC_BASE<"fmsub.w", fms, MSA128WOpnd>;
@@ -2108,31 +2108,31 @@ class FMUL_D_DESC : MSA_3RF_DESC_BASE<"fmul.d", fmul, MSA128DOpnd>;
 class FRINT_W_DESC : MSA_2RF_DESC_BASE<"frint.w", frint, MSA128WOpnd>;
 class FRINT_D_DESC : MSA_2RF_DESC_BASE<"frint.d", frint, MSA128DOpnd>;
 
-class FRCP_W_DESC : MSA_2RF_DESC_BASE<"frcp.w", int_mips_frcp_w, MSA128WOpnd>;
-class FRCP_D_DESC : MSA_2RF_DESC_BASE<"frcp.d", int_mips_frcp_d, MSA128DOpnd>;
+class FRCP_W_DESC : MSA_2RF_DESC_BASE<"frcp.w", int_m6502_frcp_w, MSA128WOpnd>;
+class FRCP_D_DESC : MSA_2RF_DESC_BASE<"frcp.d", int_m6502_frcp_d, MSA128DOpnd>;
 
-class FRSQRT_W_DESC : MSA_2RF_DESC_BASE<"frsqrt.w", int_mips_frsqrt_w,
+class FRSQRT_W_DESC : MSA_2RF_DESC_BASE<"frsqrt.w", int_m6502_frsqrt_w,
                                         MSA128WOpnd>;
-class FRSQRT_D_DESC : MSA_2RF_DESC_BASE<"frsqrt.d", int_mips_frsqrt_d,
+class FRSQRT_D_DESC : MSA_2RF_DESC_BASE<"frsqrt.d", int_m6502_frsqrt_d,
                                         MSA128DOpnd>;
 
-class FSAF_W_DESC : MSA_3RF_DESC_BASE<"fsaf.w", int_mips_fsaf_w, MSA128WOpnd>;
-class FSAF_D_DESC : MSA_3RF_DESC_BASE<"fsaf.d", int_mips_fsaf_d, MSA128DOpnd>;
+class FSAF_W_DESC : MSA_3RF_DESC_BASE<"fsaf.w", int_m6502_fsaf_w, MSA128WOpnd>;
+class FSAF_D_DESC : MSA_3RF_DESC_BASE<"fsaf.d", int_m6502_fsaf_d, MSA128DOpnd>;
 
-class FSEQ_W_DESC : MSA_3RF_DESC_BASE<"fseq.w", int_mips_fseq_w, MSA128WOpnd>;
-class FSEQ_D_DESC : MSA_3RF_DESC_BASE<"fseq.d", int_mips_fseq_d, MSA128DOpnd>;
+class FSEQ_W_DESC : MSA_3RF_DESC_BASE<"fseq.w", int_m6502_fseq_w, MSA128WOpnd>;
+class FSEQ_D_DESC : MSA_3RF_DESC_BASE<"fseq.d", int_m6502_fseq_d, MSA128DOpnd>;
 
-class FSLE_W_DESC : MSA_3RF_DESC_BASE<"fsle.w", int_mips_fsle_w, MSA128WOpnd>;
-class FSLE_D_DESC : MSA_3RF_DESC_BASE<"fsle.d", int_mips_fsle_d, MSA128DOpnd>;
+class FSLE_W_DESC : MSA_3RF_DESC_BASE<"fsle.w", int_m6502_fsle_w, MSA128WOpnd>;
+class FSLE_D_DESC : MSA_3RF_DESC_BASE<"fsle.d", int_m6502_fsle_d, MSA128DOpnd>;
 
-class FSLT_W_DESC : MSA_3RF_DESC_BASE<"fslt.w", int_mips_fslt_w, MSA128WOpnd>;
-class FSLT_D_DESC : MSA_3RF_DESC_BASE<"fslt.d", int_mips_fslt_d, MSA128DOpnd>;
+class FSLT_W_DESC : MSA_3RF_DESC_BASE<"fslt.w", int_m6502_fslt_w, MSA128WOpnd>;
+class FSLT_D_DESC : MSA_3RF_DESC_BASE<"fslt.d", int_m6502_fslt_d, MSA128DOpnd>;
 
-class FSNE_W_DESC : MSA_3RF_DESC_BASE<"fsne.w", int_mips_fsne_w, MSA128WOpnd>;
-class FSNE_D_DESC : MSA_3RF_DESC_BASE<"fsne.d", int_mips_fsne_d, MSA128DOpnd>;
+class FSNE_W_DESC : MSA_3RF_DESC_BASE<"fsne.w", int_m6502_fsne_w, MSA128WOpnd>;
+class FSNE_D_DESC : MSA_3RF_DESC_BASE<"fsne.d", int_m6502_fsne_d, MSA128DOpnd>;
 
-class FSOR_W_DESC : MSA_3RF_DESC_BASE<"fsor.w", int_mips_fsor_w, MSA128WOpnd>;
-class FSOR_D_DESC : MSA_3RF_DESC_BASE<"fsor.d", int_mips_fsor_d, MSA128DOpnd>;
+class FSOR_W_DESC : MSA_3RF_DESC_BASE<"fsor.w", int_m6502_fsor_w, MSA128WOpnd>;
+class FSOR_D_DESC : MSA_3RF_DESC_BASE<"fsor.d", int_m6502_fsor_d, MSA128DOpnd>;
 
 class FSQRT_W_DESC : MSA_2RF_DESC_BASE<"fsqrt.w", fsqrt, MSA128WOpnd>;
 class FSQRT_D_DESC : MSA_2RF_DESC_BASE<"fsqrt.d", fsqrt, MSA128DOpnd>;
@@ -2140,44 +2140,44 @@ class FSQRT_D_DESC : MSA_2RF_DESC_BASE<"fsqrt.d", fsqrt, MSA128DOpnd>;
 class FSUB_W_DESC : MSA_3RF_DESC_BASE<"fsub.w", fsub, MSA128WOpnd>;
 class FSUB_D_DESC : MSA_3RF_DESC_BASE<"fsub.d", fsub, MSA128DOpnd>;
 
-class FSUEQ_W_DESC : MSA_3RF_DESC_BASE<"fsueq.w", int_mips_fsueq_w,
+class FSUEQ_W_DESC : MSA_3RF_DESC_BASE<"fsueq.w", int_m6502_fsueq_w,
                                        MSA128WOpnd>;
-class FSUEQ_D_DESC : MSA_3RF_DESC_BASE<"fsueq.d", int_mips_fsueq_d,
+class FSUEQ_D_DESC : MSA_3RF_DESC_BASE<"fsueq.d", int_m6502_fsueq_d,
                                        MSA128DOpnd>;
 
-class FSULE_W_DESC : MSA_3RF_DESC_BASE<"fsule.w", int_mips_fsule_w,
+class FSULE_W_DESC : MSA_3RF_DESC_BASE<"fsule.w", int_m6502_fsule_w,
                                        MSA128WOpnd>;
-class FSULE_D_DESC : MSA_3RF_DESC_BASE<"fsule.d", int_mips_fsule_d,
+class FSULE_D_DESC : MSA_3RF_DESC_BASE<"fsule.d", int_m6502_fsule_d,
                                        MSA128DOpnd>;
 
-class FSULT_W_DESC : MSA_3RF_DESC_BASE<"fsult.w", int_mips_fsult_w,
+class FSULT_W_DESC : MSA_3RF_DESC_BASE<"fsult.w", int_m6502_fsult_w,
                                        MSA128WOpnd>;
-class FSULT_D_DESC : MSA_3RF_DESC_BASE<"fsult.d", int_mips_fsult_d,
+class FSULT_D_DESC : MSA_3RF_DESC_BASE<"fsult.d", int_m6502_fsult_d,
                                        MSA128DOpnd>;
 
-class FSUN_W_DESC : MSA_3RF_DESC_BASE<"fsun.w", int_mips_fsun_w,
+class FSUN_W_DESC : MSA_3RF_DESC_BASE<"fsun.w", int_m6502_fsun_w,
                                       MSA128WOpnd>;
-class FSUN_D_DESC : MSA_3RF_DESC_BASE<"fsun.d", int_mips_fsun_d,
+class FSUN_D_DESC : MSA_3RF_DESC_BASE<"fsun.d", int_m6502_fsun_d,
                                       MSA128DOpnd>;
 
-class FSUNE_W_DESC : MSA_3RF_DESC_BASE<"fsune.w", int_mips_fsune_w,
+class FSUNE_W_DESC : MSA_3RF_DESC_BASE<"fsune.w", int_m6502_fsune_w,
                                        MSA128WOpnd>;
-class FSUNE_D_DESC : MSA_3RF_DESC_BASE<"fsune.d", int_mips_fsune_d,
+class FSUNE_D_DESC : MSA_3RF_DESC_BASE<"fsune.d", int_m6502_fsune_d,
                                        MSA128DOpnd>;
 
-class FTINT_S_W_DESC : MSA_2RF_DESC_BASE<"ftint_s.w", int_mips_ftint_s_w,
+class FTINT_S_W_DESC : MSA_2RF_DESC_BASE<"ftint_s.w", int_m6502_ftint_s_w,
                                          MSA128WOpnd>;
-class FTINT_S_D_DESC : MSA_2RF_DESC_BASE<"ftint_s.d", int_mips_ftint_s_d,
+class FTINT_S_D_DESC : MSA_2RF_DESC_BASE<"ftint_s.d", int_m6502_ftint_s_d,
                                          MSA128DOpnd>;
 
-class FTINT_U_W_DESC : MSA_2RF_DESC_BASE<"ftint_u.w", int_mips_ftint_u_w,
+class FTINT_U_W_DESC : MSA_2RF_DESC_BASE<"ftint_u.w", int_m6502_ftint_u_w,
                                          MSA128WOpnd>;
-class FTINT_U_D_DESC : MSA_2RF_DESC_BASE<"ftint_u.d", int_mips_ftint_u_d,
+class FTINT_U_D_DESC : MSA_2RF_DESC_BASE<"ftint_u.d", int_m6502_ftint_u_d,
                                          MSA128DOpnd>;
 
-class FTQ_H_DESC : MSA_3RF_DESC_BASE<"ftq.h", int_mips_ftq_h,
+class FTQ_H_DESC : MSA_3RF_DESC_BASE<"ftq.h", int_m6502_ftq_h,
                                      MSA128HOpnd, MSA128WOpnd, MSA128WOpnd>;
-class FTQ_W_DESC : MSA_3RF_DESC_BASE<"ftq.w", int_mips_ftq_w,
+class FTQ_W_DESC : MSA_3RF_DESC_BASE<"ftq.w", int_m6502_ftq_w,
                                      MSA128WOpnd, MSA128DOpnd, MSA128DOpnd>;
 
 class FTRUNC_S_W_DESC : MSA_2RF_DESC_BASE<"ftrunc_s.w", fp_to_sint,
@@ -2190,32 +2190,32 @@ class FTRUNC_U_W_DESC : MSA_2RF_DESC_BASE<"ftrunc_u.w", fp_to_uint,
 class FTRUNC_U_D_DESC : MSA_2RF_DESC_BASE<"ftrunc_u.d", fp_to_uint,
                                           MSA128DOpnd>;
 
-class HADD_S_H_DESC : MSA_3R_DESC_BASE<"hadd_s.h", int_mips_hadd_s_h,
+class HADD_S_H_DESC : MSA_3R_DESC_BASE<"hadd_s.h", int_m6502_hadd_s_h,
                                        MSA128HOpnd, MSA128BOpnd, MSA128BOpnd>;
-class HADD_S_W_DESC : MSA_3R_DESC_BASE<"hadd_s.w", int_mips_hadd_s_w,
+class HADD_S_W_DESC : MSA_3R_DESC_BASE<"hadd_s.w", int_m6502_hadd_s_w,
                                        MSA128WOpnd, MSA128HOpnd, MSA128HOpnd>;
-class HADD_S_D_DESC : MSA_3R_DESC_BASE<"hadd_s.d", int_mips_hadd_s_d,
+class HADD_S_D_DESC : MSA_3R_DESC_BASE<"hadd_s.d", int_m6502_hadd_s_d,
                                        MSA128DOpnd, MSA128WOpnd, MSA128WOpnd>;
 
-class HADD_U_H_DESC : MSA_3R_DESC_BASE<"hadd_u.h", int_mips_hadd_u_h,
+class HADD_U_H_DESC : MSA_3R_DESC_BASE<"hadd_u.h", int_m6502_hadd_u_h,
                                        MSA128HOpnd, MSA128BOpnd, MSA128BOpnd>;
-class HADD_U_W_DESC : MSA_3R_DESC_BASE<"hadd_u.w", int_mips_hadd_u_w,
+class HADD_U_W_DESC : MSA_3R_DESC_BASE<"hadd_u.w", int_m6502_hadd_u_w,
                                        MSA128WOpnd, MSA128HOpnd, MSA128HOpnd>;
-class HADD_U_D_DESC : MSA_3R_DESC_BASE<"hadd_u.d", int_mips_hadd_u_d,
+class HADD_U_D_DESC : MSA_3R_DESC_BASE<"hadd_u.d", int_m6502_hadd_u_d,
                                        MSA128DOpnd, MSA128WOpnd, MSA128WOpnd>;
 
-class HSUB_S_H_DESC : MSA_3R_DESC_BASE<"hsub_s.h", int_mips_hsub_s_h,
+class HSUB_S_H_DESC : MSA_3R_DESC_BASE<"hsub_s.h", int_m6502_hsub_s_h,
                                        MSA128HOpnd, MSA128BOpnd, MSA128BOpnd>;
-class HSUB_S_W_DESC : MSA_3R_DESC_BASE<"hsub_s.w", int_mips_hsub_s_w,
+class HSUB_S_W_DESC : MSA_3R_DESC_BASE<"hsub_s.w", int_m6502_hsub_s_w,
                                        MSA128WOpnd, MSA128HOpnd, MSA128HOpnd>;
-class HSUB_S_D_DESC : MSA_3R_DESC_BASE<"hsub_s.d", int_mips_hsub_s_d,
+class HSUB_S_D_DESC : MSA_3R_DESC_BASE<"hsub_s.d", int_m6502_hsub_s_d,
                                        MSA128DOpnd, MSA128WOpnd, MSA128WOpnd>;
 
-class HSUB_U_H_DESC : MSA_3R_DESC_BASE<"hsub_u.h", int_mips_hsub_u_h,
+class HSUB_U_H_DESC : MSA_3R_DESC_BASE<"hsub_u.h", int_m6502_hsub_u_h,
                                        MSA128HOpnd, MSA128BOpnd, MSA128BOpnd>;
-class HSUB_U_W_DESC : MSA_3R_DESC_BASE<"hsub_u.w", int_mips_hsub_u_w,
+class HSUB_U_W_DESC : MSA_3R_DESC_BASE<"hsub_u.w", int_m6502_hsub_u_w,
                                        MSA128WOpnd, MSA128HOpnd, MSA128HOpnd>;
-class HSUB_U_D_DESC : MSA_3R_DESC_BASE<"hsub_u.d", int_mips_hsub_u_d,
+class HSUB_U_D_DESC : MSA_3R_DESC_BASE<"hsub_u.d", int_m6502_hsub_u_d,
                                        MSA128DOpnd, MSA128WOpnd, MSA128WOpnd>;
 
 class ILVEV_B_DESC : MSA_3R_DESC_BASE<"ilvev.b", M6502ILVEV, MSA128BOpnd>;
@@ -2330,14 +2330,14 @@ class LSA_DESC_BASE<string instr_asm, RegisterOperand RORD,
 class LSA_DESC : LSA_DESC_BASE<"lsa", GPR32Opnd, II_LSA>;
 class DLSA_DESC : LSA_DESC_BASE<"dlsa", GPR64Opnd, II_DLSA>;
 
-class MADD_Q_H_DESC : MSA_3RF_4RF_DESC_BASE<"madd_q.h", int_mips_madd_q_h,
+class MADD_Q_H_DESC : MSA_3RF_4RF_DESC_BASE<"madd_q.h", int_m6502_madd_q_h,
                                             MSA128HOpnd>;
-class MADD_Q_W_DESC : MSA_3RF_4RF_DESC_BASE<"madd_q.w", int_mips_madd_q_w,
+class MADD_Q_W_DESC : MSA_3RF_4RF_DESC_BASE<"madd_q.w", int_m6502_madd_q_w,
                                             MSA128WOpnd>;
 
-class MADDR_Q_H_DESC : MSA_3RF_4RF_DESC_BASE<"maddr_q.h", int_mips_maddr_q_h,
+class MADDR_Q_H_DESC : MSA_3RF_4RF_DESC_BASE<"maddr_q.h", int_m6502_maddr_q_h,
                                              MSA128HOpnd>;
-class MADDR_Q_W_DESC : MSA_3RF_4RF_DESC_BASE<"maddr_q.w", int_mips_maddr_q_w,
+class MADDR_Q_W_DESC : MSA_3RF_4RF_DESC_BASE<"maddr_q.w", int_m6502_maddr_q_w,
                                              MSA128WOpnd>;
 
 class MADDV_B_DESC : MSA_3R_4R_DESC_BASE<"maddv.b", muladd, MSA128BOpnd>;
@@ -2345,10 +2345,10 @@ class MADDV_H_DESC : MSA_3R_4R_DESC_BASE<"maddv.h", muladd, MSA128HOpnd>;
 class MADDV_W_DESC : MSA_3R_4R_DESC_BASE<"maddv.w", muladd, MSA128WOpnd>;
 class MADDV_D_DESC : MSA_3R_4R_DESC_BASE<"maddv.d", muladd, MSA128DOpnd>;
 
-class MAX_A_B_DESC : MSA_3R_DESC_BASE<"max_a.b", int_mips_max_a_b, MSA128BOpnd>;
-class MAX_A_H_DESC : MSA_3R_DESC_BASE<"max_a.h", int_mips_max_a_h, MSA128HOpnd>;
-class MAX_A_W_DESC : MSA_3R_DESC_BASE<"max_a.w", int_mips_max_a_w, MSA128WOpnd>;
-class MAX_A_D_DESC : MSA_3R_DESC_BASE<"max_a.d", int_mips_max_a_d, MSA128DOpnd>;
+class MAX_A_B_DESC : MSA_3R_DESC_BASE<"max_a.b", int_m6502_max_a_b, MSA128BOpnd>;
+class MAX_A_H_DESC : MSA_3R_DESC_BASE<"max_a.h", int_m6502_max_a_h, MSA128HOpnd>;
+class MAX_A_W_DESC : MSA_3R_DESC_BASE<"max_a.w", int_m6502_max_a_w, MSA128WOpnd>;
+class MAX_A_D_DESC : MSA_3R_DESC_BASE<"max_a.d", int_m6502_max_a_d, MSA128DOpnd>;
 
 class MAX_S_B_DESC : MSA_3R_DESC_BASE<"max_s.b", M6502VSMax, MSA128BOpnd>;
 class MAX_S_H_DESC : MSA_3R_DESC_BASE<"max_s.h", M6502VSMax, MSA128HOpnd>;
@@ -2378,10 +2378,10 @@ class MAXI_U_W_DESC : MSA_I5_DESC_BASE<"maxi_u.w", M6502VUMax, vsplati32_uimm5,
 class MAXI_U_D_DESC : MSA_I5_DESC_BASE<"maxi_u.d", M6502VUMax, vsplati64_uimm5,
                                        MSA128DOpnd>;
 
-class MIN_A_B_DESC : MSA_3R_DESC_BASE<"min_a.b", int_mips_min_a_b, MSA128BOpnd>;
-class MIN_A_H_DESC : MSA_3R_DESC_BASE<"min_a.h", int_mips_min_a_h, MSA128HOpnd>;
-class MIN_A_W_DESC : MSA_3R_DESC_BASE<"min_a.w", int_mips_min_a_w, MSA128WOpnd>;
-class MIN_A_D_DESC : MSA_3R_DESC_BASE<"min_a.d", int_mips_min_a_d, MSA128DOpnd>;
+class MIN_A_B_DESC : MSA_3R_DESC_BASE<"min_a.b", int_m6502_min_a_b, MSA128BOpnd>;
+class MIN_A_H_DESC : MSA_3R_DESC_BASE<"min_a.h", int_m6502_min_a_h, MSA128HOpnd>;
+class MIN_A_W_DESC : MSA_3R_DESC_BASE<"min_a.w", int_m6502_min_a_w, MSA128WOpnd>;
+class MIN_A_D_DESC : MSA_3R_DESC_BASE<"min_a.d", int_m6502_min_a_d, MSA128DOpnd>;
 
 class MIN_S_B_DESC : MSA_3R_DESC_BASE<"min_s.b", M6502VSMin, MSA128BOpnd>;
 class MIN_S_H_DESC : MSA_3R_DESC_BASE<"min_s.h", M6502VSMin, MSA128HOpnd>;
@@ -2429,14 +2429,14 @@ class MOVE_V_DESC {
   InstrItinClass Itinerary = NoItinerary;
 }
 
-class MSUB_Q_H_DESC : MSA_3RF_4RF_DESC_BASE<"msub_q.h", int_mips_msub_q_h,
+class MSUB_Q_H_DESC : MSA_3RF_4RF_DESC_BASE<"msub_q.h", int_m6502_msub_q_h,
                                             MSA128HOpnd>;
-class MSUB_Q_W_DESC : MSA_3RF_4RF_DESC_BASE<"msub_q.w", int_mips_msub_q_w,
+class MSUB_Q_W_DESC : MSA_3RF_4RF_DESC_BASE<"msub_q.w", int_m6502_msub_q_w,
                                             MSA128WOpnd>;
 
-class MSUBR_Q_H_DESC : MSA_3RF_4RF_DESC_BASE<"msubr_q.h", int_mips_msubr_q_h,
+class MSUBR_Q_H_DESC : MSA_3RF_4RF_DESC_BASE<"msubr_q.h", int_m6502_msubr_q_h,
                                              MSA128HOpnd>;
-class MSUBR_Q_W_DESC : MSA_3RF_4RF_DESC_BASE<"msubr_q.w", int_mips_msubr_q_w,
+class MSUBR_Q_W_DESC : MSA_3RF_4RF_DESC_BASE<"msubr_q.w", int_m6502_msubr_q_w,
                                              MSA128WOpnd>;
 
 class MSUBV_B_DESC : MSA_3R_4R_DESC_BASE<"msubv.b", mulsub, MSA128BOpnd>;
@@ -2444,14 +2444,14 @@ class MSUBV_H_DESC : MSA_3R_4R_DESC_BASE<"msubv.h", mulsub, MSA128HOpnd>;
 class MSUBV_W_DESC : MSA_3R_4R_DESC_BASE<"msubv.w", mulsub, MSA128WOpnd>;
 class MSUBV_D_DESC : MSA_3R_4R_DESC_BASE<"msubv.d", mulsub, MSA128DOpnd>;
 
-class MUL_Q_H_DESC : MSA_3RF_DESC_BASE<"mul_q.h", int_mips_mul_q_h,
+class MUL_Q_H_DESC : MSA_3RF_DESC_BASE<"mul_q.h", int_m6502_mul_q_h,
                                        MSA128HOpnd>;
-class MUL_Q_W_DESC : MSA_3RF_DESC_BASE<"mul_q.w", int_mips_mul_q_w,
+class MUL_Q_W_DESC : MSA_3RF_DESC_BASE<"mul_q.w", int_m6502_mul_q_w,
                                        MSA128WOpnd>;
 
-class MULR_Q_H_DESC : MSA_3RF_DESC_BASE<"mulr_q.h", int_mips_mulr_q_h,
+class MULR_Q_H_DESC : MSA_3RF_DESC_BASE<"mulr_q.h", int_m6502_mulr_q_h,
                                         MSA128HOpnd>;
-class MULR_Q_W_DESC : MSA_3RF_DESC_BASE<"mulr_q.w", int_mips_mulr_q_w,
+class MULR_Q_W_DESC : MSA_3RF_DESC_BASE<"mulr_q.w", int_m6502_mulr_q_w,
                                         MSA128WOpnd>;
 
 class MULV_B_DESC : MSA_3R_DESC_BASE<"mulv.b", mul, MSA128BOpnd>;
@@ -2459,10 +2459,10 @@ class MULV_H_DESC : MSA_3R_DESC_BASE<"mulv.h", mul, MSA128HOpnd>;
 class MULV_W_DESC : MSA_3R_DESC_BASE<"mulv.w", mul, MSA128WOpnd>;
 class MULV_D_DESC : MSA_3R_DESC_BASE<"mulv.d", mul, MSA128DOpnd>;
 
-class NLOC_B_DESC : MSA_2R_DESC_BASE<"nloc.b", int_mips_nloc_b, MSA128BOpnd>;
-class NLOC_H_DESC : MSA_2R_DESC_BASE<"nloc.h", int_mips_nloc_h, MSA128HOpnd>;
-class NLOC_W_DESC : MSA_2R_DESC_BASE<"nloc.w", int_mips_nloc_w, MSA128WOpnd>;
-class NLOC_D_DESC : MSA_2R_DESC_BASE<"nloc.d", int_mips_nloc_d, MSA128DOpnd>;
+class NLOC_B_DESC : MSA_2R_DESC_BASE<"nloc.b", int_m6502_nloc_b, MSA128BOpnd>;
+class NLOC_H_DESC : MSA_2R_DESC_BASE<"nloc.h", int_m6502_nloc_h, MSA128HOpnd>;
+class NLOC_W_DESC : MSA_2R_DESC_BASE<"nloc.w", int_m6502_nloc_w, MSA128WOpnd>;
+class NLOC_D_DESC : MSA_2R_DESC_BASE<"nloc.d", int_m6502_nloc_d, MSA128DOpnd>;
 
 class NLZC_B_DESC : MSA_2R_DESC_BASE<"nlzc.b", ctlz, MSA128BOpnd>;
 class NLZC_H_DESC : MSA_2R_DESC_BASE<"nlzc.h", ctlz, MSA128HOpnd>;
@@ -2499,43 +2499,43 @@ class PCNT_H_DESC : MSA_2R_DESC_BASE<"pcnt.h", ctpop, MSA128HOpnd>;
 class PCNT_W_DESC : MSA_2R_DESC_BASE<"pcnt.w", ctpop, MSA128WOpnd>;
 class PCNT_D_DESC : MSA_2R_DESC_BASE<"pcnt.d", ctpop, MSA128DOpnd>;
 
-class SAT_S_B_DESC : MSA_BIT_X_DESC_BASE<"sat_s.b", int_mips_sat_s_b, uimm3,
+class SAT_S_B_DESC : MSA_BIT_X_DESC_BASE<"sat_s.b", int_m6502_sat_s_b, uimm3,
                                          immZExt3, MSA128BOpnd>;
-class SAT_S_H_DESC : MSA_BIT_X_DESC_BASE<"sat_s.h", int_mips_sat_s_h, uimm4,
+class SAT_S_H_DESC : MSA_BIT_X_DESC_BASE<"sat_s.h", int_m6502_sat_s_h, uimm4,
                                          immZExt4, MSA128HOpnd>;
-class SAT_S_W_DESC : MSA_BIT_X_DESC_BASE<"sat_s.w", int_mips_sat_s_w, uimm5,
+class SAT_S_W_DESC : MSA_BIT_X_DESC_BASE<"sat_s.w", int_m6502_sat_s_w, uimm5,
                                          immZExt5, MSA128WOpnd>;
-class SAT_S_D_DESC : MSA_BIT_X_DESC_BASE<"sat_s.d", int_mips_sat_s_d, uimm6,
+class SAT_S_D_DESC : MSA_BIT_X_DESC_BASE<"sat_s.d", int_m6502_sat_s_d, uimm6,
                                          immZExt6, MSA128DOpnd>;
 
-class SAT_U_B_DESC : MSA_BIT_X_DESC_BASE<"sat_u.b", int_mips_sat_u_b, uimm3,
+class SAT_U_B_DESC : MSA_BIT_X_DESC_BASE<"sat_u.b", int_m6502_sat_u_b, uimm3,
                                          immZExt3, MSA128BOpnd>;
-class SAT_U_H_DESC : MSA_BIT_X_DESC_BASE<"sat_u.h", int_mips_sat_u_h, uimm4,
+class SAT_U_H_DESC : MSA_BIT_X_DESC_BASE<"sat_u.h", int_m6502_sat_u_h, uimm4,
                                          immZExt4, MSA128HOpnd>;
-class SAT_U_W_DESC : MSA_BIT_X_DESC_BASE<"sat_u.w", int_mips_sat_u_w, uimm5,
+class SAT_U_W_DESC : MSA_BIT_X_DESC_BASE<"sat_u.w", int_m6502_sat_u_w, uimm5,
                                          immZExt5, MSA128WOpnd>;
-class SAT_U_D_DESC : MSA_BIT_X_DESC_BASE<"sat_u.d", int_mips_sat_u_d, uimm6,
+class SAT_U_D_DESC : MSA_BIT_X_DESC_BASE<"sat_u.d", int_m6502_sat_u_d, uimm6,
                                          immZExt6, MSA128DOpnd>;
 
 class SHF_B_DESC : MSA_I8_SHF_DESC_BASE<"shf.b", MSA128BOpnd>;
 class SHF_H_DESC : MSA_I8_SHF_DESC_BASE<"shf.h", MSA128HOpnd>;
 class SHF_W_DESC : MSA_I8_SHF_DESC_BASE<"shf.w", MSA128WOpnd>;
 
-class SLD_B_DESC : MSA_3R_SLD_DESC_BASE<"sld.b", int_mips_sld_b, MSA128BOpnd>;
-class SLD_H_DESC : MSA_3R_SLD_DESC_BASE<"sld.h", int_mips_sld_h, MSA128HOpnd>;
-class SLD_W_DESC : MSA_3R_SLD_DESC_BASE<"sld.w", int_mips_sld_w, MSA128WOpnd>;
-class SLD_D_DESC : MSA_3R_SLD_DESC_BASE<"sld.d", int_mips_sld_d, MSA128DOpnd>;
+class SLD_B_DESC : MSA_3R_SLD_DESC_BASE<"sld.b", int_m6502_sld_b, MSA128BOpnd>;
+class SLD_H_DESC : MSA_3R_SLD_DESC_BASE<"sld.h", int_m6502_sld_h, MSA128HOpnd>;
+class SLD_W_DESC : MSA_3R_SLD_DESC_BASE<"sld.w", int_m6502_sld_w, MSA128WOpnd>;
+class SLD_D_DESC : MSA_3R_SLD_DESC_BASE<"sld.d", int_m6502_sld_d, MSA128DOpnd>;
 
-class SLDI_B_DESC : MSA_ELM_SLD_DESC_BASE<"sldi.b", int_mips_sldi_b,
+class SLDI_B_DESC : MSA_ELM_SLD_DESC_BASE<"sldi.b", int_m6502_sldi_b,
                                           MSA128BOpnd, MSA128BOpnd, uimm4,
                                           immZExt4>;
-class SLDI_H_DESC : MSA_ELM_SLD_DESC_BASE<"sldi.h", int_mips_sldi_h,
+class SLDI_H_DESC : MSA_ELM_SLD_DESC_BASE<"sldi.h", int_m6502_sldi_h,
                                           MSA128HOpnd, MSA128HOpnd, uimm3,
                                           immZExt3>;
-class SLDI_W_DESC : MSA_ELM_SLD_DESC_BASE<"sldi.w", int_mips_sldi_w,
+class SLDI_W_DESC : MSA_ELM_SLD_DESC_BASE<"sldi.w", int_m6502_sldi_w,
                                           MSA128WOpnd, MSA128WOpnd, uimm2,
                                           immZExt2>;
-class SLDI_D_DESC : MSA_ELM_SLD_DESC_BASE<"sldi.d", int_mips_sldi_d,
+class SLDI_D_DESC : MSA_ELM_SLD_DESC_BASE<"sldi.d", int_m6502_sldi_d,
                                           MSA128DOpnd, MSA128DOpnd, uimm1,
                                           immZExt1>;
 
@@ -2585,18 +2585,18 @@ class SRAI_W_DESC : MSA_BIT_SPLAT_DESC_BASE<"srai.w", sra, vsplati32_uimm5,
 class SRAI_D_DESC : MSA_BIT_SPLAT_DESC_BASE<"srai.d", sra, vsplati64_uimm6,
                                             MSA128DOpnd>;
 
-class SRAR_B_DESC : MSA_3R_DESC_BASE<"srar.b", int_mips_srar_b, MSA128BOpnd>;
-class SRAR_H_DESC : MSA_3R_DESC_BASE<"srar.h", int_mips_srar_h, MSA128HOpnd>;
-class SRAR_W_DESC : MSA_3R_DESC_BASE<"srar.w", int_mips_srar_w, MSA128WOpnd>;
-class SRAR_D_DESC : MSA_3R_DESC_BASE<"srar.d", int_mips_srar_d, MSA128DOpnd>;
+class SRAR_B_DESC : MSA_3R_DESC_BASE<"srar.b", int_m6502_srar_b, MSA128BOpnd>;
+class SRAR_H_DESC : MSA_3R_DESC_BASE<"srar.h", int_m6502_srar_h, MSA128HOpnd>;
+class SRAR_W_DESC : MSA_3R_DESC_BASE<"srar.w", int_m6502_srar_w, MSA128WOpnd>;
+class SRAR_D_DESC : MSA_3R_DESC_BASE<"srar.d", int_m6502_srar_d, MSA128DOpnd>;
 
-class SRARI_B_DESC : MSA_BIT_X_DESC_BASE<"srari.b", int_mips_srari_b, uimm3,
+class SRARI_B_DESC : MSA_BIT_X_DESC_BASE<"srari.b", int_m6502_srari_b, uimm3,
                                          immZExt3, MSA128BOpnd>;
-class SRARI_H_DESC : MSA_BIT_X_DESC_BASE<"srari.h", int_mips_srari_h, uimm4,
+class SRARI_H_DESC : MSA_BIT_X_DESC_BASE<"srari.h", int_m6502_srari_h, uimm4,
                                          immZExt4, MSA128HOpnd>;
-class SRARI_W_DESC : MSA_BIT_X_DESC_BASE<"srari.w", int_mips_srari_w, uimm5,
+class SRARI_W_DESC : MSA_BIT_X_DESC_BASE<"srari.w", int_m6502_srari_w, uimm5,
                                          immZExt5, MSA128WOpnd>;
-class SRARI_D_DESC : MSA_BIT_X_DESC_BASE<"srari.d", int_mips_srari_d, uimm6,
+class SRARI_D_DESC : MSA_BIT_X_DESC_BASE<"srari.d", int_m6502_srari_d, uimm6,
                                          immZExt6, MSA128DOpnd>;
 
 class SRL_B_DESC : MSA_3R_DESC_BASE<"srl.b", srl, MSA128BOpnd>;
@@ -2613,18 +2613,18 @@ class SRLI_W_DESC : MSA_BIT_SPLAT_DESC_BASE<"srli.w", srl, vsplati32_uimm5,
 class SRLI_D_DESC : MSA_BIT_SPLAT_DESC_BASE<"srli.d", srl, vsplati64_uimm6,
                                             MSA128DOpnd>;
 
-class SRLR_B_DESC : MSA_3R_DESC_BASE<"srlr.b", int_mips_srlr_b, MSA128BOpnd>;
-class SRLR_H_DESC : MSA_3R_DESC_BASE<"srlr.h", int_mips_srlr_h, MSA128HOpnd>;
-class SRLR_W_DESC : MSA_3R_DESC_BASE<"srlr.w", int_mips_srlr_w, MSA128WOpnd>;
-class SRLR_D_DESC : MSA_3R_DESC_BASE<"srlr.d", int_mips_srlr_d, MSA128DOpnd>;
+class SRLR_B_DESC : MSA_3R_DESC_BASE<"srlr.b", int_m6502_srlr_b, MSA128BOpnd>;
+class SRLR_H_DESC : MSA_3R_DESC_BASE<"srlr.h", int_m6502_srlr_h, MSA128HOpnd>;
+class SRLR_W_DESC : MSA_3R_DESC_BASE<"srlr.w", int_m6502_srlr_w, MSA128WOpnd>;
+class SRLR_D_DESC : MSA_3R_DESC_BASE<"srlr.d", int_m6502_srlr_d, MSA128DOpnd>;
 
-class SRLRI_B_DESC : MSA_BIT_X_DESC_BASE<"srlri.b", int_mips_srlri_b, uimm3,
+class SRLRI_B_DESC : MSA_BIT_X_DESC_BASE<"srlri.b", int_m6502_srlri_b, uimm3,
                                          immZExt3, MSA128BOpnd>;
-class SRLRI_H_DESC : MSA_BIT_X_DESC_BASE<"srlri.h", int_mips_srlri_h, uimm4,
+class SRLRI_H_DESC : MSA_BIT_X_DESC_BASE<"srlri.h", int_m6502_srlri_h, uimm4,
                                          immZExt4, MSA128HOpnd>;
-class SRLRI_W_DESC : MSA_BIT_X_DESC_BASE<"srlri.w", int_mips_srlri_w, uimm5,
+class SRLRI_W_DESC : MSA_BIT_X_DESC_BASE<"srlri.w", int_m6502_srlri_w, uimm5,
                                          immZExt5, MSA128WOpnd>;
-class SRLRI_D_DESC : MSA_BIT_X_DESC_BASE<"srlri.d", int_mips_srlri_d, uimm6,
+class SRLRI_D_DESC : MSA_BIT_X_DESC_BASE<"srlri.d", int_m6502_srlri_d, uimm6,
                                          immZExt6, MSA128DOpnd>;
 
 class ST_DESC_BASE<string instr_asm, SDPatternOperator OpNode,
@@ -2647,40 +2647,40 @@ class ST_W_DESC : ST_DESC_BASE<"st.w", store, v4i32, MSA128WOpnd,
 class ST_D_DESC : ST_DESC_BASE<"st.d", store, v2i64, MSA128DOpnd,
                                mem_simm10_lsl3, addrimm10lsl3>;
 
-class SUBS_S_B_DESC : MSA_3R_DESC_BASE<"subs_s.b", int_mips_subs_s_b,
+class SUBS_S_B_DESC : MSA_3R_DESC_BASE<"subs_s.b", int_m6502_subs_s_b,
                                        MSA128BOpnd>;
-class SUBS_S_H_DESC : MSA_3R_DESC_BASE<"subs_s.h", int_mips_subs_s_h,
+class SUBS_S_H_DESC : MSA_3R_DESC_BASE<"subs_s.h", int_m6502_subs_s_h,
                                        MSA128HOpnd>;
-class SUBS_S_W_DESC : MSA_3R_DESC_BASE<"subs_s.w", int_mips_subs_s_w,
+class SUBS_S_W_DESC : MSA_3R_DESC_BASE<"subs_s.w", int_m6502_subs_s_w,
                                        MSA128WOpnd>;
-class SUBS_S_D_DESC : MSA_3R_DESC_BASE<"subs_s.d", int_mips_subs_s_d,
+class SUBS_S_D_DESC : MSA_3R_DESC_BASE<"subs_s.d", int_m6502_subs_s_d,
                                        MSA128DOpnd>;
 
-class SUBS_U_B_DESC : MSA_3R_DESC_BASE<"subs_u.b", int_mips_subs_u_b,
+class SUBS_U_B_DESC : MSA_3R_DESC_BASE<"subs_u.b", int_m6502_subs_u_b,
                                        MSA128BOpnd>;
-class SUBS_U_H_DESC : MSA_3R_DESC_BASE<"subs_u.h", int_mips_subs_u_h,
+class SUBS_U_H_DESC : MSA_3R_DESC_BASE<"subs_u.h", int_m6502_subs_u_h,
                                        MSA128HOpnd>;
-class SUBS_U_W_DESC : MSA_3R_DESC_BASE<"subs_u.w", int_mips_subs_u_w,
+class SUBS_U_W_DESC : MSA_3R_DESC_BASE<"subs_u.w", int_m6502_subs_u_w,
                                        MSA128WOpnd>;
-class SUBS_U_D_DESC : MSA_3R_DESC_BASE<"subs_u.d", int_mips_subs_u_d,
+class SUBS_U_D_DESC : MSA_3R_DESC_BASE<"subs_u.d", int_m6502_subs_u_d,
                                        MSA128DOpnd>;
 
-class SUBSUS_U_B_DESC : MSA_3R_DESC_BASE<"subsus_u.b", int_mips_subsus_u_b,
+class SUBSUS_U_B_DESC : MSA_3R_DESC_BASE<"subsus_u.b", int_m6502_subsus_u_b,
                                          MSA128BOpnd>;
-class SUBSUS_U_H_DESC : MSA_3R_DESC_BASE<"subsus_u.h", int_mips_subsus_u_h,
+class SUBSUS_U_H_DESC : MSA_3R_DESC_BASE<"subsus_u.h", int_m6502_subsus_u_h,
                                          MSA128HOpnd>;
-class SUBSUS_U_W_DESC : MSA_3R_DESC_BASE<"subsus_u.w", int_mips_subsus_u_w,
+class SUBSUS_U_W_DESC : MSA_3R_DESC_BASE<"subsus_u.w", int_m6502_subsus_u_w,
                                          MSA128WOpnd>;
-class SUBSUS_U_D_DESC : MSA_3R_DESC_BASE<"subsus_u.d", int_mips_subsus_u_d,
+class SUBSUS_U_D_DESC : MSA_3R_DESC_BASE<"subsus_u.d", int_m6502_subsus_u_d,
                                          MSA128DOpnd>;
 
-class SUBSUU_S_B_DESC : MSA_3R_DESC_BASE<"subsuu_s.b", int_mips_subsuu_s_b,
+class SUBSUU_S_B_DESC : MSA_3R_DESC_BASE<"subsuu_s.b", int_m6502_subsuu_s_b,
                                          MSA128BOpnd>;
-class SUBSUU_S_H_DESC : MSA_3R_DESC_BASE<"subsuu_s.h", int_mips_subsuu_s_h,
+class SUBSUU_S_H_DESC : MSA_3R_DESC_BASE<"subsuu_s.h", int_m6502_subsuu_s_h,
                                          MSA128HOpnd>;
-class SUBSUU_S_W_DESC : MSA_3R_DESC_BASE<"subsuu_s.w", int_mips_subsuu_s_w,
+class SUBSUU_S_W_DESC : MSA_3R_DESC_BASE<"subsuu_s.w", int_m6502_subsuu_s_w,
                                          MSA128WOpnd>;
-class SUBSUU_S_D_DESC : MSA_3R_DESC_BASE<"subsuu_s.d", int_mips_subsuu_s_d,
+class SUBSUU_S_D_DESC : MSA_3R_DESC_BASE<"subsuu_s.d", int_m6502_subsuu_s_d,
                                          MSA128DOpnd>;
 
 class SUBV_B_DESC : MSA_3R_DESC_BASE<"subv.b", sub, MSA128BOpnd>;
