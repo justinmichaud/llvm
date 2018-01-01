@@ -22,13 +22,24 @@ main:                                   # @main
 	addiu	$sp, $sp, -16
 	sw	$fp, 12($sp)            # 4-byte Folded Spill
 	move	 $fp, $sp
-	sw	$zero, 8($fp)
+	addiu	$1, $zero, 0
+	sb	$zero, 9($fp)
+	sb	$zero, 8($fp)
+	sb	$zero, 4($fp)
 	addiu	$1, $zero, 5
-	sw	$1, 4($fp)
-	lw	$1, 4($fp)
+	sb	$1, 5($fp)
+	lbu	$1, 4($fp)
+	sll	$1, $1, 8
+	lbu	$2, 5($fp)
+	or	$1, $1, $2
 	addiu	$1, $1, 1
-	sw	$1, 4($fp)
-	lw	$2, 4($fp)
+	srl	$2, $1, 8
+	sb	$2, 4($fp)
+	sb	$1, 5($fp)
+	lbu	$1, 4($fp)
+	sll	$1, $1, 8
+	lbu	$2, 5($fp)
+	or	$2, $1, $2
 	move	 $sp, $fp
 	lw	$fp, 12($sp)            # 4-byte Folded Reload
 	jr	$ra
