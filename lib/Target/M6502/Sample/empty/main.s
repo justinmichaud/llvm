@@ -52,6 +52,6 @@ $func_end0:
 	.size	main, ($func_end0)-main
                                         # -- End function
 
-	.ident	"clang version 6.0.0 (https://github.com/llvm-mirror/clang.git 5a52b9e6b0480ced82bf0bccbddd0f1d7804752d) (https://github.com/igor-laevsky/llvm-simple-backend.git 3b4fb32f1245a0cc3357b695299d1ac123c22794)"
+	.ident	"clang version 6.0.0 (https://github.com/llvm-mirror/clang.git 5a52b9e6b0480ced82bf0bccbddd0f1d7804752d) (https://github.com/igor-laevsky/llvm-simple-backend.git 5a6d255e6e32ebedb1d132c060a68873f3157a76)"
 	.section	".note.GNU-stack","",@progbits
 	.text
