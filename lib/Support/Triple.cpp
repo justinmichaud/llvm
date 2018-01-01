@@ -93,6 +93,7 @@ StringRef Triple::getArchTypePrefix(ArchType Kind) {
   case thumbeb:     return "arm";
 
   case avr:         return "avr";
+  case m6502:         return "m6502";
 
   case ppc64:
   case ppc64le:
@@ -268,6 +269,7 @@ Triple::ArchType Triple::getArchTypeForLLVMName(StringRef Name) {
     .Case("armeb", armeb)
     .Case("avr", avr)
     .StartsWith("bpf", BPFArch)
+    .Case("m6502", m6502)
     .Case("mips", mips)
     .Case("mipsel", mipsel)
     .Case("mips64", mips64)
@@ -399,6 +401,7 @@ static Triple::ArchType parseArch(StringRef ArchName) {
     .Case("thumb", Triple::thumb)
     .Case("thumbeb", Triple::thumbeb)
     .Case("avr", Triple::avr)
+    .Case("m6502", Triple::m6502)
     .Case("msp430", Triple::msp430)
     .Cases("mips", "mipseb", "mipsallegrex", Triple::mips)
     .Cases("mipsel", "mipsallegrexel", Triple::mipsel)
@@ -620,7 +623,6 @@ static StringRef getObjectFormatTypeName(Triple::ObjectFormatType Kind) {
 static Triple::ObjectFormatType getDefaultFormat(const Triple &T) {
   switch (T.getArch()) {
   case Triple::UnknownArch:
-  case Triple::m6502:
   case Triple::aarch64:
   case Triple::arm:
   case Triple::thumb:
@@ -639,6 +641,7 @@ static Triple::ObjectFormatType getDefaultFormat(const Triple &T) {
   case Triple::amdil64:
   case Triple::armeb:
   case Triple::avr:
+  case Triple::m6502:
   case Triple::bpfeb:
   case Triple::bpfel:
   case Triple::hexagon:
